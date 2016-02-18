@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <title>uploading pictures</title>
+        </head>
+
+        <body>
+                {% if pics %}
+                        <ul>
+                        {% for picture in pics %}
+                                <li>
+                                <img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}">
+                                </li>
+                        {% endfor %}
+                        </ul>
+                {% else %}
+                        <p>No images.</p>
+                {% endif %}
+                <form action="{% url "index" %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>{{ form.non_field_errors }}</p>
+                        <p>{{ form.pic.label_tag }} </p>
+                        <p>
+                                {{ form.pic.errors }}
+                                {{ form.pic }}
+                        </p>
+                        <p><input type="submit" value="Upload" /></p>
+                </form>
+
+        </body>
+
+</html>
