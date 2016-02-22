@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+import json
 
 
 from django.shortcuts import render
@@ -28,4 +29,10 @@ def index(request):
         context_instance=RequestContext(request)
     )
 
-# Create your views here.
+# used specifically for the android app to send data to this webserver
+def upload(request):
+	if request.method == 'POST':
+		json_data = json.loads(request.body)
+		# process json data here....
+	else:
+		return HttpResponse("HELLO")
