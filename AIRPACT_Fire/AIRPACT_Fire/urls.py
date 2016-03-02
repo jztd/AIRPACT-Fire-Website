@@ -21,6 +21,7 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.index),
+    url(R'^test$', views.test),
 	url(r'^file_upload/', include('file_upload.urls')),
     url(r'^admin/', admin.site.urls)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

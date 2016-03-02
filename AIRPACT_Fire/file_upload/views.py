@@ -2,7 +2,11 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.views.decorators.csrf import csrf_exempt
 import json
+from time import time
+from base64 import b64decode
+from django.core.files.base import ContentFile
 
 
 from django.shortcuts import render
@@ -30,9 +34,15 @@ def index(request):
     )
 
 # used specifically for the android app to send data to this webserver
+@csrf_exempt
+
 def upload(request):
 	if request.method == 'POST':
-		json_data = json.loads(request.body)
-		# process json data here....
+		s = json.loads(request.body);
+		image_data = b64decode(s['image'])
+
+		newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=s['user']);
+		newPic.save()
+		return HttpResponse("Success")
 	else:
 		return HttpResponse("HELLO")
