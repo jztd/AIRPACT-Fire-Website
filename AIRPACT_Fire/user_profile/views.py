@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
+from django.contrib.auth.decorators import login_required
 from user_profile.models import UserProfile
 from forms import UserProfileForm
 

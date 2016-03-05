@@ -3,4 +3,4 @@ from django.template import RequestContext
 
 
 def index(request):
-	return render_to_response('index2.html', RequestContext(request))
+	return render_to_response('index2.html', context_instance=RequestContext(request))
