@@ -17,10 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from user_profile import views as user_view
 from . import views
 
 urlpatterns = [
 	url(r'^$', views.index),
+    url(r'^user', include('user_profile.urls')),
     url(r'^gallery', views.gallery),
     url(R'^test$', views.test),
 	url(r'^file_upload/', include('file_upload.urls')),

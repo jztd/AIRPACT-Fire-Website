@@ -1,7 +1,11 @@
-from django.conf.urls.defaults import * 
-urlpatterns = patterns('', 
-	url('r^profile/(?P<profile_id>\d+)/$', 'user_profile.views.profile'),
-	url('r^update_profile/$', 'user_profile.views.update_profile'),
-	url('r^profile/(?P<profile_id>\d+/$', 'user_profile.views.profile'),
-	url('r^your_profile/$', 'user_profile.views.your_profile'),
-	)
+
+from django.conf.urls import url
+
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.login, name='login'),
+    url(r'^auth', views.auth_view),
+    #include('file_upload.urls')
+    #more to come...
+]
