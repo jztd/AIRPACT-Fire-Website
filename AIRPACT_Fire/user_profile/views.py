@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib import auth
-from django contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 
@@ -16,7 +16,7 @@ def user_profile(request):
 		form = UserProfileForm(request.POST, instance=request.user.profile)
 
 
-# Create your views here.
+
 def login(request):
 	c = {}
 	c.update(csrf(request))
@@ -30,15 +30,15 @@ def auth_view(request):
 
 	if user is not None:
 		auth.login(request, user)
-		return HttpResponseRedirect('/user_profile/loggedin')
+		return HttpResponseRedirect('/user/loggedin')
 	else:
-		return HttpResponseRedirect('/user_profile/invalid')
+		return HttpResponseRedirect('/user/invalid')
 
 def loggedin(request):
-	return render_to_response()
+	return render_to_response('loggedin.html')
 
 def invalid_login(request):
-	return render_to_response()
+	return render_to_response('invalid.html')
 
 
 def register_user(request):
@@ -46,9 +46,12 @@ def register_user(request):
 		form = UserCreationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect('/accounts/register_success')
+			return HttpResponseRedirect('/user/register_success')
 	args = {}
 	args.update(csrf(request))
 	args['form'] = UserCreationForm()
 
 	return render_to_response('register.html', args)
+
+def register_success(request): 
+	return render_to_response('register_success.html')

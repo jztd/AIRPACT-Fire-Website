@@ -22,7 +22,7 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.index),
-    url(r'^user', include('user_profile.urls')),
+    url(r'^user/', include('user_profile.urls')),
     url(r'^gallery', views.gallery),
     url(R'^test$', views.test),
 	url(r'^file_upload/', include('file_upload.urls')),
