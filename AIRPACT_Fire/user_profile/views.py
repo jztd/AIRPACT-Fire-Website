@@ -1,12 +1,14 @@
 from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
-
+from django.views.decorators.csrf import csrf_exempt
 from user_profile.models import UserProfile
-from forms import UserProfileForm
+
+from forms import MyRegistrationForm
 
 
 
@@ -40,18 +42,19 @@ def loggedin(request):
 def invalid_login(request):
 	return render_to_response('invalid.html')
 
-
+@csrf_exempt
 def register_user(request):
 	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
+		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/user/register_success')
-	args = {}
-	args.update(csrf(request))
-	args['form'] = UserCreationForm()
+		else:
+			return HttpResponseRedirect('/user/register',{'form':form}) 
 
-	return render_to_response('register.html', args)
+	form = MyRegistrationForm()
+	return render_to_response('register.html', {'form':form, 'form_errors':form.errors} )
 
+@csrf_exempt
 def register_success(request): 
 	return render_to_response('register_success.html')
