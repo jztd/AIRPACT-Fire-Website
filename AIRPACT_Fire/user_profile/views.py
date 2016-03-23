@@ -26,12 +26,14 @@ def auth_view(request):
 	username = request.POST['username']
 	password = request.POST['password']
 	
+
 	# For now, do not ask for the email
 	#email = request.POST['email']
 
 	print("\n ! !  This is the post information from login:")
 	print(request.POST)
-
+	print("\n ! !  This is the password:")
+	print(password)
 	user = auth.authenticate(username=username, password=password)
 
 	if user is not None:
