@@ -42,6 +42,8 @@ INSTALLED_APPS = [
    
 ]
 
+AUTH_USER_MODEL = 'user_profile.AirpactUser'
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,6 +75,9 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.RemoteUserBackend',
+)
 
 
 WSGI_APPLICATION = 'AIRPACT_Fire.wsgi.application'

@@ -1,28 +1,38 @@
-from django import forms            
+from django import forms
+from django.contrib.auth.forms import ReadOnlyPasswordHashField            
 from django.contrib.auth.models import User   # fill in custom user info then save it 
-from django.contrib.auth.forms import UserCreationForm      
+from user_profile.models import AirpactUser    
 
-class MyRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required = True)
-    first_name = forms.CharField(required = False)
-    last_name = forms.CharField(required = False)
-    birtday = forms.DateField(required = False)
-
-
+# Custom user creation form for an Airpact User
+class UserCreationForm(forms.ModelForm):
+    password = forms.CharField(label='password', widget=forms.PasswordInput)
+    confirm_password = forms.CharField(label='confirm password', widget=forms.PasswordInput)
 
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')        
+        model = AirpactUser
+
+        # Note - include all *required* MyUser fields here,
+        # but don't need to include password and confirm_password as they are
+        # already included since they are defined above.
+        fields = ('username','email')        
+
+    def clean(self):
+        print(self.cleaned_data)
+        if'password' in self.cleaned_data:
+            if self.cleaned_data['password'] != self.cleaned_data['confirm_password']:
+                self.add_error('confirm_password', 'Password & Confirm Password must match.')
+
+        return super(UserCreationForm, self).clean()
 
     def save(self,commit = True):   
-        user = super(MyRegistrationForm, self).save(commit = False)
+        user = super(UserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
         user.email = self.cleaned_data['email']
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.birthday = self.cleaned_data['birthday']
-
-
+        
+        # Fields to be added later: 
+        #user.first_name = self.cleaned_data['first_name']
+        #user.last_name = self.cleaned_data['last_name']
+    
         if commit:
             user.save()
-
         return user
