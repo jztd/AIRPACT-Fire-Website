@@ -50,6 +50,7 @@ def invalid_login(request):
 
 
 # Register/ Create a new user
+@login_required(login_url='/accounts/login/')
 def register_user(request):
 	if request.method == 'POST':
 		form = UserCreationForm(request.POST)

@@ -11,16 +11,23 @@ from django.core.files.base import ContentFile
 
 from django.shortcuts import render
 from django.http import HttpResponse
-
 from file_upload.models import picture
+from user_profile.models import AirpactUser
 from file_upload.forms import picture_upload_form
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
 	#if there is a file to upload
+
 	if request.method == 'POST':
+		# OBTAIN USER INFORMATION
+		print("\n - - - - THIS IS THE USER: \n")
+		print(request.user)	
+	
 		form = picture_upload_form(request.POST, request.FILES)
 		if form.is_valid():
-			newPic = picture(pic = request.FILES['pic'])
+			newPic = picture(pic = request.FILES['pic'], user=request.user)
 			newPic.save()
 			return HttpResponseRedirect(reverse('file_upload.views.index'))
 	else:
@@ -40,8 +47,9 @@ def upload(request):
 	if request.method == 'POST':
 		s = json.loads(request.body);
 		image_data = b64decode(s['image'])
-
-		newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=s['user']);
+		print("\n REquest user id: \n")
+		print(request.user.id)
+		newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=request.user.id);
 		newPic.save()
 		return HttpResponse("Success")
 	else:
