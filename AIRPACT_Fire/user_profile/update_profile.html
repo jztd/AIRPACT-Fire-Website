@@ -1,0 +1,17 @@
+{% extends "base/base1.html" %}
+
+{% block title %}  Update profile {% endblock %}
+{% block content %}
+
+<h1> Update your profile</h1>
+<form action="/user/user_profile/" method="POST">{% csrf_token %}
+	<label>
+		Bio:
+	</label><br />
+	{{form.bio}}
+	<button type = "submit">Submit</button>
+</form>
+
+{ % endblock %}
+
+RAWR 
