@@ -26,9 +26,10 @@ def login(request):
 	return render_to_response('login.html', c)
 
 def auth_view(request):
-	# username = request.POST['username']
-	# password = request.POST['password']
-	
+	if(request.method == 'POST'):
+		username = request.POST['username']
+		password = request.POST['password']
+		user = auth.authenticate(username=username, password=password)
 
 	# # For now, do not ask for the email
 	# #email = request.POST['email']
@@ -37,14 +38,14 @@ def auth_view(request):
 	# print(request.POST)
 	# print("\n ! !  This is the password:")
 	# print(password)
-	# user = auth.authenticate(username=username, password=password)
 
-	# if user is not None:
-	# 	auth.login(request, user)
-	# 	return HttpResponseRedirect('/user/loggedin')
-	# else:
-	# 	return HttpResponseRedirect('/user/invalid')
-	return HttpResponse("FIX ME")
+
+		if user is not None:
+		   auth.login(request, user)
+		   return HttpResponseRedirect('/user/loggedin')
+		else:
+			return HttpResponseRedirect('/user/invalid')
+	return HttpResponse("DONT GO HERE")
 	
 def loggedin(request):
 	return render_to_response('loggedin.html')

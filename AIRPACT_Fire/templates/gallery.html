@@ -9,7 +9,7 @@
 <div>
 	<img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" />
 	<article> Description: {{ picture.description }} </article>
-	<article> uploaded by: {{ picture.user }} </article>
+	<article> uploaded by: {{ picture.user.id }} </article>
 </div>
 
 {% endfor %}

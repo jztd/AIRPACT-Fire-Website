@@ -50,7 +50,7 @@ def upload(request):
 		print("\n REquest user id: \n")
 		print(request.user.id)
 		newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=request.user.id);
-		newPic.save()
+		newPic.ave()
 		return HttpResponse("Success")
 	else:
 		return HttpResponse("HELLO")
