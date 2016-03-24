@@ -8,6 +8,7 @@ from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from user_profile.models import AirpactUser
+from user_profile.models import AuthToken
 from django.template import RequestContext
 from forms import UserCreationForm
 from django.contrib.auth import get_user_model
@@ -71,6 +72,7 @@ def register_user(request):
 def register_success(request): 
 	return render_to_response('register_success.html', {'message': "successfull registration! "}, context_instance=RequestContext(request))
 
+@csrf_exempt
 def user_app_auth(request):
 	if request.method == 'POST':
 		userdata = json.loads(request.body)
@@ -79,6 +81,8 @@ def user_app_auth(request):
 		if user is not None:
 			#generate secret key
 			secret = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(22))
+			secretKey = AuthToken(token = secret)
+			secretKey.save()
 			response_data['isUser'] = 'true'
 			response_data['secretKey'] = secret
 		else:
