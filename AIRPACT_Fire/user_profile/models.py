@@ -60,3 +60,10 @@ class AirpactUser(AbstractBaseUser):
 
    	def get_short_name():
    		return first_name
+
+class AuthToken(models.Model):
+	token = models.TextField(max_length =22, unique=True, primary_key=True)
+	issue_date = models.DateField(auto_now_add=True)
+
+	def __str__(self):
+		return self.token

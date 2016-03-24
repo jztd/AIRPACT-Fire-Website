@@ -12,6 +12,7 @@ from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpResponse
 from file_upload.models import picture
+from user_profile.models import AuthToken
 from user_profile.models import AirpactUser
 from file_upload.forms import picture_upload_form
 from django.contrib.auth.decorators import login_required
@@ -42,15 +43,16 @@ def index(request):
 
 # used specifically for the android app to send data to this webserver
 @csrf_exempt
-
 def upload(request):
 	if request.method == 'POST':
 		s = json.loads(request.body);
-		image_data = b64decode(s['image'])
-		print("\n REquest user id: \n")
-		print(request.user.id)
-		newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=request.user.id);
-		newPic.ave()
-		return HttpResponse("Success")
+		if AuthToken.objects.get(token=s['secretKey']).exists():
+			AuthToken.objects.get(token=s['secretKey']).delete()
+			image_data = b64decode(s['image'])
+			newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=request.user.id);
+			newPic.save()
+			return HttpResponse("Success")
+		else:
+			return HttpResponse("Secret Key violation")
 	else:
-		return HttpResponse("HELLO")
+		return HttpResponse("For app uploads only")
