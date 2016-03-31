@@ -8,6 +8,7 @@ class picture(models.Model):
 	uploaded = models.DateTimeField(auto_now_add = True)
 	description = models.TextField(default = "")
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
+	#visualRange = models.FloatField(null=False)
 
 	def __str__(self):
 		return self.description
