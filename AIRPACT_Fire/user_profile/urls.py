@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^invalid$', views.invalid_login),
     url(r'^appauth$',views.user_app_auth),
     url(r'^register_success$', views.register_success),
+    url(r'^profile$', views.view_profile)
     #include('file_upload.urls')
     #more to come...
 ]

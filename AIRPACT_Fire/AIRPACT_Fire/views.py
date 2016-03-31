@@ -19,7 +19,7 @@ def gallery(request):
 	pictures = picture.objects.all()
 	for picturey in pictures:
 		print("\n This is picture user: \n")
-	 	print(picturey)
+	 	print(picturey.user)
 	 	print(" \n end user")
 	return render_to_response('gallery.html', {'pics': pictures}, context_instance=RequestContext(request))
 

@@ -2,14 +2,14 @@
 {% extends "base/base.html" %}
 {% block content %}
 
-<h1>AIR PACT Fire Pictures!  </h1>
+<h1>Gallery</h1>
 
 {% for picture in pics %}
 
 <div>
 	<img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" />
 	<article> Description: {{ picture.description }} </article>
-	<article> uploaded by: {{ picture.user.id }} </article>
+	<article> uploaded by: {{ picture.user }} </article>
 </div>
 
 {% endfor %}

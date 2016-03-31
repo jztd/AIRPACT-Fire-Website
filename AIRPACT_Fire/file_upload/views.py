@@ -49,10 +49,15 @@ def upload(request):
 		if AuthToken.objects.get(token=s['secretKey']).exists():
 			AuthToken.objects.get(token=s['secretKey']).delete()
 			image_data = b64decode(s['image'])
-			newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=request.user.id);
+			userob = AirpactUser.objects.get(username=s['user'])
+			newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=userob.id);
 			newPic.save()
 			return HttpResponse("Success")
 		else:
 			return HttpResponse("Secret Key violation")
 	else:
 		return HttpResponse("For app uploads only")
+def test(request):
+	userob = AirpactUser.objects.get(username='JZTD')
+	print(userob.id)
+	return HttpResponse(userob.id)

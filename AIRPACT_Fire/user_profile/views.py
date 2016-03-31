@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from user_profile.models import AirpactUser
 from user_profile.models import AuthToken
+from file_upload.models import picture
 from django.template import RequestContext
 from forms import UserCreationForm
 from django.contrib.auth import get_user_model
@@ -86,8 +87,18 @@ def user_app_auth(request):
 			response_data['isUser'] = 'true'
 			response_data['secretKey'] = secret
 		else:
-			respones_data['isUser'] = 'false'
-			respones_data['secretKey'] = ''
+			response_data['isUser'] = 'false'
+			response_data['secretKey'] = ''
+		print(json.dumps(response_data))
 		return HttpResponse(json.dumps(response_data), content_type="application/json")
 	else:
 		return HttpResponse("HI")
+
+def view_profile(request, name):
+	# we need to get the current user info
+	# send it to the view...so lets do that I guess
+	user = AirpactUser.objects.get(username = name)
+	userpictures = picture.objects.get(user = name)
+	print(name)
+	return render_to_response('user_profile.html', {'pictures' : userpictures, 'user':request.user}, context_instance=RequestContext(request))
+	
