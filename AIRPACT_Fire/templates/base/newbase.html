@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<HTML lang="en">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.css">
+</head>
+<body style="background-color:#e5e5e5">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 top-bar-container" style="background-color:#981e32; height:105px;"> 
+			<div class="col-md-2 top-bar-logo" style="background-color: #FFF; margin-left: -20px;"> <img src="/media/decoration/logo.png"/> </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-1 left-nav">
+			<div class="text-right" style="margin-top:150px; font-size:19px;">
+				<a class="col-md-12" href="{% url 'gallery' %}"> Gallery </a>
+				<a class="col-md-12" href="{% url 'index' %}"> Upload Image </a>
+			</div>
+		</div>
+		<div class="col-md-9 content" style="background-color: #FFF">
+		<div class= "col-md-2 pull-right" style="font-size: 19px" >
+		{% if user.is_authenticated %}
+			Welcome <a href="{% url 'view_profile' user %}"> {{ user }}! </a>
+
+		{% else %}
+			Welcome Guest! <a href="{% url 'login' %}"> Login </a> or <a href="{% url 'register' %}"> Register </a>
+		{% endif %}
+
+		  </div>
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+	</div>
+</div>
+
+
+
+
+</body>
+
+
+</HTML>

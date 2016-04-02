@@ -13,6 +13,7 @@ from file_upload.models import picture
 from django.template import RequestContext
 from forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
 import random
 import string
@@ -94,11 +95,20 @@ def user_app_auth(request):
 	else:
 		return HttpResponse("HI")
 
-def view_profile(request, name):
+def view_profile(request, name, page = 1):
 	# we need to get the current user info
 	# send it to the view...so lets do that I guess
+	thisuser = False
+	if request.user.username is name:
+		thisuser = True
 	user = AirpactUser.objects.get(username = name)
-	userpictures = picture.objects.get(user = name)
-	print(name)
-	return render_to_response('user_profile.html', {'pictures' : userpictures, 'user':request.user}, context_instance=RequestContext(request))
+	userpictures = picture.objects.filter(user = user)
+	paginator = Paginator(userpictures, 12) #show 12 per page
+	try:
+		pictures = paginator.page(page)
+	except PageNotAnInteger:
+		pictures = paginator.page(1)
+	except EmptyPage:
+		pictures = paginator.page(paginator.num_pages)
+	return render_to_response('user_profile.html', {'pictures' : pictures, 'user':request.user, 'thisuser':thisuser}, context_instance=RequestContext(request))
 	
