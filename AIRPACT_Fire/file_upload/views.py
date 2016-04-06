@@ -14,6 +14,7 @@ from django.http import HttpResponse
 from file_upload.models import picture
 from user_profile.models import AuthToken
 from user_profile.models import AirpactUser
+from convos.models import convoPage
 from file_upload.forms import picture_upload_form
 from django.contrib.auth.decorators import login_required
 
@@ -22,22 +23,32 @@ def index(request):
 	#if there is a file to upload
 
 	if request.method == 'POST':
-		# OBTAIN USER INFORMATION
-		print("\n - - - - THIS IS THE USER: \n")
-		print(request.user)	
 	
 		form = picture_upload_form(request.POST, request.FILES)
 		if form.is_valid():
 			newPic = picture(pic = request.FILES['pic'], user=request.user)
 			newPic.save()
+
+			#Creating some conversation stuffs
+			conversations = convoPage(picture = newPic)
+			conversations.save()
+
+			#At some point I hsould delete these... maybe 
+			print("This is the picture: ")
+			print(newPic.id)
+			print("This is the conversation: ")
+			print(conversations.id)			
+
 			return HttpResponseRedirect(reverse('file_upload.views.index'))
 	else:
 		form = picture_upload_form()
 
 		pictures = picture.objects.all()
+		conversations = convoPage.objects.all()
+
 		return render_to_response(
         'index.html',
-        {'pics': pictures, 'form': form},
+        {'pics': pictures, 'form': form, 'conversations':conversations},
         context_instance=RequestContext(request)
     )
 
@@ -52,6 +63,11 @@ def upload(request):
 			userob = AirpactUser.objects.get(username=s['user'])
 			newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=userob.id);
 			newPic.save()
+
+			#Creating some conversation stuffs
+			conversations = convoPage(picture = newPic)
+			conversations.save()
+
 			return HttpResponse("Success")
 		else:
 			return HttpResponse("Secret Key violation")

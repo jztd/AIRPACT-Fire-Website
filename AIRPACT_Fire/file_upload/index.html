@@ -13,6 +13,14 @@
                                 <li>
                                 <img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}">
                                 </li>
+
+                                {% for conversation in conversations %}
+                                        {{ conversation.id }}
+                                        {% if conversation.picture.id == picture.id %}
+                                                <p><a href="/convos/{{ conversation.id }}" > Comments </a></p> 
+                                        {% endif }
+                                {% endfor %}
+
                         {% endfor %}
                         </ul>
                 {% else %}

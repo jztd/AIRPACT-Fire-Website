@@ -37,12 +37,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # custom apps
     'file_upload',
     'user_profile',
-   
+    'convos',
+
+    # comment apps
+    #'threadedcomments',
+    'django.contrib.sites',
+    'django_comments',
+    #'fluent_comments',
+    #'crispy_forms',
 ]
 
 AUTH_USER_MODEL = 'user_profile.AirpactUser'
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

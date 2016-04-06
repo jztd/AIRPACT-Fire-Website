@@ -1,4 +1,3 @@
-
 {% extends "base/newbase.html" %}
 {% block content %}
 
@@ -10,6 +9,13 @@
 	<img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" />
 	<article> Description: {{ picture.description }} </article>
 	<article> uploaded by: {{ picture.user }} </article>
+    
+    {% for conversation in conversations %}
+    	{% if conversation.picture.id == picture.id %}
+    		<p><a href="/convos/{{ conversation.id }}" > Comments </a></p> 
+    	{% endif %}
+    {% endfor %}
+
 </div>
 
 {% endfor %}

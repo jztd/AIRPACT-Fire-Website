@@ -17,8 +17,19 @@
 			<h3> {{ user.username }}'s Photos </h3>
 		</div>
 		{% for pic in pictures %}
-			<div class="col-md-3"> <img class="img-responsive" src="{{ pic.pic.url }}" /> </div>
+			<div class="col-md-3"> <img class="img-responsive" src="{{ pic.pic.url }}" /> 
+			
+			{% for conversation in conversations %}
+    			{% if conversation.picture.id == pic.id %}
+    			<p><a href="/convos/{{ conversation.id }}" > Comments </a></p> 
+    			{% endif %}
+    		{% endfor %}
+    		</div>
+    		
 		{% endfor %}
+
+
+
 	</div>
 	<div class="row">
 		<ul class="pagination">

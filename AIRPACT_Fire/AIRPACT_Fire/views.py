@@ -6,6 +6,7 @@ from django.contrib import auth
 from django.core.context_processors import csrf
 
 from file_upload.models import picture
+from convos.models import convoPage
 
 def index(request):
 	return render_to_response('index2.html', context_instance=RequestContext(request))
@@ -17,9 +18,7 @@ def test(request):
 
 def gallery(request):
 	pictures = picture.objects.all()
-	for picturey in pictures:
-		print("\n This is picture user: \n")
-	 	print(picturey.user)
-	 	print(" \n end user")
-	return render_to_response('gallery.html', {'pics': pictures}, context_instance=RequestContext(request))
+
+	conversations = convoPage.objects.all()
+	return render_to_response('gallery.html', {'pics': pictures, 'conversations':conversations}, context_instance=RequestContext(request))
 

@@ -14,6 +14,8 @@ from django.template import RequestContext
 from forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth import logout
+from convos.models import convoPage
 import json
 import random
 import string
@@ -24,6 +26,13 @@ def user_profile(request):
 		form = UserProfileForm(request.POST, instance=request.user.profile)
 
 def login(request):
+	c = {}
+	c.update(csrf(request))
+	return render_to_response('login.html', c)
+
+@login_required
+def logout(request):
+	auth.logout(request)
 	c = {}
 	c.update(csrf(request))
 	return render_to_response('login.html', c)
@@ -95,6 +104,7 @@ def user_app_auth(request):
 	else:
 		return HttpResponse("HI")
 
+@login_required
 def view_profile(request, name, page = 1):
 	# we need to get the current user info
 	# send it to the view...so lets do that I guess
@@ -110,5 +120,7 @@ def view_profile(request, name, page = 1):
 		pictures = paginator.page(1)
 	except EmptyPage:
 		pictures = paginator.page(paginator.num_pages)
-	return render_to_response('user_profile.html', {'pictures' : pictures, 'user':request.user, 'thisuser':thisuser}, context_instance=RequestContext(request))
+	conversations = convoPage.objects.all()
+	return render_to_response('user_profile.html', {'pictures' : pictures, 'user':request.user, 'thisuser':thisuser, 
+		'conversations':conversations}, context_instance=RequestContext(request))
 	

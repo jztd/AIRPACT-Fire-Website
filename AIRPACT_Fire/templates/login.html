@@ -1,11 +1,11 @@
-{% extends "base/base.html" %}
-
+{% extends "base/newbase.html" %}
 {% block content %}
 
 	{% if form.errors %}
 	<p class = "error">Sorry, that's not a valid username of password </p>
 	{% endif %}
-	
+		
+	<H2> Login </H2>
 
 	<form action = "auth" method = "post"> {% csrf_token %}
 	<p>

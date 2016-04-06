@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from user_profile import views as user_view
+from convos import views as convos_view
+from django_comments.models import Comment
 from . import views
+
 
 urlpatterns = [
 	url(r'^$', views.index),
@@ -26,5 +29,10 @@ urlpatterns = [
     url(r'^gallery/', views.gallery, name='gallery'),
     url(R'^test$', views.test),
 	url(r'^file_upload/', include('file_upload.urls')),
-    url(r'^admin/', admin.site.urls)
+    url(r'^admin/', admin.site.urls), 
+
+    url(r'^convos/([0-9]+)/$', convos_view.render_convo),
+    #url(r'^comments/post/$', convos_view.comment_post),
+    #url( r'^comments/posted/$', convos_view.comment_posted),    
+    url(r'^comments/', include('django_comments.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
