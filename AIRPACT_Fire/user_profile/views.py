@@ -12,6 +12,7 @@ from user_profile.models import AuthToken
 from file_upload.models import picture
 from django.template import RequestContext
 from forms import UserCreationForm
+from forms import EditProfileForm
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import logout
@@ -104,12 +105,12 @@ def user_app_auth(request):
 	else:
 		return HttpResponse("HI")
 
-@login_required
+
 def view_profile(request, name, page = 1):
 	# we need to get the current user info
 	# send it to the view...so lets do that I guess
 	thisuser = False
-	if request.user.username is name:
+	if request.user.username == name:
 		thisuser = True
 	user = AirpactUser.objects.get(username = name)
 	userpictures = picture.objects.filter(user = user)
@@ -120,7 +121,23 @@ def view_profile(request, name, page = 1):
 		pictures = paginator.page(1)
 	except EmptyPage:
 		pictures = paginator.page(paginator.num_pages)
-	conversations = convoPage.objects.all()
-	return render_to_response('user_profile.html', {'pictures' : pictures, 'user':request.user, 'thisuser':thisuser, 
-		'conversations':conversations}, context_instance=RequestContext(request))
+	return render_to_response('user_profile.html', {'pictures' : pictures, 'profile_user':user, 'thisuser':thisuser}, context_instance=RequestContext(request))
+
+@login_required
+def edit_profile(request):
+	userob = AirpactUser.objects.get(username=request.user.username)
+	if request.method == 'POST':
+		# do stuff to save the new user data
+		form = EditProfileForm(request.POST)
+		if form.is_valid():
+			userob.first_name = form.cleaned_data.get('first_name')
+			userob.last_name = form.cleaned_data.get('last_name')
+			userob.email = form.cleaned_data.get('email')
+			userob.bio = form.cleaned_data.get('bio')
+			userob.save()
+		#reidrect back to their profile
+		return HttpResponseRedirect('/user/profile/'+request.user.username+'/')
+	form = EditProfileForm(instance=userob)
+	pictures = picture.objects.filter(user = userob)
+	return render_to_response('edit_profile.html', {'user': request.user, 'form':form, 'pictures': pictures}, context_instance=RequestContext(request))
 	

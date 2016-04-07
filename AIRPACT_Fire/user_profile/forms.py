@@ -1,4 +1,5 @@
 from django import forms
+
 from django.contrib.auth.forms import ReadOnlyPasswordHashField            
 from django.contrib.auth.models import User   # fill in custom user info then save it 
 from user_profile.models import AirpactUser    
@@ -36,3 +37,14 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = AirpactUser
+        fields = ['first_name', 'last_name', 'email','bio']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control'})
+        }

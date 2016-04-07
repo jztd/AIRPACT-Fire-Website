@@ -4,6 +4,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.css">
+	<link rel="stylesheet" type="text/css" href="/static/main.css">
 </head>
 <body style="background-color:#e5e5e5">
 <div class="container-fluid">
@@ -22,10 +23,9 @@
 			</div>
 		</div>
 		<div class="col-md-9 content" style="background-color: #FFF">
-		<div class= "col-md-2 pull-right" style="font-size: 19px" >
+		<div class= "col-md-4 pull-right" style="font-size: 19px" >
 		{% if user.is_authenticated %}
-			Welcome <a href="{% url 'view_profile' user %}"> {{ user }}! </a>
-
+			Welcome <a href="{% url 'view_profile' user %}"> {{ user }}! </a>, <a href="{% url 'logout' %}"> Logout </a>
 		{% else %}
 			Welcome Guest! <a href="{% url 'login' %}"> Login </a> or <a href="{% url 'register' %}"> Register </a>
 		{% endif %}
