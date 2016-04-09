@@ -14,6 +14,7 @@ from django.http import HttpResponse
 from file_upload.models import picture
 from user_profile.models import AuthToken
 from user_profile.models import AirpactUser
+from user_profile.views import edit_profile
 from convos.models import convoPage
 from file_upload.forms import picture_upload_form
 from django.contrib.auth.decorators import login_required
@@ -56,23 +57,36 @@ def index(request):
 @csrf_exempt
 def upload(request):
 	if request.method == 'POST':
+		response_data = {}
 		s = json.loads(request.body);
-		if AuthToken.objects.get(token=s['secretKey']).exists():
+		toke = AuthToken.objects.filter(token=s['secretKey'])
+		if toke.count() > 0:
 			AuthToken.objects.get(token=s['secretKey']).delete()
 			image_data = b64decode(s['image'])
 			userob = AirpactUser.objects.get(username=s['user'])
-			newPic = picture(pic = ContentFile(image_data,str(time()+".jpg")), description = s['description'], user=userob.id);
+			newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), description = s['description'], user=userob);
 			newPic.save()
 
 			#Creating some conversation stuffs
 			conversations = convoPage(picture = newPic)
 			conversations.save()
-
-			return HttpResponse("Success")
+			response_data['status'] = 'success'
+			return HttpResponse(json.dumps(response_data), content_type="application/json")
 		else:
-			return HttpResponse("Secret Key violation")
+			response_data['status'] = 'keyFailed'
+			return HttpResponse(json.dumps(response_data), content_type="application/json")
 	else:
 		return HttpResponse("For app uploads only")
+
+@login_required
+def delete_picture(request, id):
+	img = picture.objects.get(id = id)
+	print("users id: "+str(request.user.id)+"pictureid:"+str(img.id))
+	if request.user.id == img.user.id:
+		print("deleteing shit")
+		img.delete()
+	return edit_profile(request)
+
 def test(request):
 	userob = AirpactUser.objects.get(username='JZTD')
 	print(userob.id)
