@@ -3,3 +3,38 @@
 	min-height: 300px;
 	max-height: 300px;
 }
+
+#rcorners1 {
+    border-radius: 25px;
+    background: #00CD21;
+    padding: 20px;
+
+}
+
+.commentRow {
+    line-height:24pt;
+    border: solid 1px black;
+    border-radius: 25px;
+    background: #00CD21;
+    padding: 20px;
+}
+
+.commentRow2 {
+    line-height:24pt;
+    border: solid 1px black;
+    border-radius: 25px;
+    background: #90CD51;
+    padding: 20px;
+}
+
+
+#pictureFunk {
+   padding:1px;
+   border:1px solid #021a40;
+   background-color:#ff0;
+}
+
+
+
+textarea#id_comment {height:50px; }
+

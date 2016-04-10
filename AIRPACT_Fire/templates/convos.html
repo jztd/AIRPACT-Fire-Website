@@ -2,15 +2,16 @@
 {% load comments %}
 {% block content %}
 {% if picture %}
-<div class="col-lg-12">
-<p><img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" align = "middle"></p>                        
-</div>
+
+
+
+<p><img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" align = "middle" id ="pictureFunk" ></p>                        
+
 {% else %}
         <p>No image To display</p>
 {% endif %}
 
 
-<p> <H2>Conversations: </H2> </p>
 <a name="comment_start"></a>
 
 <div class = "comment_form">
@@ -19,7 +20,11 @@
 {% get_comment_form for convos as form %}
 <form action = "{% comment_form_target %}" method="POST">
 {% csrf_token %}
+
+
 {{ form.comment }}
+
+
 {{ form.content_type }}
 {{ form.object_pk }}
 {{ form.timestamp }}
@@ -38,21 +43,31 @@ value="/convos/{{ convo_id }}/#comment_start">
 {% else %}
 
 <p> Please log in to comment </p>
+
 {% endif %}
 </div>
 
+<p> <H2>Comments: </H2> </p>
 
 
 {% get_comment_list for convos as comment_list %}
 {% for comment in comment_list reversed %}
 
 
-<div style="width:1000px; margin:100 auto;">
+{% if comment.id|divisibleby:2 %}
+<div class = "commentRow">
+{% else %}
+<div class = "commentRow2">
+{% endif %}
+
 <P> Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
 
- <P> {{ comment.comment }} </P>
-</div>
+		<P>    {{ comment.comment }} </P>
+
+
+</div>	
 
 
 {% endfor %}
+
 {% endblock %}
