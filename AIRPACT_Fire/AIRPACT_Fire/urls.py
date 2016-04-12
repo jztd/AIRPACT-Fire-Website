@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from user_profile import views as user_view
 from convos import views as convos_view
+from file_upload import views as file_upload_views
 from django_comments.models import Comment
 from . import views
 
@@ -31,7 +32,7 @@ urlpatterns = [
     url(r'^test$', views.test),
 	url(r'^file_upload/', include('file_upload.urls')),
     url(r'^admin/', admin.site.urls), 
-
+    url(r'^picture/view/(?P<picId>\d+)/$', file_upload_views.view_picture, name="view_picture"),
     url(r'^convos/([0-9]+)/$', convos_view.render_convo),
     #url(r'^comments/post/$', convos_view.comment_post),
     #url( r'^comments/posted/$', convos_view.comment_posted),    

@@ -18,6 +18,8 @@ from user_profile.views import edit_profile
 from convos.models import convoPage
 from file_upload.forms import picture_upload_form
 from django.contrib.auth.decorators import login_required
+from convos.models import convoPage
+
 
 @login_required
 def index(request):
@@ -91,3 +93,14 @@ def test(request):
 	userob = AirpactUser.objects.get(username='JZTD')
 	print(userob.id)
 	return HttpResponse(userob.id)
+
+def view_picture(request, picId = -1):
+	if picId != -1:
+		# good picture id
+		p = picture.objects.get(id = picId)
+		print(p.pic.url)
+		conversation = convoPage.objects.get(picture = p)
+		return render_to_response( 'convos.html', {'picture': p, 'convos':conversation, 'convo_id':conversation.pk }, context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect("/gallery")
+		#redirect back to gallery

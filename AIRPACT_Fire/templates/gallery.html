@@ -5,7 +5,7 @@
 
 {% for picture in pictures %}
 	<div class="col-lg-3 thumb">
-		<img class="img-thumbnail" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" />
+		<a href="{% url 'view_picture' picId=picture.id %}"> <img class="img-thumbnail" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" /> </a>
 		<article class="col-lg-6"> Description: {{ picture.description }} </article>
 		<article class="col-lg-6"> uploaded by: <a href="{% url 'view_profile' name=picture.user %}"> {{ picture.user }} </a> </article>
 	</div>

@@ -13,26 +13,21 @@
 
 .commentRow {
     line-height:24pt;
-    border: solid 1px black;
-    border-radius: 25px;
-    background: #00CD21;
-    padding: 20px;
+   /* border: solid 1px black;*/
+   /* border-radius: 25px;*/
+    background: #faf8f3;
+    padding: 10px;
 }
 
 .commentRow2 {
     line-height:24pt;
-    border: solid 1px black;
-    border-radius: 25px;
-    background: #90CD51;
-    padding: 20px;
+  /*  border: solid 1px black;*/
+   /* border-radius: 25px;*/
+    background: #e7e9ea;
+    padding: 10px;
 }
 
 
-#pictureFunk {
-   padding:1px;
-   border:1px solid #021a40;
-   background-color:#ff0;
-}
 
 
 

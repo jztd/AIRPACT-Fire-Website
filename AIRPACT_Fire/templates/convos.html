@@ -4,70 +4,80 @@
 {% if picture %}
 
 
+<div class="row>">
+	<div class="col-lg-8">
+		<p><img  class="img-responsive" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" align = "middle" id ="pictureFunk" ></p>
+	</div>  
+	<div class="col-lg-4"> 
 
-<p><img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" align = "middle" id ="pictureFunk" ></p>                        
+	</div>
+        
 
 {% else %}
         <p>No image To display</p>
 {% endif %}
 
+</div> 
+<div class="row">
+	<div class="col-lg-12">
+		<a name="comment_start"></a>
 
-<a name="comment_start"></a>
+		<div class = "comment_form">
 
-<div class = "comment_form">
-
-{% if user.is_authenticated %}
-{% get_comment_form for convos as form %}
-<form action = "{% comment_form_target %}" method="POST">
-{% csrf_token %}
-
-
-{{ form.comment }}
-
-
-{{ form.content_type }}
-{{ form.object_pk }}
-{{ form.timestamp }}
-{{ form.security_hash }}
+		{% if user.is_authenticated %}
+		{% get_comment_form for convos as form %}
+		<form action = "{% comment_form_target %}" method="POST">
+		{% csrf_token %}
 
 
-<input type ="hidden" name="name" value = "{{ user }}"/>
-<input type ="hidden" name="email" value = "nothing@gmail.com"/>
-<input type ="hidden" name="url" value = "https://www.nothing.com"/>
+		{{ form.comment }}
 
-<input type = "hidden" name = "next" 
-value="/convos/{{ convo_id }}/#comment_start">
-<p><input type = "submit" value= "Add comment" id="id_submit" /></p>
-</form>
 
-{% else %}
+		{{ form.content_type }}
+		{{ form.object_pk }}
+		{{ form.timestamp }}
+		{{ form.security_hash }}
 
-<p> Please log in to comment </p>
 
-{% endif %}
+		<input type ="hidden" name="name" value = "{{ user }}"/>
+		<input type ="hidden" name="email" value = "nothing@gmail.com"/>
+		<input type ="hidden" name="url" value = "https://www.nothing.com"/>
+
+		<input type = "hidden" name = "next" 
+		value="/convos/{{ convo_id }}/#comment_start">
+		<p><input type = "submit" value= "Add comment" id="id_submit" /></p>
+		</form>
+
+		{% else %}
+
+		<p> Please log in to comment </p>
+
+		{% endif %}
+		</div>
+
+		<p> <H2>Comments: </H2> </p>
+
+
+		{% get_comment_list for convos as comment_list %}
+		{% for comment in comment_list reversed %}
+
+
+		{% if comment.id|divisibleby:2 %}
+		<div class = "col-lg-12 commentRow">
+		{% else %}
+		<div class = "col-lg-12 commentRow2">
+		{% endif %}
+
+		<p> Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+
+				<p>    {{ comment.comment }} </p>
+
+
+		</div>	
+
+
+		{% endfor %}
+	</div>
 </div>
-
-<p> <H2>Comments: </H2> </p>
-
-
-{% get_comment_list for convos as comment_list %}
-{% for comment in comment_list reversed %}
-
-
-{% if comment.id|divisibleby:2 %}
-<div class = "commentRow">
-{% else %}
-<div class = "commentRow2">
-{% endif %}
-
-<P> Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
-
-		<P>    {{ comment.comment }} </P>
-
-
-</div>	
-
-
-{% endfor %}
 
 {% endblock %}

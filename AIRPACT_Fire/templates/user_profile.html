@@ -6,11 +6,11 @@
 			<img class="img-responsive" src="" />
 		</div>
 		<div class="col-md-8"> 
-			username: {{ profile_user.username }} <br>
+			Username: {{ profile_user.username }} <br>
 			First Name: {{ profile_user.first_name }} <br>
 			Last Name: {{ profile_user.last_name }}<br>
 			Email: {{ profile_user.email }}<br>
-			bio: {{ profile_user.bio }}<br>
+			Bio: {{ profile_user.bio }}<br>
 			{% if thisuser == True %}
 				<a href="/user/profile/edit/"> Edit </a>
 			{% endif %}
