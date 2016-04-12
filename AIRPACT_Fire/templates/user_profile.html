@@ -19,6 +19,9 @@
 	<div class="row">
 			<div class="col-md-12">
 				<h3> {{ profile_user.username }}'s Photos </h3>
+				{% if thisuser == True %}
+					<a href="/user/profile/manage_pictures/"> Manage Pictures </a>
+				{% endif %}
 			</div>
 
 			{% for pic in pictures %}

@@ -140,4 +140,10 @@ def edit_profile(request):
 	form = EditProfileForm(instance=userob)
 	pictures = picture.objects.filter(user = userob)
 	return render_to_response('edit_profile.html', {'user': request.user, 'form':form, 'pictures': pictures}, context_instance=RequestContext(request))
+
+@login_required
+def manage_pictures(request):
+	userob = AirpactUser.objects.get(username=request.user.username)
+	pictures = picture.objects.filter(user= userob)
+	return render_to_response('manage_pictures.html', {'pictures': pictures}, context_instance=RequestContext(request))
 	

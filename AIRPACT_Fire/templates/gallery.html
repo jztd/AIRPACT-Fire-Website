@@ -3,21 +3,34 @@
 
 <h1>Gallery</h1>
 
-{% for picture in pics %}
-
-<div>
-	<img src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" />
-	<article> Description: {{ picture.description }} </article>
-	<article> uploaded by: {{ picture.user }} </article>
-    
-    {% for conversation in conversations %}
-    	{% if conversation.picture.id == picture.id %}
-    		<p><a href="/convos/{{ conversation.id }}" > Comments </a></p> 
-    	{% endif %}
-    {% endfor %}
-
-</div>
-
+{% for picture in pictures %}
+	<div class="col-lg-3 thumb">
+		<img class="img-thumbnail" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" />
+		<article class="col-lg-6"> Description: {{ picture.description }} </article>
+		<article class="col-lg-6"> uploaded by: <a href="{% url 'view_profile' name=picture.user %}"> {{ picture.user }} </a> </article>
+	</div>
 {% endfor %}
 
+<ul class="pagination">
+	{% if pictures.number != 1 %}
+		<li>
+			<a href="{% url 'gallery' page=pictures.previous_page_number %}"> << </a>
+		</li>
+	{% endif %}
+	{% if pictures.paginator.num_pages > 1%}
+		{% for num in pictures.paginator.page_range %}
+			{% if pictures.number == num %}
+				<li class="active"> <a href="" > {{num}}</a> </li>
+			{% else %}
+				<li> <a href="{% url 'gallery' page=num %}"> {{ num }} </a> </li>
+			{% endif %}
+		{% endfor %}
+		{% if pictures.number != pictures.paginator.num_pages %}
+			<li>
+				<a href="{% url 'gallery' page=pictures.next_page_number %}"> >> </a>
+			</li>
+		{% endif %}
+	{% endif %}
+
+</ul>
 {% endblock %}

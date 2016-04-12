@@ -1,0 +1,27 @@
+{% extends "base/newbase.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-7">
+		<h3> Manage Pictures </h3>
+		<table class="table table-striped">
+			<tr>
+				<th> Thumbnail</th>
+				<th> Date </th>
+				<th> Description </th>
+				<th> Action</th>
+			</tr>
+			{% for p in pictures %}
+				<tr>
+					<td> <img src="{{p.pic.url}}" class="img-responsive" > </td>
+					<td> {{ p.uploaded }} </td>
+					<td> {{p.description}} </td>
+					<td> <a href="{% url 'delete_picture' id=p.id %}"> Delete </a> / <a href=""> Edit </a> </td> 
+				</tr>
+			{% endfor %}
+
+		</table>
+	</div>
+</div>
+
+{% endblock %}
