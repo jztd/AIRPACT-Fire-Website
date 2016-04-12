@@ -11,6 +11,14 @@
 	<div class="row">
 		<div class="col-md-12 top-bar-container" style="background-color:#981e32; height:105px;"> 
 			<div class="col-md-2 top-bar-logo" style="background-color: #FFF; margin-left: -20px;"> <img src="/media/decoration/logo.png"/> </div>
+			<div class= "col-md-4 navbar-right" style="font-size: 19px" >
+			{% if user.is_authenticated %}
+				Welcome <a href="{% url 'view_profile' user %}"> {{ user }}! </a>, <a href="{% url 'logout' %}"> Logout </a>
+			{% else %}
+				Welcome Guest! <a href="{% url 'login' %}"> Login </a> or <a href="{% url 'register' %}"> Register </a>
+			{% endif %}
+
+		  </div>
 		</div>
 	</div>
 	<div class="row">
@@ -21,14 +29,7 @@
 			</div>
 		</div>
 		<div class="col-md-9 content" style="background-color: #FFF">
-		<div class= "col-md-4 pull-right" style="font-size: 19px" >
-		{% if user.is_authenticated %}
-			Welcome <a href="{% url 'view_profile' user %}"> {{ user }}! </a>, <a href="{% url 'logout' %}"> Logout </a>
-		{% else %}
-			Welcome Guest! <a href="{% url 'login' %}"> Login </a> or <a href="{% url 'register' %}"> Register </a>
-		{% endif %}
-
-		  </div>
+		
 			{% block content %}
 			{% endblock %}
 		</div>
