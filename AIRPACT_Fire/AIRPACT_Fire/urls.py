@@ -25,7 +25,7 @@ from . import views
 
 
 urlpatterns = [
-	url(r'^$', views.index),
+	url(r'^$', views.index, name="home"),
     url(r'^user/', include('user_profile.urls')),
     url(r'^gallery/$', views.gallery, name="gallery"),
     url(r'^gallery/(?P<page>\d+)/$', views.gallery, name='gallery'),
