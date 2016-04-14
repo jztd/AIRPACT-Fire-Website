@@ -3,3 +3,4 @@ from file_upload.models import picture
 
 class picture_upload_form(forms.Form):
 	pic = forms.FileField(label="select picture")
+	vr = forms.DecimalField(label="visual range")
