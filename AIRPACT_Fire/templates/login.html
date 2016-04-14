@@ -1,9 +1,7 @@
 {% extends "base/newbase.html" %}
 {% block content %}
 
-	{% if form.errors %}
-	<p class = "error">Sorry, that's not a valid username of password </p>
-	{% endif %}
+	<P><b>{{ Errors }}<b><P>
 		
 	<H2> Login </H2>
 
@@ -19,8 +17,7 @@
 	<input type = "submit" value="login" />
 
 	</form>
-	<P> Don't have an account? You can register 
-			<a href= "/user/register"> Here </a>
+	<P> This is a private site, our admins must register an acocunt for you.	
 	</P>
 
 
