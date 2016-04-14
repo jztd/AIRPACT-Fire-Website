@@ -1,36 +1,41 @@
 {% extends "base/newbase.html" %}
 {% block content %}
+<div class="row">
+	<h1 class="col-lg-12">Gallery</h1>
+	{% for picture in pictures %}
+		<div class="col-lg-3 thumb">
+			<a href="{% url 'view_picture' picId=picture.id %}"> <img class="img-thumbnail" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" /> </a>
+			<div class="col-lg-12">
+				<article class="col-lg-12"> Description: {{ picture.description }} </article>
+				<article class="col-lg-12"> uploaded by: <a href="{% url 'view_profile' name=picture.user %}"> {{ picture.user }} </a> </article>
+				<div class="col-lg-12"> VR: {{picture.vr }} </div>
+			</div>
+		</div>
+	{% endfor %}
 
-<h1>Gallery</h1>
-
-{% for picture in pictures %}
-	<div class="col-lg-3 thumb">
-		<a href="{% url 'view_picture' picId=picture.id %}"> <img class="img-thumbnail" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" /> </a>
-		<article class="col-lg-6"> Description: {{ picture.description }} </article>
-		<article class="col-lg-6"> uploaded by: <a href="{% url 'view_profile' name=picture.user %}"> {{ picture.user }} </a> </article>
-	</div>
-{% endfor %}
-
-<ul class="pagination">
-	{% if pictures.number != 1 %}
-		<li>
-			<a href="{% url 'gallery' page=pictures.previous_page_number %}"> << </a>
-		</li>
-	{% endif %}
-	{% if pictures.paginator.num_pages > 1%}
-		{% for num in pictures.paginator.page_range %}
-			{% if pictures.number == num %}
-				<li class="active"> <a href="" > {{num}}</a> </li>
-			{% else %}
-				<li> <a href="{% url 'gallery' page=num %}"> {{ num }} </a> </li>
+	<div class= "col-lg-12">
+		<ul class="pagination">
+			{% if pictures.number != 1 %}
+				<li>
+					<a href="{% url 'gallery' page=pictures.previous_page_number %}"> << </a>
+				</li>
 			{% endif %}
-		{% endfor %}
-		{% if pictures.number != pictures.paginator.num_pages %}
-			<li>
-				<a href="{% url 'gallery' page=pictures.next_page_number %}"> >> </a>
-			</li>
-		{% endif %}
-	{% endif %}
+			{% if pictures.paginator.num_pages > 1%}
+				{% for num in pictures.paginator.page_range %}
+					{% if pictures.number == num %}
+						<li class="active"> <a href="" > {{num}}</a> </li>
+					{% else %}
+						<li> <a href="{% url 'gallery' page=num %}"> {{ num }} </a> </li>
+					{% endif %}
+				{% endfor %}
+				{% if pictures.number != pictures.paginator.num_pages %}
+					<li>
+						<a href="{% url 'gallery' page=pictures.next_page_number %}"> >> </a>
+					</li>
+				{% endif %}
+			{% endif %}
 
-</ul>
+		</ul>
+	</div>
+</div>
 {% endblock %}
