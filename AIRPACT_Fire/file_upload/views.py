@@ -80,15 +80,17 @@ def upload(request):
 							geoX = int(s['geoX']),
 							geoY = int(s['geoY'])
 							 );
+
 			newPic.save()
 
-			#Creating some conversation stuffs
-			tags = s['tags'].split(",")
-			for tag in tags:
-				newTag = tag(picture = newPic, text = tag)
-			
 			conversations = convoPage(picture = newPic)
 			conversations.save()
+
+			#Creating some conversation stuffs
+			print(s['tags'])
+			tags = s['tags'].split(",")
+			for t in tags:
+				newTag = tag(picture = newPic, text = t.lower())
 
 			#lets make pop some tags yall
 

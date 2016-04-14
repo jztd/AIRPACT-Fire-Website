@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^user/', include('user_profile.urls')),
     url(r'^gallery/$', views.gallery, name="gallery"),
     url(r'^gallery/(?P<page>\d+)/$', views.gallery, name='gallery'),
+    url(r'^gallery/(?P<page>\d+)/(?P<sort>\w+)/$', views.gallery, name='gallery'),
     url(r'^test$', views.test),
 	url(r'^file_upload/', include('file_upload.urls')),
     url(r'^admin/', admin.site.urls), 
