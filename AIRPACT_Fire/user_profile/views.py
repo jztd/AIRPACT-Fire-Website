@@ -55,7 +55,8 @@ def auth_view(request):
 
 		if user is not None:
 		   auth.login(request, user)
-		   return HttpResponseRedirect('/user/loggedin')
+		   # Logging in nolonger requires a redirection to a pointless page
+		   return HttpResponseRedirect("/user/profile/"+ user.username + "/1")
 		else:
 			return HttpResponseRedirect('/user/invalid')
 	return HttpResponse("DONT GO HERE")
