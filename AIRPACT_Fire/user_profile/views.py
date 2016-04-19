@@ -57,6 +57,7 @@ def auth_view(request):
 		   auth.login(request, user)
 		   # Logging in nolonger requires a redirection to a pointless page
 		   return HttpResponseRedirect("/user/profile/"+ user.username + "/1")
+
 		else:
 
 			return render_to_response('login.html',  {'Errors':"Invalid username or Password"}, context_instance=RequestContext(request) )

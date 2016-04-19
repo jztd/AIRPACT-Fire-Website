@@ -7,8 +7,18 @@
         <p>
                 {{ form.pic.errors }}
                 {{ form.pic }}
-                {{ form.vr }}
         </p>
+        <p> {{ form.vr.label_tag}} </p>
+        <p> 
+        	{{ form.vr.errors}} 
+        	{{ form.vr }}
+        </p>
+        <p> {{ form.location.label_tag }} </p>
+        <p> 
+                {{ form.location.errors}} 
+                {{ form.location }}
+        </p>
+
         <p><input type="submit" value="Upload" /></p>
 </form>
 {% endblock %}

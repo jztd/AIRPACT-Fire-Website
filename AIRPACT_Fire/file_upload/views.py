@@ -36,11 +36,12 @@ def index(request):
 			conversations = convoPage(picture = newPic)
 			conversations.save()
 
-			#At some point I hsould delete these... maybe 
-			print("This is the picture: ")
-			print(newPic.id)
-			print("This is the conversation: ")
-			print(conversations.id)			
+			t = form.cleaned_data['location']
+
+			#20 dollars in my pocket
+			newTag = tag(picture = newPic, text = t.lower())
+			newTag.save()
+
 
 			return HttpResponseRedirect(reverse('file_upload.views.index'))
 	else:
@@ -80,15 +81,18 @@ def upload(request):
 							geoX = int(s['geoX']),
 							geoY = int(s['geoY'])
 							 );
+
 			newPic.save()
 
-			#Creating some conversation stuffs
-			tags = s['tags'].split(",")
-			for tag in tags:
-				newTag = tag(picture = newPic, text = tag)
-			
 			conversations = convoPage(picture = newPic)
 			conversations.save()
+
+			#Creating some conversation stuffs
+			print(s['tags'])
+			tags = s['tags'].split(",")
+			for t in tags:
+				newTag = tag(picture = newPic, text = t.lower())
+				newTag.save()
 
 			#lets make pop some tags yall
 
@@ -115,12 +119,29 @@ def test(request):
 	return HttpResponse(userob.id)
 
 def view_picture(request, picId = -1):
+	pictures = None
 	if picId != -1:
+		
 		# good picture id
 		p = picture.objects.get(id = picId)
-		print(p.pic.url)
+		cur_tag = tag.objects.get(picture= p)
 		conversation = convoPage.objects.get(picture = p)
-		return render_to_response( 'convos.html', {'picture': p, 'convos':conversation, 'convo_id':conversation.pk }, context_instance=RequestContext(request))
+
+		# If the user wants to see more images:
+		if request.method == 'POST':
+			location = cur_tag.text
+			picture_tags = tag.objects.filter(text=location)
+			pictures = []
+			for picture_tag in picture_tags:
+				pictures.append(picture_tag.picture)
+			print("\n\n These are the pictures: \n \n")
+			print(pictures)
+
+		return render_to_response( 'convos.html', {'picture': p,'pictures':pictures, 'convos':conversation, 
+			'convo_id':conversation.pk, 'theURL':'/picture/view/'+picId+'/',
+			 'tag':cur_tag}, context_instance=RequestContext(request))
+
+
 	else:
 		return HttpResponseRedirect("/gallery")
 		#redirect back to gallery

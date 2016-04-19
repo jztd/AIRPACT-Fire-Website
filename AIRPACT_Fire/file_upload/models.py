@@ -19,6 +19,7 @@ class picture(models.Model):
 	def __str__(self):
 		return self.description
 
+# THE BITCHIN TIGGLE TAG
 class tag(models.Model):
 	picture = models.ForeignKey(picture, on_delete=models.CASCADE)
 	text = models.TextField(null=False)
