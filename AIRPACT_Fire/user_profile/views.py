@@ -55,11 +55,8 @@ def auth_view(request):
 
 		if user is not None:
 		   auth.login(request, user)
-		   # Logging in nolonger requires a redirection to a pointless page
 		   return HttpResponseRedirect("/user/profile/"+ user.username + "/1")
-
 		else:
-
 			return render_to_response('login.html',  {'Errors':"Invalid username or Password"}, context_instance=RequestContext(request) )
 	return HttpResponse("DONT GO HERE")
 	
@@ -71,7 +68,6 @@ def invalid_login(request):
 
 
 # Register/ Create a new user
-@login_required
 def register_user(request):
 	if request.method == 'POST':
 		form = UserCreationForm(request.POST)
@@ -109,7 +105,7 @@ def user_app_auth(request):
 	else:
 		return HttpResponse("HI")
 
-@login_required
+
 def view_profile(request, name, page = 1):
 	# we need to get the current user info
 	# send it to the view...so lets do that I guess
