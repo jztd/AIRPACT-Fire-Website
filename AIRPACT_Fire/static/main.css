@@ -134,15 +134,21 @@ body{
 }
 #timelineLeftArrow
 {
-  width: 64px;
-  height: 100px;
+  width:45px;
+  height: 65px;
   background-image: url("/media/slideShowArrows/left-arrow.png");
+  background-size: contain;
+  background-repeat:   no-repeat;
+  background-position: center center;
 }
 #timelineRightArrow
 {
-  width:64px;
-  height: 100px;
+  width:45px;
+  height: 65px;
+  background-size: contain;
   background-image: url("/media/slideShowArrows/right-arrow.png");
+  background-repeat:   no-repeat;
+  background-position: center center;
 }
 textarea#id_comment {height:50px; }
 
