@@ -101,7 +101,7 @@ body{
   opacity: .7;
   position: absolute;
   top:40%;
-  background-image: url("/media/slideShowArrows/left-arrow.png")
+  background-image: url("/media/slideShowArrows/left-arrow.png");
 }
 #slideShowRightNavArrow{
   width:64px;
@@ -110,7 +110,28 @@ body{
   position: absolute;
   top:40%;
   right:0;
-  background-image: url("/media/slideShowArrows/right-arrow.png")
+  background-image: url("/media/slideShowArrows/right-arrow.png");
+}
+
+#mainPicture:hover{
+  cursor: pointer;
+}
+
+#timelineContainer{
+/*  height: 50px;
+  min-height: 50px;*/
+}
+#timelineLeftArrow
+{
+  width: 64px;
+  height: 100px;
+  background-image: url("/media/slideShowArrows/left-arrow.png");
+}
+#timelineRightArrow
+{
+  width:64px;
+  height: 100px;
+  background-image: url("/media/slideShowArrows/right-arrow.png");
 }
 textarea#id_comment {height:50px; }
 

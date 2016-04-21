@@ -29,7 +29,7 @@ def index(request):
 	if request.method == 'POST':
 		form = picture_upload_form(request.POST, request.FILES)
 		if form.is_valid():
-			newPic = picture(pic = request.FILES['pic'], user=request.user)
+			newPic = picture(pic = request.FILES['pic'], user=request.user, vr=form.cleaned_data.get('vr'), description=form.cleaned_data.get('description'))
 			newPic.save()
 
 			#Creating some conversation stuffs
@@ -129,7 +129,7 @@ def view_picture(request, picId = -1):
 		pictures = []
 		for picture_tag in picture_tags:
 			pictures.append(picture_tag.picture)
-			
+
 		return render_to_response( 'convos.html', {'picture': p,'pictures':pictures, 'convos':conversation, 
 			'convo_id':conversation.pk,'tag':cur_tag}, context_instance=RequestContext(request))
 
