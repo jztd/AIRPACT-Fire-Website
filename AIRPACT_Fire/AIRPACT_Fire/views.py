@@ -9,7 +9,7 @@ from file_upload.models import picture
 from convos.models import convoPage
 
 def index(request):
-	newestPictures = picture.objects.all().order_by("uploaded")[:4]
+	newestPictures = picture.objects.all().order_by("-uploaded")[:4]
 	return render_to_response('index2.html', {'newestPictures' : newestPictures}, context_instance=RequestContext(request))
 
 
