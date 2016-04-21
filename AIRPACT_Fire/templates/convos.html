@@ -115,26 +115,27 @@
 
 <!-- begin weird timeline slideshow stuff -->
 <div class="slideShowContainer" id="slideShowContainer">
+	<div id="slideShowMainPicture"> 
+		<div id="slideShowBottomInfoPanel"> 
+			<table class="table">
+			<thead>
+				<th> Date </th>
+				<th> Location </th>
+				<th> Visual Range </th>
+				<th> Description </th>
+			</thead>
+			</tr>
+				<td id="slideShowDate">{{ picture.uploaded }}</td>
+				<td id="slideShowLocation"> {{tag.text}} </td>
+				<td id="slideShowVr"> {{ picture.vr }}</td>
+				<td id="slideShowDesc"> {{ picture.description }}</td>
+			</tr>
+			</table>
+		</div>
+	</div>
 	<div id="slideShowLeftNavArrow"> </div>
 	<div id="slideShowRightNavArrow"> </div>
-	<div id="slideShowBottomInfoPanel"> 
-		<table class="table">
-		<thead>
-			<th> Date </th>
-			<th> Location </th>
-			<th> Visual Range </th>
-			<th> Description </th>
-		</th>
-		</tr>
-			<td id="slideShowDate">{{ picture.uploaded }}</td>
-			<td id="slideShowLocation"> {{tag.text}} </td>
-			<td id="slideShowVr"> {{ picture.vr }}</td>
-			<td id="slideShowDesc"> {{ picture.description }}</td>
-		</tr>
-		</table>
-	</div>
 </div>
-
 
 
 <script type="text/javascript">
@@ -190,7 +191,7 @@ function moveLeft()
 	}
 
 	$('#slideShowContainer').fadeOut(function(){
-		$('#slideShowContainer').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
 		updateTable();
 		$('#slideShowContainer').fadeIn(500);
 	});
@@ -207,7 +208,7 @@ function moveRight()
 	}
 
 	$('#slideShowContainer').fadeOut(function(){
-		$('#slideShowContainer').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
 		updateTable();
 		$('#slideShowContainer').fadeIn(500);
 	});
@@ -223,7 +224,7 @@ function updateTable()
 $(document).ready(function(){
 	findStartingIndex();
 	currentIndex=starting_index;
-	$("#slideShowContainer").css('background-image', "url("+String(pictures[starting_index].url)+")");
+	$("#slideShowMainPicture").css('background-image', "url("+String(pictures[starting_index].url)+")");
 	hidden = false;
 	$('#mainPicture').click(function(){
 		if (hidden == false)

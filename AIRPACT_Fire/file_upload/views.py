@@ -130,6 +130,8 @@ def view_picture(request, picId = -1):
 		for picture_tag in picture_tags:
 			pictures.append(picture_tag.picture)
 
+		#setup range of image numbers for the 
+
 		return render_to_response( 'convos.html', {'picture': p,'pictures':pictures, 'convos':conversation, 
 			'convo_id':conversation.pk,'tag':cur_tag}, context_instance=RequestContext(request))
 
