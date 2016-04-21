@@ -76,7 +76,6 @@ def register_user(request):
 			return HttpResponseRedirect('/user/register_success')
 		else:
 			return render_to_response('register.html',  {'form':form}, context_instance=RequestContext(request) )
-
 	form = UserCreationForm()
 	return render_to_response('register.html',  {'form':form}, context_instance=RequestContext(request) )
 

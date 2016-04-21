@@ -41,20 +41,15 @@ def index(request):
 			#20 dollars in my pocket
 			newTag = tag(picture = newPic, text = t.lower())
 			newTag.save()
-
-
 			return HttpResponseRedirect(reverse('file_upload.views.index'))
+		return render_to_response('index.html', {'form':form}, context_instance=RequestContext(request))
 	else:
 		form = picture_upload_form()
 
-		pictures = picture.objects.all()
-		conversations = convoPage.objects.all()
-
 		return render_to_response(
         'index.html',
-        {'pics': pictures, 'form': form, 'conversations':conversations},
-        context_instance=RequestContext(request)
-    )
+        {'form': form},
+        context_instance=RequestContext(request))
 
 # used specifically for the android app to send data to this webserver
 @csrf_exempt
@@ -127,19 +122,16 @@ def view_picture(request, picId = -1):
 		cur_tag = tag.objects.get(picture= p)
 		conversation = convoPage.objects.get(picture = p)
 
-		# If the user wants to see more images:
-		if request.method == 'POST':
-			location = cur_tag.text
-			picture_tags = tag.objects.filter(text=location)
-			pictures = []
-			for picture_tag in picture_tags:
-				pictures.append(picture_tag.picture)
-			print("\n\n These are the pictures: \n \n")
-			print(pictures)
 
+		# If the user wants to see more images:
+		location = cur_tag.text
+		picture_tags = tag.objects.filter(text=location).order_by("picture__uploaded")
+		pictures = []
+		for picture_tag in picture_tags:
+			pictures.append(picture_tag.picture)
+			
 		return render_to_response( 'convos.html', {'picture': p,'pictures':pictures, 'convos':conversation, 
-			'convo_id':conversation.pk, 'theURL':'/picture/view/'+picId+'/',
-			 'tag':cur_tag}, context_instance=RequestContext(request))
+			'convo_id':conversation.pk,'tag':cur_tag}, context_instance=RequestContext(request))
 
 
 	else:

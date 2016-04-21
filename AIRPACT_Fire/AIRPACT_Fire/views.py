@@ -17,7 +17,7 @@ def index(request):
 def test(request):
 	return render_to_response('hello.html', RequestContext(request))
 
-def gallery(request, page = 1, sort="all"):
+def gallery(request, page = 1, sort="dateu"):
 	allpictures = picture.objects.all()
 	if sort == "dateu":
 		allpictures = allpictures.order_by('-uploaded')
