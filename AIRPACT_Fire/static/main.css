@@ -105,6 +105,7 @@ body{
 #slideShowLeftNavArrow{
   width:64px;
   height: 100px;
+  margin-left: 10px;
   opacity: .7;
   position: absolute;
   top:40%;
@@ -115,6 +116,7 @@ body{
   width:64px;
   height: 100px;
   opacity: .7;
+  margin-right: 10px;
   position: absolute;
   top:40%;
   right:0;

@@ -164,7 +164,11 @@ function fadeScreen(){
 
 function fadeBack(){
 
-	$('#slideShowContainer').fadeOut( function(){ $("#overlay").slideUp(); });
+	$('#slideShowContainer').fadeOut( function(){ 
+		$("#overlay").slideUp(); 
+		currentIndex=starting_index;
+		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
+	});
 	
 
 }
