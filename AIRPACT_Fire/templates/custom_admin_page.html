@@ -1,10 +1,6 @@
 
 {% extends "base/newbase.html" %}
 {% block content %}
-
-
-<body>
-
 <table class="adminTable">
    <tr>
     <th> User Name </th>
@@ -13,39 +9,39 @@
     <th> Delete</th>
   </tr>
   
-  {% for user in users %}
+  {% for u in nusers %}
   <tr>
-    <td>{{ user.username }}</td>
+    <td>{{ u.username }}</td>
 
     <td>
-    {% if user.is_certified == False %}
+    {% if u.is_certified == False %}
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="certify">
-		<input type="hidden" name="ourUser" value="{{ user.username }}"> 
+		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
 		<input type="submit" class="adminButton" value="Make Certified">
 	</form>
 	{% else %}
 
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="uncertify">
-		<input type="hidden" name="ourUser" value="{{ user.username }}"> 
+		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
 		<input type="submit" class="adminButton" value="Make Unertified">
 	</form>
 	{% endif %}
     </td>
 
     <td>
-    {% if user.is_custom_admin == False %}
+    {% if u.is_custom_admin == False %}
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="make_admin">
-		<input type="hidden" name="ourUser" value="{{ user.username }}"> 
+		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
 		<input type="submit" class="adminButton" value="Make Admin">
 	</form>
 	{% else %}
 
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="unmake_admin">
-		<input type="hidden" name="ourUser" value="{{ user.username }}"> 
+		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
 		<input type="submit" class="adminButton2" value="Demote From Admin">
 	</form>
 	{% endif %}	
@@ -55,7 +51,7 @@
     
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="delete">
-		<input type="hidden" name="ourUser" value="{{ user.username }}"> 
+		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
 		<input type="submit" onclick="return confirm('Are you sure you wish to delete user?')" class="adminButton" value="Delete User">
 	</form>
 
@@ -65,6 +61,4 @@
   {% endfor %}
 
 </table>
-
-</body>
 {% endblock %}

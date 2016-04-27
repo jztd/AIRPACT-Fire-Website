@@ -160,30 +160,30 @@ def admin_page(request):
 	if request.user.is_certified is False:
 		return render_to_response('not_certified.html')
 
-	users = AirpactUser.objects.all()
+	nusers = AirpactUser.objects.all()
 	if(request.method == 'POST'):
 		print(request.POST)
 		username = request.POST.get("ourUser",False)
-		user = AirpactUser.objects.get(username=username)
+		nuser = AirpactUser.objects.get(username=username)
 		the_type = request.POST['the_type']
 		
 		if(the_type == "certify"):
-			user.is_certified = True 
-			user.save()
+			nuser.is_certified = True 
+			nuser.save()
 
 		if(the_type == "uncertify"):
-			user.is_certified = False 
-			user.save()
+			nuser.is_certified = False 
+			nuser.save()
 
 		if(the_type == "make_admin"):
-			user.is_custom_admin = True
-			user.save() 
+			nuser.is_custom_admin = True
+			nuser.save() 
 
 		if(the_type == "unmake_admin"):
-			user.is_custom_admin = False
-			user.save() 
+			nuser.is_custom_admin = False
+			nuser.save() 
 
 		if(the_type == "delete"):
-			user.delete()
+			nuser.delete()
 
-	return render_to_response('custom_admin_page.html', {'users': users})
+	return render_to_response('custom_admin_page.html', {'nusers': nusers}, context_instance=RequestContext(request));
