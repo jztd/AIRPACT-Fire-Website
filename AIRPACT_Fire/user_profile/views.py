@@ -23,6 +23,8 @@ import string
 
 @login_required
 def user_profile(request):
+	if request.user.is_certified is False:
+		return render_to_response('not_certified.html')
 	if(request.method == 'POST'):
 		form = UserProfileForm(request.POST, instance=request.user.profile)
 
@@ -73,7 +75,7 @@ def register_user(request):
 		form = UserCreationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect('/user/register_success')
+			return HttpResponseRedirect('/user/')
 		else:
 			return render_to_response('register.html',  {'form':form}, context_instance=RequestContext(request) )
 	form = UserCreationForm()
@@ -124,6 +126,9 @@ def view_profile(request, name, page = 1):
 
 @login_required
 def edit_profile(request):
+	if request.user.is_certified is False:
+		return render_to_response('not_certified.html')
+
 	userob = AirpactUser.objects.get(username=request.user.username)
 	if request.method == 'POST':
 		# do stuff to save the new user data
@@ -145,4 +150,40 @@ def manage_pictures(request):
 	userob = AirpactUser.objects.get(username=request.user.username)
 	pictures = picture.objects.filter(user= userob)
 	return render_to_response('manage_pictures.html', {'pictures': pictures}, context_instance=RequestContext(request))
-	
+
+
+@csrf_exempt
+@login_required
+def admin_page(request):
+	if request.user.is_custom_admin is False:
+		return HttpResponseRedirect('/')
+	if request.user.is_certified is False:
+		return render_to_response('not_certified.html')
+
+	users = AirpactUser.objects.all()
+	if(request.method == 'POST'):
+		print(request.POST)
+		username = request.POST.get("ourUser",False)
+		user = AirpactUser.objects.get(username=username)
+		the_type = request.POST['the_type']
+		
+		if(the_type == "certify"):
+			user.is_certified = True 
+			user.save()
+
+		if(the_type == "uncertify"):
+			user.is_certified = False 
+			user.save()
+
+		if(the_type == "make_admin"):
+			user.is_custom_admin = True
+			user.save() 
+
+		if(the_type == "unmake_admin"):
+			user.is_custom_admin = False
+			user.save() 
+
+		if(the_type == "delete"):
+			user.delete()
+
+	return render_to_response('custom_admin_page.html', {'users': users})

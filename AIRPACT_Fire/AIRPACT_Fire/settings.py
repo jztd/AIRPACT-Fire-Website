@@ -154,5 +154,5 @@ AUTH_PROFILE_MODULE = 'user_profile.UserProfile'
 
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static/'), ]
 
-LOGIN_REDIRECT_URL='/user'
-LOGIN_URL='/user'
+LOGIN_REDIRECT_URL='/user/'
+LOGIN_URL='/user/'

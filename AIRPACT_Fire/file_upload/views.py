@@ -24,6 +24,8 @@ from convos.models import convoPage
 
 @login_required
 def index(request):
+	if request.user.is_certified is False:
+		return render_to_response('not_certified.html')
 	#if there is a file to upload
 
 	if request.method == 'POST':
@@ -101,6 +103,8 @@ def upload(request):
 
 @login_required
 def delete_picture(request, id):
+	if request.user.is_certified is False:
+		return render_to_response('not_certified.html')
 	img = picture.objects.get(id = id)
 	print("users id: "+str(request.user.id)+"pictureid:"+str(img.id))
 	if request.user.id == img.user.id:

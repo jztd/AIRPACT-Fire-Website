@@ -4,6 +4,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'^admin_page$', views.admin_page, name="adminPage"),
     url(r'^$', views.login, name="login"),
     url(r'^logout$', views.logout, name="logout"),
     url(r'^auth$', views.auth_view),

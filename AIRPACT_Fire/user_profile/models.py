@@ -43,7 +43,9 @@ class AirpactUser(AbstractBaseUser):
 	first_name = models.CharField(max_length=30,null=False, blank=True)
 	last_name = models.CharField(max_length=30, null=False, blank=True)
 	email = models.EmailField(blank=True)
-
+	is_custom_admin = models.BooleanField(default = False)
+	is_certified = models.BooleanField(default = False)
+	bob = models.BooleanField
 	objects = AirpactUserManager()
 
 	#required to implement

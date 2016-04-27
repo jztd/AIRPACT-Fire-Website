@@ -26,7 +26,10 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.index, name="home"),
+    url(r'^admin_page$', views.admin_page, name="adminPage"),
+    url(r'^uncertified$', views.uncertified, name="uncertified"),
     url(r'^user/', include('user_profile.urls')),
+   #url(r'^user', include('user_profile.urls')),
     url(r'^gallery/$', views.gallery, name="gallery"),
     url(r'^gallery/(?P<page>\d+)/$', views.gallery, name='gallery'),
     url(r'^gallery/(?P<page>\d+)/(?P<sort>\w+)/$', views.gallery, name='gallery'),

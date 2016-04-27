@@ -10,6 +10,44 @@ body{
 	max-height: 300px;
 }
 
+.adminTable{
+   width: 800px;
+   height: 60px;
+   border-spacing: 2px;
+   border-collapse: collapse;
+
+}
+
+.adminTable tr:nth-child(even){
+  background-color: #f2f2f2
+}
+
+.adminTable th, td{
+  text-align: left;
+}
+
+.adminTable th {
+    background-color: #981e32;
+    color: white;
+    height: 40px;
+}
+
+.adminButton {
+   color:#0000FF;
+   background-color: transparent;
+   font-weight: bold;
+   border: none;
+   outline:none;
+}
+
+.adminButton2 {
+   color:#FF0000;
+   background-color: transparent;
+   font-weight: bold;
+   border: none;
+   outline:none;
+}
+
 #rcorners1 {
     border-radius: 25px;
     background: #00CD21;
