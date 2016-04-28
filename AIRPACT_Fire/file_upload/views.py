@@ -123,12 +123,12 @@ def view_picture(request, picId = -1):
 		
 		# good picture id
 		p = picture.objects.get(id = picId)
-		cur_tag = tag.objects.get(picture= p)
+		cur_tag = tag.objects.filter(picture= p)
 		conversation = convoPage.objects.get(picture = p)
 
 
 		# If the user wants to see more images:
-		location = cur_tag.text
+		location = cur_tag[0].text
 		picture_tags = tag.objects.filter(text=location).order_by("picture__uploaded")
 		pictures = []
 		for picture_tag in picture_tags:
@@ -137,7 +137,7 @@ def view_picture(request, picId = -1):
 		#setup range of image numbers for the 
 
 		return render_to_response( 'convos.html', {'picture': p,'pictures':pictures, 'convos':conversation, 
-			'convo_id':conversation.pk,'tag':cur_tag}, context_instance=RequestContext(request))
+			'convo_id':conversation.pk,'tag':cur_tag[0]}, context_instance=RequestContext(request))
 
 
 	else:
