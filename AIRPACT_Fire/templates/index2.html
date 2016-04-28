@@ -12,7 +12,7 @@
         var mapDiv = document.getElementById('map');
         var map = new google.maps.Map(mapDiv, {
           center: {lat: 46.72977, lng: -117.181738},
-          zoom: 6
+          zoom: 5
         });
       }
     </script>
@@ -23,8 +23,12 @@
 	$(document).ready(function(){
 
 		$("#map").click(function(){
-			window.location.href ="{% url 'about'%}";
+			window.location.href ="{% url 'main'%}";
 		});
+		// get last 8 hours
+
 	});
+
+
 </script>
 {% endblock %}

@@ -13,6 +13,8 @@ from user_profile.models import AirpactUser
 
 def index(request):
 	return render_to_response('index2.html', context_instance=RequestContext(request))
+def main(request):
+	return render_to_response('index.html', context_instance=RequestContext(request))
 
 @csrf_exempt
 @login_required
