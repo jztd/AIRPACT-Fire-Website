@@ -1,7 +1,8 @@
 
 {% extends "base/newbase.html" %}
 {% block content %}
-<table class="adminTable">
+<div class="col-md-7 col-md-offset-2">
+<table class="table table-striped adminTable">
    <tr>
     <th> User Name </th>
     <th> Make Certified</th> 
@@ -11,21 +12,21 @@
   
   {% for u in nusers %}
   <tr>
-    <td>{{ u.username }}</td>
+    <td><strong>{{ u.username }}</strong></td>
 
     <td>
     {% if u.is_certified == False %}
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="certify">
 		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
-		<input type="submit" class="adminButton" value="Make Certified">
+		<input type="submit" class="btn btn-primary" value="Make Certified">
 	</form>
 	{% else %}
 
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="uncertify">
 		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
-		<input type="submit" class="adminButton" value="Make Unertified">
+		<input type="submit" class="btn btn-warning" value="Make Uncertified">
 	</form>
 	{% endif %}
     </td>
@@ -35,14 +36,14 @@
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="make_admin">
 		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
-		<input type="submit" class="adminButton" value="Make Admin">
+		<input type="submit" class="btn btn-primary" value="Make Admin">
 	</form>
 	{% else %}
 
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="unmake_admin">
 		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
-		<input type="submit" class="adminButton2" value="Demote From Admin">
+		<input type="submit" class="btn btn-warning" value="Demote From Admin">
 	</form>
 	{% endif %}	
     </td>
@@ -52,7 +53,7 @@
 	<form action = "{% url "adminPage" %}" method = "POST"> 
 		<input type="hidden" name="the_type" value="delete">
 		<input type="hidden" name="ourUser" value="{{ u.username }}"> 
-		<input type="submit" onclick="return confirm('Are you sure you wish to delete user?')" class="adminButton" value="Delete User">
+		<input type="submit" onclick="return confirm('Are you sure you wish to delete user?')" class="btn btn-danger" value="Delete User">
 	</form>
 
     </td>
@@ -61,4 +62,5 @@
   {% endfor %}
 
 </table>
+</div>
 {% endblock %}

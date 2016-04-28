@@ -18,10 +18,6 @@ body{
 
 }
 
-.adminTable tr:nth-child(even){
-  background-color: #f2f2f2
-}
-
 .adminTable th, td{
   text-align: left;
 }

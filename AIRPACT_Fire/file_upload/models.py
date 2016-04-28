@@ -10,11 +10,11 @@ class picture(models.Model):
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
 	vr = models.FloatField(null=False, default=0)
 	highColor = models.IntegerField(null=False , default=0)
-	highX = models.IntegerField(null=False, default=0)
-	highY= models.IntegerField(null=False, default=0)
+	highX = models.FloatField(null=False, default=0)
+	highY= models.FloatField(null=False, default=0)
 	lowColor = models.IntegerField(null=False, default=0)
-	geoX = models.IntegerField(default = 0)
-	geoY = models.IntegerField(default = 0)
+	geoX = models.FloatField(default = 0)
+	geoY = models.FloatField(default = 0)
 
 	def __str__(self):
 		return self.description

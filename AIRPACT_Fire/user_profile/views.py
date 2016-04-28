@@ -89,6 +89,8 @@ def register_success(request):
 def user_app_auth(request):
 	if request.method == 'POST':
 		userdata = json.loads(request.body)
+		print(userdata['username'])
+		print(userdata['password'])
 		user = auth.authenticate(username=userdata['username'], password=userdata['password'] )
 		response_data = {}
 		if user is not None:

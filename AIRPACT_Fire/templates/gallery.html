@@ -2,26 +2,25 @@
 {% block content %}
 <div class="row">
 	<h1 class="col-lg-12">Gallery</h1>
-	<div class="col-lg-12"> sort by: 
-		{% if sort == "dated" %}
-			<a href="{% url 'gallery' sort='dateu' page=1 %}"> date&#x25B2;</a> 
-		{% else %}
-			<a href="{% url 'gallery' sort='dated' page=1 %}"> date&#x25BC;</a>
-		{% endif %} 
-			| 
-		{% if sort == "vrd" %}
-			<a href="{% url 'gallery' sort='vru' page=1 %}"> vr&#x25B2; </a>
-		{% else %}
-			<a href="{% url 'gallery' sort='vrd' page=1 %}"> vr&#x25BC; </a>
-		{% endif %}
-		</div>
+	<div class="col-lg-12"> 
+		<form class="form-inline" method="POST">
+		sort by:
+			{% csrf_token %}
+			<div class="form-group">
+			{{form}}
+			 <button type="submit" class="btn btn-default">Sort</button>
+			</div>
+			
+		</form>
+
+</div>
 	{% for picture in pictures %}
 		<div class="col-lg-3 thumb">
-			<a href="{% url 'view_picture' picId=picture.id %}"> <img class="img-thumbnail" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" /> </a>
-			<div class="col-lg-12">
+			<a href="{% url 'view_picture' picId=picture.id %}"> <img class="img-thumbnail" style="height:235px;"src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" /> </a>
+			<div class="col-lg-12" style="">
 				<article class="col-lg-12"> Date: {{ picture.uploaded }} </article>
 				<div class="col-lg-12"> VR: {{picture.vr }} </div>
-				<article class="col-lg-12"> uploaded by: <a href="{% url 'view_profile' name=picture.user %}"> {{ picture.user }} </a> </article>
+				<article class="col-lg-12" style=""> uploaded by: <a href="{% url 'view_profile' name=picture.user %}"> {{ picture.user }} </a> </article>
 				
 			</div>
 		</div>
@@ -31,20 +30,20 @@
 		<ul class="pagination">
 			{% if pictures.number != 1 %}
 				<li>
-					<a href="{% url 'gallery' page=pictures.previous_page_number sort=sort %}"> << </a>
+					<a href="{% url 'gallery' page=pictures.previous_page_number %}"> << </a>
 				</li>
 			{% endif %}
-			{% if pictures.paginator.num_pages > 1%}
+			{% if pictures.paginator.num_pages > 1 %}
 				{% for num in pictures.paginator.page_range %}
 					{% if pictures.number == num %}
 						<li class="active"> <a href="" > {{num}}</a> </li>
 					{% else %}
-						<li> <a href="{% url 'gallery' page=num sort=sort %}"> {{ num }} </a> </li>
+						<li> <a href="{% url 'gallery' page=num %}"> {{ num }} </a> </li>
 					{% endif %}
 				{% endfor %}
 				{% if pictures.number != pictures.paginator.num_pages %}
 					<li>
-						<a href="{% url 'gallery' page=pictures.next_page_number sort=sort %}"> >> </a>
+						<a href="{% url 'gallery' page=pictures.next_page_number %}"> >> </a>
 					</li>
 				{% endif %}
 			{% endif %}
@@ -52,4 +51,11 @@
 		</ul>
 	</div>
 </div>
+
+<script>
+$(function(){
+	$('#date').datepicker();
+});
+</script>
 {% endblock %}
+

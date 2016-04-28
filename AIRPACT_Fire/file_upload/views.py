@@ -61,7 +61,8 @@ def upload(request):
 		s = json.loads(request.body);
 		toke = AuthToken.objects.filter(token=s['secretKey'])
 		if toke.count() > 0:
-			
+			print("USERNAME IS:")
+			print(s['user'])
 			AuthToken.objects.get(token=s['secretKey']).delete()
 			image_data = b64decode(s['image'])
 			userob = AirpactUser.objects.get(username=s['user'])
@@ -72,11 +73,11 @@ def upload(request):
 							user=userob, 
 							vr=s['visualRange'], 
 							highColor=int(s['highColor']),
-							highX=int(s['highX']), 
-							highY=int(s['highY']),
+							highX=float(s['highX']), 
+							highY=float(s['highY']),
 							lowColor=int(s['lowColor']),
-							geoX = int(s['geoX']),
-							geoY = int(s['geoY'])
+							geoX = float(s['geoX']),
+							geoY = float(s['geoY'])
 							 );
 
 			newPic.save()

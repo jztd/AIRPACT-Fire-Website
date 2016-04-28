@@ -156,3 +156,5 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static/'), ]
 
 LOGIN_REDIRECT_URL='/user/'
 LOGIN_URL='/user/'
+TIME_ZONE = "America/Los_Angeles"
+USE_TZ = True
