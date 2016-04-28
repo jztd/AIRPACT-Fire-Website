@@ -2,65 +2,29 @@
 {% extends "base/newbase.html" %}
 {% block content %}
 
-<div id="slideshow" class="carousel slide " data-ride="carousel">
-	<ol class="carousel-indicators">
-	    <li data-target="#slideshow" data-slide-to="0" class="active"></li>
-	    <li data-target="#slideshow" data-slide-to="1"></li>
-	    <li data-target="#slideshow" data-slide-to="2"></li>
-	    <li data-target="#slideshow" data-slide-to="3"></li>
-  	</ol>
-
-  	<div class="carousel-inner" role="listbox">
-	    <div class="item active">
-	      <img src="{{ newestPictures.0.pic.url }}" style="height: 300px"> 
-	    </div>
-
-	    <div class="item">
-	      <img src="{{ newestPictures.1.pic.url }}" style="height: 300px">
-	    </div>
-
-	    <div class="item">
-	      <img src="{{ newestPictures.2.pic.url }}" style="height: 300px">
-	    </div>
-
-	    <div class="item">
-	      <img src="{{ newestPictures.3.pic.url }}" style="height: 300px">
-	    </div>
-	</div>
-
-	<a class="left carousel-control" href="#slideshow" role="button" data-slide="prev">
-    	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-  	</a>
-  	<a class="right carousel-control" href="#slideshow" role="button" data-slide="next">
-    	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    </a>
-</div>
 
 
+<div id="map" class="col-md-6 col-md-offset-3" style="height:500px"> </div>
 
 
+ <script>
+      function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+          center: {lat: 46.72977, lng: -117.181738},
+          zoom: 6
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script>
 
+<script>
+	$(document).ready(function(){
 
-	<div class="col-lg-12">
-		<h2 class="col-lg-12 "> Welcome! </h2>
-			<p class= "col-lg-12"> 
-				You’ve come the main page of the AIRPACT-FIRE website. Our objective in creating this website is analyzing and storing the visual range of various locations throughout Washington.
-			</p>
-		<h2 class="col-lg-12 "> What is visual range? </h2>
-			<p class= "col-lg-12 "> 
-				Visual range(VR) is a measure of the visibility of distant objects, which can be estimated by an observer by taking a high contrast target at a known distance and finding the distance at which it completely disappears, such as a mountain in the distance when compared to the blue sky in the background.
-			</p>
-			 
-		<h2 class="col-lg-12 ">Why is this important?</h2>
-			<p class= "col-lg-12 "> 
-				This VR gives us the amount of fine particulate matter in the air that has an adverse effect on public health, produced by air pollution such as that from fire. This tells us whether the air is hazardous which is vital in informing the population who may be affected. 
-			</p>
-		<h2 class="col-lg-12"> How can you help?</h2>
-			<p class= "col-lg-12"> 
-				By downloading and using our associated application you can help compile the needed data to find this VR. Simply take a picture of a mountain in the distance and drag the circles to the correct contrasting locations. The application will automatically send the picture to this website along with the associated information and calculate the VR.
-				Other tools in this website
-				At the left you can access the gallery where everyone’s pictures are uploaded, as well as access the manual upload button if you need to upload a picture manually. You can access the user panel at the top by clicking your username, and edit or delete your pictures from there as well.
-			</p>
-	</div>
-
+		$("#map").click(function(){
+			window.location.href ="{% url 'about'%}";
+		});
+	});
+</script>
 {% endblock %}

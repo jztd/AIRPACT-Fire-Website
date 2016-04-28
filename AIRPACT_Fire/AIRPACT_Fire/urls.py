@@ -41,5 +41,6 @@ urlpatterns = [
     #url(r'^comments/post/$', convos_view.comment_post),
     #url( r'^comments/posted/$', convos_view.comment_posted),    
     url(r'^comments/', include('django_comments.urls')),
-    url(r'^downloads/', views.downloads, name="downloads")
+    url(r'^downloads/', views.downloads, name="downloads"),
+    url(r'^about/',views.about,name="about"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

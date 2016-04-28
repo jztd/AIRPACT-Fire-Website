@@ -12,8 +12,7 @@ from django.contrib.auth.decorators import login_required
 from user_profile.models import AirpactUser
 
 def index(request):
-	newestPictures = picture.objects.all().order_by("-uploaded")[:4]
-	return render_to_response('index2.html', {'newestPictures' : newestPictures}, context_instance=RequestContext(request))
+	return render_to_response('index2.html', context_instance=RequestContext(request))
 
 @csrf_exempt
 @login_required
@@ -79,4 +78,8 @@ def gallery(request, page = 1, sort="dateu"):
 
 def downloads(request):
 	return render_to_response("downloads.html", context_instance=RequestContext(request))
+
+def about(request):
+	newestPictures = picture.objects.all().order_by("-uploaded")[:4]
+	return render_to_response("about.html", {'newestPictures' : newestPictures}, context_instance=RequestContext(request))
 
