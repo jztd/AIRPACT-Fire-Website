@@ -54,9 +54,12 @@ body{
     padding: 20px;
 
 }
-
+.comment-header{
+  font-size: 8pt;
+  
+}
 .commentRow {
-    line-height:24pt;
+    line-height:12pt;
    /* border: solid 1px black;*/
    /* border-radius: 25px;*/
     background: #faf8f3;
@@ -64,7 +67,7 @@ body{
 }
 
 .commentRow2 {
-    line-height:24pt;
+    line-height:12pt;
   /*  border: solid 1px black;*/
    /* border-radius: 25px;*/
     background: #e7e9ea;

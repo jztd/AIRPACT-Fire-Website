@@ -34,6 +34,7 @@
 			<a class="col-md-12 col-lg-12" href="{% url 'home' %}"> Home </a>
 			<a class="col-md-12 col-lg-12" href="{% url 'gallery' %}"> Gallery </a>
 			<a class="col-md-12 col-lg-12" href="{% url 'index' %}"> Upload Image </a>
+			<a class="col-md-12 col-lg-12" href="{% url 'downloads' %}"> Downloads </a>
 			{% if user.is_custom_admin and user.is_authenticated %}
 			<a class="col-md-12 col-lg-12" href="{% url 'adminPage' %}"> Admin Page </a>
 			{% endif %}

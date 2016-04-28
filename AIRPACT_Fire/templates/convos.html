@@ -6,13 +6,13 @@
 	<div class="col-lg-9">
 		<p><img  class="img-responsive" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" align = "middle" id ="mainPicture" /> </p>
 		<p> Click Image for Timeline slideshow </p>
-		<div class="well col-md-12" id="timelineContainer">
+		<!-- <div class="well col-md-12" id="timelineContainer">
 			<div id="timelineLeftArrow" class="col-md-1"> </div>
 			{% for picture in pictures %}
 				<div class="col-md-2"><img class="img-responsive" src="{{ picture.pic.url}}" /> {{ picture.vr}}, {{picture.uploaded}} </div>
 			{% endfor %}
 			<div id="timelineRightArrow" class="col-md-1"> </div>
-		</div>
+		</div> -->
 
 	<!-- {% for picture in pictures %}
 		<div class="col-lg-3 thumb">
@@ -97,13 +97,13 @@
 
 		{% if comment.id|divisibleby:2 %}
 		<div class = "col-lg-12 commentRow">
-			<p class="col-lg-12"> Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
-			<p class="col-lg-12">{{ comment.comment }} </p>
+			<p class="col-lg-12 comment-header"> Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+			<strong><p class="col-lg-12">{{ comment.comment }} </p></strong>
 		</div>	
 		{% else %}
 		<div class = "col-lg-12 commentRow2">
-			<p class="col-lg-12"> Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
-			<p class="col-lg-12">{{ comment.comment }} </p>
+			<p class="col-lg-12 comment-header"> Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+			<strong><p class="col-lg-12">{{ comment.comment }} </p> </strong>
 		</div>	
 		{% endif %}
 

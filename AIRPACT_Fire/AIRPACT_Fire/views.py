@@ -77,3 +77,6 @@ def gallery(request, page = 1, sort="dateu"):
 
 	return render_to_response('gallery.html', {'pictures': pictures, 'sort' : sort }, context_instance=RequestContext(request))
 
+def downloads(request):
+	return render_to_response("downloads.html", context_instance=RequestContext(request))
+

@@ -126,7 +126,7 @@ def view_picture(request, picId = -1):
 		cur_tag = tag.objects.filter(picture= p)
 		conversation = convoPage.objects.get(picture = p)
 
-
+		#THIS NEEDS TO BE LOOKED AT CLOSER, WE ARE GETTIGN ONLY THE FIRST TAG WHICH MIGHT NOT BE THE LOCATION!!!! (but hacked so our demo worked)
 		# If the user wants to see more images:
 		location = cur_tag[0].text
 		picture_tags = tag.objects.filter(text=location).order_by("picture__uploaded")
