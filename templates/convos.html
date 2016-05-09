@@ -3,7 +3,7 @@
 {% block content %}
 
 	<div class="col-lg-9">
-		<p><img  class="img-responsive" src="{{ picture.pic.url }}" alt="{{ picture.pic.url}}" align = "middle" id ="mainPicture" /> </p>
+		<p><img  class="img-responsive" src="/static{{ picture.pic.url }}" alt="{{ picture.pic.url}}" align = "middle" id ="mainPicture" /> </p>
 		<p> Click Image for Timeline slideshow </p>
 		<!-- <div class="well col-md-12" id="timelineContainer">
 			<div id="timelineLeftArrow" class="col-md-1"> </div>
@@ -163,7 +163,7 @@ function fadeBack(){
 	$('#slideShowContainer').fadeOut( function(){ 
 		$("#overlay").slideUp(); 
 		currentIndex=starting_index;
-		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url(/static'+String(pictures[currentIndex].url)+')');
 	});
 	
 
@@ -191,7 +191,7 @@ function moveLeft()
 	}
 
 	$('#slideShowContainer').fadeOut(function(){
-		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url(/static'+String(pictures[currentIndex].url)+')');
 		updateTable();
 		$('#slideShowContainer').fadeIn(500);
 	});
@@ -208,7 +208,7 @@ function moveRight()
 	}
 
 	$('#slideShowContainer').fadeOut(function(){
-		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url(/static'+String(pictures[currentIndex].url)+')');
 		updateTable();
 		$('#slideShowContainer').fadeIn(500);
 	});
@@ -224,7 +224,7 @@ function updateTable()
 $(document).ready(function(){
 	findStartingIndex();
 	currentIndex=starting_index;
-	$("#slideShowMainPicture").css('background-image', "url("+String(pictures[starting_index].url)+")");
+	$("#slideShowMainPicture").css('background-image', "url(/static"+String(pictures[starting_index].url)+")");
 	hidden = false;
 	$('#mainPicture').click(function(){
 		if (hidden == false)
