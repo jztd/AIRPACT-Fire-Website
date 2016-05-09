@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     #'threadedcomments',
     'django.contrib.sites',
     'django_comments',
+    'gunicorn'
     #'fluent_comments',
     #'crispy_forms',
 ]
