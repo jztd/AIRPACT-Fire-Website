@@ -1,1 +1,1 @@
-web: python manage.py run_gunicorn
+web: web: gunicorn AIRPACT_Fire.wsgi.application
