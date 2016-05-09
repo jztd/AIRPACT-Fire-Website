@@ -1,53 +1,3 @@
-2016-05-09T03:56:47.436587+00:00 heroku[web.1]: State changed from crashed to down
-2016-05-09T03:56:50.350240+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=bd5b48ca-6b9e-468b-9e9b-17fe909a08f3 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
-2016-05-09T03:56:51.246815+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=dry-harbor-33710.herokuapp.com request_id=181d0562-2ac0-4b65-b831-b7d438c113e7 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
-2016-05-09T03:58:43.194172+00:00 heroku[slug-compiler]: Slug compilation started
-2016-05-09T03:58:43.194177+00:00 heroku[slug-compiler]: Slug compilation finished
-2016-05-09T03:58:42.990119+00:00 heroku[api]: Release v20 created by potter1990@gmail.com
-2016-05-09T03:58:42.990088+00:00 heroku[api]: Deploy eeeffe8 by potter1990@gmail.com
-2016-05-09T03:58:55.227804+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=e4163a5a-d2ed-4b0f-8052-1810d303bcf0 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
-2016-05-09T03:58:56.103690+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=dry-harbor-33710.herokuapp.com request_id=34b8ecfc-19a2-4307-838d-071e4939a9c3 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
-2016-05-09T03:59:20.902130+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=627ea51d-52ab-4b83-b5e7-c3cf065bae4c fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
-2016-05-09T03:59:21.758914+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=dry-harbor-33710.herokuapp.com request_id=50a1a455-68a5-4fbd-a0a3-ad09d170eca2 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
-2016-05-09T04:00:13.192655+00:00 heroku[api]: Scale to web=1 by potter1990@gmail.com
-2016-05-09T04:00:17.797241+00:00 heroku[web.1]: Starting process with command `gunicorn AIRPACT_Fire.AIRPACT_Fire.wsgi`
-2016-05-09T04:00:19.851728+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [3] [INFO] Starting gunicorn 19.4.5
-2016-05-09T04:00:19.852456+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [3] [INFO] Listening at: http://0.0.0.0:39003 (3)
-2016-05-09T04:00:19.852579+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [3] [INFO] Using worker: sync
-2016-05-09T04:00:19.857503+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [9] [INFO] Booting worker with pid: 9
-2016-05-09T04:00:19.861859+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [9] [ERROR] Exception in worker process:
-2016-05-09T04:00:19.861890+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-09T04:00:19.861898+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-09T04:00:19.861905+00:00 app[web.1]:     worker.init_process()
-2016-05-09T04:00:19.861906+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-09T04:00:19.861906+00:00 app[web.1]:     self.load_wsgi()
-2016-05-09T04:00:19.861907+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-09T04:00:19.861908+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-09T04:00:19.861914+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-09T04:00:19.861915+00:00 app[web.1]:     self.callable = self.load()
-2016-05-09T04:00:19.861916+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-09T04:00:19.861917+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-09T04:00:19.861917+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-09T04:00:19.861918+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-09T04:00:19.861918+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-09T04:00:19.861919+00:00 app[web.1]:     __import__(module)
-2016-05-09T04:00:19.861919+00:00 app[web.1]: ImportError: No module named AIRPACT_Fire.AIRPACT_Fire.wsgi
-2016-05-09T04:00:19.861921+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-09T04:00:19.861920+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-09T04:00:19.861921+00:00 app[web.1]:     worker.init_process()
-2016-05-09T04:00:19.861922+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-09T04:00:19.861922+00:00 app[web.1]:     self.load_wsgi()
-2016-05-09T04:00:19.861923+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-09T04:00:19.861923+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-09T04:00:19.861924+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-09T04:00:19.861925+00:00 app[web.1]:     self.callable = self.load()
-2016-05-09T04:00:19.861925+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-09T04:00:19.861926+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-09T04:00:19.861926+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-09T04:00:19.861928+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-09T04:00:19.861927+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-09T04:00:19.861928+00:00 app[web.1]:     __import__(module)
-2016-05-09T04:00:19.861929+00:00 app[web.1]: ImportError: No module named AIRPACT_Fire.AIRPACT_Fire.wsgi
 2016-05-09T04:00:19.862000+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [9] [INFO] Worker exiting (pid: 9)
 2016-05-09T04:00:19.881600+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [3] [INFO] Shutting down: Master
 2016-05-09T04:00:19.881705+00:00 app[web.1]: [2016-05-09 04:00:19 +0000] [3] [INFO] Reason: Worker failed to boot.
@@ -99,3 +49,101 @@
 2016-05-09T04:00:29.335245+00:00 heroku[web.1]: State changed from starting to crashed
 2016-05-09T04:00:31.699123+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=5bb885be-69d8-47b6-983a-b0c0c41f7bf1 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
 2016-05-09T04:00:32.551748+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=dry-harbor-33710.herokuapp.com request_id=fb8134a1-be53-4327-9e8d-da56c03fdb61 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-09T04:06:41.201851+00:00 heroku[api]: Deploy e2e0916 by potter1990@gmail.com
+2016-05-09T04:06:41.201903+00:00 heroku[api]: Release v21 created by potter1990@gmail.com
+2016-05-09T04:06:41.400616+00:00 heroku[slug-compiler]: Slug compilation started
+2016-05-09T04:06:41.400662+00:00 heroku[slug-compiler]: Slug compilation finished
+2016-05-09T04:06:41.553191+00:00 heroku[web.1]: State changed from crashed to starting
+2016-05-09T04:06:45.748073+00:00 heroku[web.1]: Starting process with command `gunicorn AIRPACT_Fire.wsgi`
+2016-05-09T04:06:48.199991+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [3] [INFO] Starting gunicorn 19.4.5
+2016-05-09T04:06:48.200929+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [3] [INFO] Listening at: http://0.0.0.0:55366 (3)
+2016-05-09T04:06:48.201069+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [3] [INFO] Using worker: sync
+2016-05-09T04:06:48.209239+00:00 app[web.1]:     self.load_wsgi()
+2016-05-09T04:06:48.209240+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-09T04:06:48.209241+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-09T04:06:48.206850+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [9] [INFO] Booting worker with pid: 9
+2016-05-09T04:06:48.209224+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [9] [ERROR] Exception in worker process:
+2016-05-09T04:06:48.209242+00:00 app[web.1]:     self.callable = self.load()
+2016-05-09T04:06:48.209235+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-09T04:06:48.209244+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-09T04:06:48.209243+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-09T04:06:48.209242+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-09T04:06:48.209245+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-09T04:06:48.209246+00:00 app[web.1]:     __import__(module)
+2016-05-09T04:06:48.209248+00:00 app[web.1]:     worker.init_process()
+2016-05-09T04:06:48.209251+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-09T04:06:48.209246+00:00 app[web.1]: ImportError: No module named AIRPACT_Fire.wsgi
+2016-05-09T04:06:48.209253+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-09T04:06:48.209248+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-09T04:06:48.209251+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-09T04:06:48.209249+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-09T04:06:48.209247+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-09T04:06:48.209236+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-09T04:06:48.209237+00:00 app[web.1]:     worker.init_process()
+2016-05-09T04:06:48.209254+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-09T04:06:48.209252+00:00 app[web.1]:     self.callable = self.load()
+2016-05-09T04:06:48.209244+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-09T04:06:48.229145+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [3] [INFO] Shutting down: Master
+2016-05-09T04:06:48.209256+00:00 app[web.1]:     __import__(module)
+2016-05-09T04:06:48.229241+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [3] [INFO] Reason: Worker failed to boot.
+2016-05-09T04:06:48.209250+00:00 app[web.1]:     self.load_wsgi()
+2016-05-09T04:06:48.209254+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-09T04:06:48.209345+00:00 app[web.1]: [2016-05-09 04:06:48 +0000] [9] [INFO] Worker exiting (pid: 9)
+2016-05-09T04:06:48.209255+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-09T04:06:48.209255+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-09T04:06:48.209238+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-09T04:06:48.209239+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-09T04:06:48.209252+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-09T04:06:48.209257+00:00 app[web.1]: ImportError: No module named AIRPACT_Fire.wsgi
+2016-05-09T04:06:49.202154+00:00 heroku[web.1]: Process exited with status 3
+2016-05-09T04:06:49.220882+00:00 heroku[web.1]: State changed from starting to crashed
+2016-05-09T04:06:49.918820+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=183f8f01-736f-4a71-bbf9-59bff0f25335 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-09T04:06:50.812260+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=dry-harbor-33710.herokuapp.com request_id=9990ae00-566e-4b87-975e-5049a32b743b fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-09T04:07:01.699283+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=8e0df7ca-7278-47c6-b262-50840b32766b fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-09T04:07:02.631091+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=dry-harbor-33710.herokuapp.com request_id=f518a36b-0d0a-4af7-ab18-90aa250d4ed8 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-09T04:07:22.349012+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=66f70078-f2b9-4ef0-9c02-ec17f0f5caa1 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-09T04:07:23.217415+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=dry-harbor-33710.herokuapp.com request_id=ae6a5e5b-41e1-46a6-aabb-fe0898394a94 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-09T04:11:11.257196+00:00 heroku[web.1]: State changed from crashed to starting
+2016-05-09T04:11:15.122993+00:00 heroku[web.1]: Starting process with command `gunicorn AIRPACT_Fire.wsgi`
+2016-05-09T04:11:17.015961+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [3] [INFO] Starting gunicorn 19.4.5
+2016-05-09T04:11:17.016451+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [3] [INFO] Listening at: http://0.0.0.0:51468 (3)
+2016-05-09T04:11:17.016503+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [3] [INFO] Using worker: sync
+2016-05-09T04:11:17.020016+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [9] [INFO] Booting worker with pid: 9
+2016-05-09T04:11:17.022269+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [9] [ERROR] Exception in worker process:
+2016-05-09T04:11:17.022284+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-09T04:11:17.022285+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-09T04:11:17.022286+00:00 app[web.1]:     worker.init_process()
+2016-05-09T04:11:17.022287+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-09T04:11:17.022287+00:00 app[web.1]:     self.load_wsgi()
+2016-05-09T04:11:17.022288+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-09T04:11:17.022289+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-09T04:11:17.022290+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-09T04:11:17.022290+00:00 app[web.1]:     self.callable = self.load()
+2016-05-09T04:11:17.022291+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-09T04:11:17.022292+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-09T04:11:17.022292+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-09T04:11:17.022293+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-09T04:11:17.022294+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-09T04:11:17.022294+00:00 app[web.1]:     __import__(module)
+2016-05-09T04:11:17.022295+00:00 app[web.1]: ImportError: No module named AIRPACT_Fire.wsgi
+2016-05-09T04:11:17.022296+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-09T04:11:17.022296+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-09T04:11:17.022297+00:00 app[web.1]:     worker.init_process()
+2016-05-09T04:11:17.022298+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-09T04:11:17.022298+00:00 app[web.1]:     self.load_wsgi()
+2016-05-09T04:11:17.022299+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-09T04:11:17.022300+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-09T04:11:17.022300+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-09T04:11:17.022301+00:00 app[web.1]:     self.callable = self.load()
+2016-05-09T04:11:17.022302+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-09T04:11:17.022302+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-09T04:11:17.022303+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-09T04:11:17.022304+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-09T04:11:17.022305+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-09T04:11:17.022306+00:00 app[web.1]:     __import__(module)
+2016-05-09T04:11:17.022306+00:00 app[web.1]: ImportError: No module named AIRPACT_Fire.wsgi
+2016-05-09T04:11:17.022368+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [9] [INFO] Worker exiting (pid: 9)
+2016-05-09T04:11:17.037515+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [3] [INFO] Shutting down: Master
+2016-05-09T04:11:17.037607+00:00 app[web.1]: [2016-05-09 04:11:17 +0000] [3] [INFO] Reason: Worker failed to boot.
+2016-05-09T04:11:17.977237+00:00 heroku[web.1]: State changed from starting to crashed
+2016-05-09T04:11:17.961505+00:00 heroku[web.1]: Process exited with status 3
