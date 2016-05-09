@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 class picture(models.Model):
-	pic = models.ImageField(upload_to = 'pictures/')
+	pic = models.ImageField(upload_to = 'static/pictures/')
 	uploaded = models.DateTimeField(auto_now_add = True)
 	description = models.TextField(default = "")
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
