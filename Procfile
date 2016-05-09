@@ -1,1 +1,1 @@
-web: gunicorn AIRPACT_Fire.wsgi --log-file -
+web: python manage.py run_gunicorn
