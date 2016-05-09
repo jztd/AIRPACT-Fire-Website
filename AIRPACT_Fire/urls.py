@@ -43,4 +43,4 @@ urlpatterns = [
     url(r'^downloads/', views.downloads, name="downloads"),
     url(r'^about/',views.about,name="about"),
     url(r'^index/',views.main,name="main"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
