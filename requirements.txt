@@ -1,6 +1,8 @@
+boto==2.40.0
 dj-database-url==0.4.1
 Django==1.9.6
 django-contrib-comments==1.7.1
+django-storages==1.4.1
 gunicorn==19.4.5
 Pillow==3.2.0
 psycopg2==2.6.1
