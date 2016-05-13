@@ -1,101 +1,102 @@
-2016-05-13T06:23:01.457437+00:00 app[web.1]: [2016-05-13 06:23:01 +0000] [3] [INFO] Using worker: sync
-2016-05-13T06:23:01.460816+00:00 app[web.1]: [2016-05-13 06:23:01 +0000] [9] [INFO] Booting worker with pid: 9
-2016-05-13T06:23:01.468430+00:00 app[web.1]: [2016-05-13 06:23:01 +0000] [10] [INFO] Booting worker with pid: 10
-2016-05-13T06:23:01.752763+00:00 heroku[web.1]: State changed from starting to up
-2016-05-13T06:23:02.096493+00:00 app[web.1]: [2016-05-12 23:23:02 +0000] [9] [ERROR] Exception in worker process:
-2016-05-13T06:23:02.096505+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-13T06:23:02.096507+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-13T06:23:02.096508+00:00 app[web.1]:     worker.init_process()
-2016-05-13T06:23:02.096508+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-13T06:23:02.096509+00:00 app[web.1]:     self.load_wsgi()
-2016-05-13T06:23:02.096510+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-13T06:23:02.096512+00:00 app[web.1]:     self.callable = self.load()
-2016-05-13T06:23:02.096510+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-13T06:23:02.096511+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-13T06:23:02.096512+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-13T06:23:02.096513+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-13T06:23:02.096513+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-13T06:23:02.096514+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-13T06:23:02.096514+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-13T06:23:02.096515+00:00 app[web.1]:     __import__(module)
-2016-05-13T06:23:02.096516+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 19, in <module>
-2016-05-13T06:23:02.096516+00:00 app[web.1]:     application = DjangoWhiteNoise(application)
-2016-05-13T06:23:02.096517+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 41, in __init__
-2016-05-13T06:23:02.096518+00:00 app[web.1]:     self.check_settings(settings)
-2016-05-13T06:23:02.096518+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 71, in check_settings
-2016-05-13T06:23:02.096519+00:00 app[web.1]:     'example: STATIC_URL = {0!r}'.format(static_url + '/static/')
-2016-05-13T06:23:02.096520+00:00 app[web.1]: ImproperlyConfigured: STATIC_URL setting must include a path component, for example: STATIC_URL = 'http://airpactfire.s3.amazonaws.com/static/'
-2016-05-13T06:23:02.096521+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-13T06:23:02.096521+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-13T06:23:02.096522+00:00 app[web.1]:     worker.init_process()
-2016-05-13T06:23:02.096523+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-13T06:23:02.096523+00:00 app[web.1]:     self.load_wsgi()
-2016-05-13T06:23:02.096524+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-13T06:23:02.096525+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-13T06:23:02.096525+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-13T06:23:02.096526+00:00 app[web.1]:     self.callable = self.load()
-2016-05-13T06:23:02.096527+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-13T06:23:02.096528+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-13T06:23:02.096528+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-13T06:23:02.096529+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-13T06:23:02.096530+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-13T06:23:02.096531+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 19, in <module>
-2016-05-13T06:23:02.096530+00:00 app[web.1]:     __import__(module)
-2016-05-13T06:23:02.096531+00:00 app[web.1]:     application = DjangoWhiteNoise(application)
-2016-05-13T06:23:02.096532+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 41, in __init__
-2016-05-13T06:23:02.096533+00:00 app[web.1]:     self.check_settings(settings)
-2016-05-13T06:23:02.096533+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 71, in check_settings
-2016-05-13T06:23:02.096534+00:00 app[web.1]:     'example: STATIC_URL = {0!r}'.format(static_url + '/static/')
-2016-05-13T06:23:02.096534+00:00 app[web.1]: ImproperlyConfigured: STATIC_URL setting must include a path component, for example: STATIC_URL = 'http://airpactfire.s3.amazonaws.com/static/'
-2016-05-13T06:23:02.096589+00:00 app[web.1]: [2016-05-12 23:23:02 +0000] [9] [INFO] Worker exiting (pid: 9)
-2016-05-13T06:23:02.100713+00:00 app[web.1]: [2016-05-12 23:23:02 +0000] [10] [ERROR] Exception in worker process:
-2016-05-13T06:23:02.100742+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-13T06:23:02.100744+00:00 app[web.1]:     worker.init_process()
-2016-05-13T06:23:02.100743+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-13T06:23:02.100745+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-13T06:23:02.100745+00:00 app[web.1]:     self.load_wsgi()
-2016-05-13T06:23:02.100746+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-13T06:23:02.100746+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-13T06:23:02.100748+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-13T06:23:02.100748+00:00 app[web.1]:     self.callable = self.load()
-2016-05-13T06:23:02.100749+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-13T06:23:02.100749+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-13T06:23:02.100750+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-13T06:23:02.100751+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-13T06:23:02.100751+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-13T06:23:02.100752+00:00 app[web.1]:     __import__(module)
-2016-05-13T06:23:02.100752+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 19, in <module>
-2016-05-13T06:23:02.100753+00:00 app[web.1]:     application = DjangoWhiteNoise(application)
-2016-05-13T06:23:02.100754+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 41, in __init__
-2016-05-13T06:23:02.100754+00:00 app[web.1]:     self.check_settings(settings)
-2016-05-13T06:23:02.100755+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 71, in check_settings
-2016-05-13T06:23:02.100756+00:00 app[web.1]:     'example: STATIC_URL = {0!r}'.format(static_url + '/static/')
-2016-05-13T06:23:02.100757+00:00 app[web.1]: ImproperlyConfigured: STATIC_URL setting must include a path component, for example: STATIC_URL = 'http://airpactfire.s3.amazonaws.com/static/'
-2016-05-13T06:23:02.100758+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-13T06:23:02.100758+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-13T06:23:02.100759+00:00 app[web.1]:     worker.init_process()
-2016-05-13T06:23:02.100759+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-13T06:23:02.100760+00:00 app[web.1]:     self.load_wsgi()
-2016-05-13T06:23:02.100761+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-13T06:23:02.100761+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-13T06:23:02.100762+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-13T06:23:02.100763+00:00 app[web.1]:     self.callable = self.load()
-2016-05-13T06:23:02.100763+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-13T06:23:02.100764+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-13T06:23:02.100765+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-13T06:23:02.100771+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-13T06:23:02.100772+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-13T06:23:02.100772+00:00 app[web.1]:     __import__(module)
-2016-05-13T06:23:02.100773+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 19, in <module>
-2016-05-13T06:23:02.100773+00:00 app[web.1]:     application = DjangoWhiteNoise(application)
-2016-05-13T06:23:02.100774+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 41, in __init__
-2016-05-13T06:23:02.100775+00:00 app[web.1]:     self.check_settings(settings)
-2016-05-13T06:23:02.100775+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 71, in check_settings
-2016-05-13T06:23:02.100776+00:00 app[web.1]:     'example: STATIC_URL = {0!r}'.format(static_url + '/static/')
-2016-05-13T06:23:02.100777+00:00 app[web.1]: ImproperlyConfigured: STATIC_URL setting must include a path component, for example: STATIC_URL = 'http://airpactfire.s3.amazonaws.com/static/'
-2016-05-13T06:23:02.100894+00:00 app[web.1]: [2016-05-12 23:23:02 +0000] [10] [INFO] Worker exiting (pid: 10)
-2016-05-13T06:23:02.129150+00:00 app[web.1]: [2016-05-13 06:23:02 +0000] [3] [INFO] Shutting down: Master
-2016-05-13T06:23:02.129215+00:00 app[web.1]: [2016-05-13 06:23:02 +0000] [3] [INFO] Reason: Worker failed to boot.
-2016-05-13T06:23:02.953304+00:00 heroku[web.1]: State changed from up to crashed
-2016-05-13T06:23:02.945117+00:00 heroku[web.1]: Process exited with status 3
-2016-05-13T06:23:08.246356+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=4de1517f-e49d-4fe4-a20a-b04984956438 fwd="76.178.152.115" dyno=web.1 connect=5001ms service= status=503 bytes=
+2016-05-13T06:24:44.025030+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:24:44.025030+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:24:44.025031+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:24:44.025032+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:24:44.025034+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:24:44.025033+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:24:44.025034+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:24:44.025037+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:24:44.025036+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:24:44.025035+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:24:44.025036+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:24:44.025037+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:24:44.025038+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 19, in <module>
+2016-05-13T06:24:44.025039+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 41, in __init__
+2016-05-13T06:24:44.025039+00:00 app[web.1]:     application = DjangoWhiteNoise(application)
+2016-05-13T06:24:44.025040+00:00 app[web.1]:     self.check_settings(settings)
+2016-05-13T06:24:44.025041+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 71, in check_settings
+2016-05-13T06:24:44.025042+00:00 app[web.1]:     'example: STATIC_URL = {0!r}'.format(static_url + '/static/')
+2016-05-13T06:24:44.025042+00:00 app[web.1]: ImproperlyConfigured: STATIC_URL setting must include a path component, for example: STATIC_URL = 'http://airpactfire.s3.amazonaws.com/static/'
+2016-05-13T06:24:44.025335+00:00 app[web.1]: [2016-05-12 23:24:44 +0000] [9] [INFO] Worker exiting (pid: 9)
+2016-05-13T06:24:44.073321+00:00 app[web.1]: [2016-05-12 23:24:44 +0000] [12] [ERROR] Exception in worker process:
+2016-05-13T06:24:44.073335+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:24:44.073336+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:24:44.073337+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:24:44.073338+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:24:44.073338+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:24:44.073339+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:24:44.073340+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:24:44.073340+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:24:44.073341+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:24:44.073342+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:24:44.073342+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:24:44.073343+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:24:44.073343+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:24:44.073344+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:24:44.073345+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:24:44.073346+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 19, in <module>
+2016-05-13T06:24:44.073346+00:00 app[web.1]:     application = DjangoWhiteNoise(application)
+2016-05-13T06:24:44.073347+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 41, in __init__
+2016-05-13T06:24:44.073348+00:00 app[web.1]:     self.check_settings(settings)
+2016-05-13T06:24:44.073348+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 71, in check_settings
+2016-05-13T06:24:44.073349+00:00 app[web.1]:     'example: STATIC_URL = {0!r}'.format(static_url + '/static/')
+2016-05-13T06:24:44.073351+00:00 app[web.1]: ImproperlyConfigured: STATIC_URL setting must include a path component, for example: STATIC_URL = 'http://airpactfire.s3.amazonaws.com/static/'
+2016-05-13T06:24:44.073351+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:24:44.073352+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:24:44.073353+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:24:44.073353+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:24:44.073354+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:24:44.073355+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:24:44.073355+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:24:44.073356+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:24:44.073357+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:24:44.073357+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:24:44.073358+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:24:44.073359+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:24:44.073359+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:24:44.073360+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:24:44.073361+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:24:44.073362+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 19, in <module>
+2016-05-13T06:24:44.073362+00:00 app[web.1]:     application = DjangoWhiteNoise(application)
+2016-05-13T06:24:44.073363+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 41, in __init__
+2016-05-13T06:24:44.073364+00:00 app[web.1]:     self.check_settings(settings)
+2016-05-13T06:24:44.073371+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/whitenoise/django.py", line 71, in check_settings
+2016-05-13T06:24:44.073372+00:00 app[web.1]:     'example: STATIC_URL = {0!r}'.format(static_url + '/static/')
+2016-05-13T06:24:44.073372+00:00 app[web.1]: ImproperlyConfigured: STATIC_URL setting must include a path component, for example: STATIC_URL = 'http://airpactfire.s3.amazonaws.com/static/'
+2016-05-13T06:24:44.073460+00:00 app[web.1]: [2016-05-12 23:24:44 +0000] [12] [INFO] Worker exiting (pid: 12)
+2016-05-13T06:24:44.130327+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:24:44.130347+00:00 app[web.1]:   File "/app/.heroku/python/bin/gunicorn", line 11, in <module>
+2016-05-13T06:24:44.130353+00:00 app[web.1]:     sys.exit(run())
+2016-05-13T06:24:44.130355+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+2016-05-13T06:24:44.130395+00:00 app[web.1]:     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+2016-05-13T06:24:44.130404+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+2016-05-13T06:24:44.130464+00:00 app[web.1]:     super(Application, self).run()
+2016-05-13T06:24:44.130468+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+2016-05-13T06:24:44.130509+00:00 app[web.1]:     Arbiter(self).run()
+2016-05-13T06:24:44.130512+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 206, in run
+2016-05-13T06:24:44.130587+00:00 app[web.1]:     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2016-05-13T06:24:44.130588+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 302, in halt
+2016-05-13T06:24:44.130649+00:00 app[web.1]:     self.stop()
+2016-05-13T06:24:44.130665+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 347, in stop
+2016-05-13T06:24:44.130727+00:00 app[web.1]:     time.sleep(0.1)
+2016-05-13T06:24:44.130729+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 219, in handle_chld
+2016-05-13T06:24:44.130792+00:00 app[web.1]:     self.reap_workers()
+2016-05-13T06:24:44.130794+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 464, in reap_workers
+2016-05-13T06:24:44.130885+00:00 app[web.1]:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2016-05-13T06:24:44.132551+00:00 app[web.1]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2016-05-13T06:24:45.156066+00:00 heroku[web.1]: State changed from starting to crashed
+2016-05-13T06:24:45.126915+00:00 heroku[web.1]: Process exited with status 1
+2016-05-13T06:25:06.184529+00:00 heroku[api]: Release v43 created by potter1990@gmail.com
+2016-05-13T06:25:06.184529+00:00 heroku[api]: Deploy f8b8316 by potter1990@gmail.com
+2016-05-13T06:25:06.368363+00:00 heroku[slug-compiler]: Slug compilation started
+2016-05-13T06:25:06.368373+00:00 heroku[slug-compiler]: Slug compilation finished
+2016-05-13T06:25:06.368833+00:00 heroku[web.1]: State changed from crashed to starting
+2016-05-13T06:25:10.228483+00:00 heroku[web.1]: Starting process with command `gunicorn AIRPACT_Fire.wsgi`
+2016-05-13T06:25:12.491087+00:00 app[web.1]: [2016-05-13 06:25:12 +0000] [3] [INFO] Starting gunicorn 19.4.5
+2016-05-13T06:25:12.491615+00:00 app[web.1]: [2016-05-13 06:25:12 +0000] [3] [INFO] Listening at: http://0.0.0.0:14385 (3)
+2016-05-13T06:25:12.491729+00:00 app[web.1]: [2016-05-13 06:25:12 +0000] [3] [INFO] Using worker: sync
+2016-05-13T06:25:12.496636+00:00 app[web.1]: [2016-05-13 06:25:12 +0000] [9] [INFO] Booting worker with pid: 9
+2016-05-13T06:25:12.581823+00:00 app[web.1]: [2016-05-13 06:25:12 +0000] [10] [INFO] Booting worker with pid: 10
+2016-05-13T06:25:13.963535+00:00 heroku[web.1]: State changed from starting to up
+2016-05-13T06:25:17.332503+00:00 heroku[router]: at=info method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=1685b9b2-384a-4b5f-8ed1-f105dbbd78cf fwd="76.178.152.115" dyno=web.1 connect=1ms service=177ms status=400 bytes=228
+2016-05-13T06:26:04.820191+00:00 heroku[router]: at=info method=GET path="/home" host=dry-harbor-33710.herokuapp.com request_id=127369d3-742c-445f-83e0-d2d730b8cc27 fwd="76.178.152.115" dyno=web.1 connect=1ms service=29ms status=400 bytes=228
