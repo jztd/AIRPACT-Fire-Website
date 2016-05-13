@@ -25,7 +25,7 @@
 			</div>
 
 			{% for pic in pictures %}
-				<a href="{% url 'view_picture' picId=pic.id %}"> <div class="col-md-3 thumb"> <img class="img-thumbnail" src="/static{{ pic.pic.url }}" /> </a>
+				<a href="{% url 'view_picture' picId=pic.id %}"> <div class="col-md-3 thumb"> <img class="img-thumbnail" src="{{ pic.pic.url }}" /> </a>
 	    		</div>
 	    		
 			{% endfor %}
