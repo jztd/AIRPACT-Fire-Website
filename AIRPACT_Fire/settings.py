@@ -149,11 +149,11 @@ MEDIA_URL = '/media/'
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 AUTH_PROFILE_MODULE = 'user_profile.UserProfile'
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
+
 
 LOGIN_REDIRECT_URL='/user/'
 LOGIN_URL='/user/'
@@ -168,3 +168,5 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
 STATIC_URL = S3_URL
+
+# STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
