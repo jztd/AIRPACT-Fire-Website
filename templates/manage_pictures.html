@@ -13,7 +13,7 @@
 			</tr>
 			{% for p in pictures %}
 				<tr>
-					<td> <img class="img-responsive" style="max-height: 250px;" src="/static{{p.pic.url}}" class="img-responsive" > </td>
+					<td> <img class="img-responsive" style="max-height: 250px;" src="{{p.pic.url}}" class="img-responsive" > </td>
 					<td> {{ p.uploaded }} </td>
 					<td> {{p.description}} </td>
 					<td> <a href="{% url 'delete_picture' id=p.id %}"> Delete </a> / <a href=""> Edit </a> </td> 
