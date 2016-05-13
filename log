@@ -1,101 +1,274 @@
-2016-05-13T06:17:06.769758+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-13T06:17:06.769758+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-13T06:17:06.769759+00:00 app[web.1]:     self.callable = self.load()
-2016-05-13T06:17:06.769773+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-13T06:17:06.769779+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-13T06:17:06.769780+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-13T06:17:06.769781+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-13T06:17:06.769781+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-13T06:17:06.769782+00:00 app[web.1]:     __import__(module)
-2016-05-13T06:17:06.769783+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
-2016-05-13T06:17:06.769783+00:00 app[web.1]:     application = get_wsgi_application()
-2016-05-13T06:17:06.769784+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
-2016-05-13T06:17:06.769784+00:00 app[web.1]:     django.setup()
-2016-05-13T06:17:06.769785+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
-2016-05-13T06:17:06.769786+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
-2016-05-13T06:17:06.769787+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
-2016-05-13T06:17:06.769787+00:00 app[web.1]:     self._setup(name)
-2016-05-13T06:17:06.769788+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
-2016-05-13T06:17:06.769789+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
-2016-05-13T06:17:06.769789+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
-2016-05-13T06:17:06.769790+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
-2016-05-13T06:17:06.769791+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
-2016-05-13T06:17:06.769791+00:00 app[web.1]:     __import__(name)
-2016-05-13T06:17:06.769792+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 28
-2016-05-13T06:17:06.769792+00:00 app[web.1]:     ALLOWED_HOSTS = [*]
-2016-05-13T06:17:06.769793+00:00 app[web.1]:                      ^
-2016-05-13T06:17:06.769799+00:00 app[web.1]: SyntaxError: invalid syntax
-2016-05-13T06:17:06.769849+00:00 app[web.1]: [2016-05-13 06:17:06 +0000] [9] [INFO] Worker exiting (pid: 9)
-2016-05-13T06:17:06.777953+00:00 app[web.1]: [2016-05-13 06:17:06 +0000] [10] [ERROR] Exception in worker process:
-2016-05-13T06:17:06.777966+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-13T06:17:06.777967+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-13T06:17:06.777968+00:00 app[web.1]:     worker.init_process()
-2016-05-13T06:17:06.777970+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-13T06:17:06.777968+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-13T06:17:06.777971+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-13T06:17:06.777969+00:00 app[web.1]:     self.load_wsgi()
-2016-05-13T06:17:06.777972+00:00 app[web.1]:     self.callable = self.load()
-2016-05-13T06:17:06.777972+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-13T06:17:06.777978+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-13T06:17:06.777974+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-13T06:17:06.777970+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-13T06:17:06.777973+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-13T06:17:06.777979+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-13T06:17:06.777980+00:00 app[web.1]:     __import__(module)
-2016-05-13T06:17:06.777981+00:00 app[web.1]:     application = get_wsgi_application()
-2016-05-13T06:17:06.777980+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
-2016-05-13T06:17:06.777981+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
-2016-05-13T06:17:06.777982+00:00 app[web.1]:     django.setup()
-2016-05-13T06:17:06.777983+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
-2016-05-13T06:17:06.777983+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
-2016-05-13T06:17:06.777984+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
-2016-05-13T06:17:06.777984+00:00 app[web.1]:     self._setup(name)
-2016-05-13T06:17:06.777985+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
-2016-05-13T06:17:06.777986+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
-2016-05-13T06:17:06.777986+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
-2016-05-13T06:17:06.777987+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
-2016-05-13T06:17:06.777988+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
-2016-05-13T06:17:06.777988+00:00 app[web.1]:     __import__(name)
-2016-05-13T06:17:06.777989+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 28
-2016-05-13T06:17:06.777989+00:00 app[web.1]:     ALLOWED_HOSTS = [*]
-2016-05-13T06:17:06.777990+00:00 app[web.1]:                      ^
-2016-05-13T06:17:06.777990+00:00 app[web.1]: SyntaxError: invalid syntax
-2016-05-13T06:17:06.777991+00:00 app[web.1]: Traceback (most recent call last):
-2016-05-13T06:17:06.777992+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
-2016-05-13T06:17:06.777992+00:00 app[web.1]:     worker.init_process()
-2016-05-13T06:17:06.777993+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
-2016-05-13T06:17:06.777993+00:00 app[web.1]:     self.load_wsgi()
-2016-05-13T06:17:06.777994+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
-2016-05-13T06:17:06.777994+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
-2016-05-13T06:17:06.777995+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
-2016-05-13T06:17:06.777996+00:00 app[web.1]:     self.callable = self.load()
-2016-05-13T06:17:06.777996+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
-2016-05-13T06:17:06.777997+00:00 app[web.1]:     return self.load_wsgiapp()
-2016-05-13T06:17:06.777997+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
-2016-05-13T06:17:06.777998+00:00 app[web.1]:     return util.import_app(self.app_uri)
-2016-05-13T06:17:06.777998+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
-2016-05-13T06:17:06.777999+00:00 app[web.1]:     __import__(module)
-2016-05-13T06:17:06.777999+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
-2016-05-13T06:17:06.778000+00:00 app[web.1]:     application = get_wsgi_application()
-2016-05-13T06:17:06.778001+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
-2016-05-13T06:17:06.778001+00:00 app[web.1]:     django.setup()
-2016-05-13T06:17:06.778002+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
-2016-05-13T06:17:06.778003+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
-2016-05-13T06:17:06.778003+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
-2016-05-13T06:17:06.778004+00:00 app[web.1]:     self._setup(name)
-2016-05-13T06:17:06.778004+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
-2016-05-13T06:17:06.778005+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
-2016-05-13T06:17:06.778005+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
-2016-05-13T06:17:06.778006+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
-2016-05-13T06:17:06.778007+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
-2016-05-13T06:17:06.778007+00:00 app[web.1]:     __import__(name)
-2016-05-13T06:17:06.778008+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 28
-2016-05-13T06:17:06.778008+00:00 app[web.1]:     ALLOWED_HOSTS = [*]
-2016-05-13T06:17:06.778009+00:00 app[web.1]:                      ^
-2016-05-13T06:17:06.778014+00:00 app[web.1]: SyntaxError: invalid syntax
-2016-05-13T06:17:06.778098+00:00 app[web.1]: [2016-05-13 06:17:06 +0000] [10] [INFO] Worker exiting (pid: 10)
-2016-05-13T06:17:06.804388+00:00 app[web.1]: [2016-05-13 06:17:06 +0000] [3] [INFO] Shutting down: Master
-2016-05-13T06:17:06.804459+00:00 app[web.1]: [2016-05-13 06:17:06 +0000] [3] [INFO] Reason: Worker failed to boot.
-2016-05-13T06:17:07.648141+00:00 heroku[web.1]: Process exited with status 3
-2016-05-13T06:17:07.664191+00:00 heroku[web.1]: State changed from starting to crashed
-2016-05-13T06:17:14.239435+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=9dc24284-d469-4e41-9f14-70ee7fef2ba8 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-13T06:19:53.838029+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:19:53.838029+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:19:53.838030+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:19:53.838030+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:19:53.838031+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:19:53.838032+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:19:53.838032+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T06:19:53.838033+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T06:19:53.838034+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T06:19:53.838034+00:00 app[web.1]:     django.setup()
+2016-05-13T06:19:53.838035+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
+2016-05-13T06:19:53.838036+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+2016-05-13T06:19:53.838036+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
+2016-05-13T06:19:53.838037+00:00 app[web.1]:     self._setup(name)
+2016-05-13T06:19:53.838038+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
+2016-05-13T06:19:53.838038+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
+2016-05-13T06:19:53.838039+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
+2016-05-13T06:19:53.838039+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
+2016-05-13T06:19:53.838040+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T06:19:53.838046+00:00 app[web.1]:     __import__(name)
+2016-05-13T06:19:53.838046+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 166, in <module>
+2016-05-13T06:19:53.838047+00:00 app[web.1]:     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+2016-05-13T06:19:53.838048+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/UserDict.py", line 40, in __getitem__
+2016-05-13T06:19:53.838048+00:00 app[web.1]:     raise KeyError(key)
+2016-05-13T06:19:53.838049+00:00 app[web.1]: KeyError: 'AWS_ACCESS_KEY_ID'
+2016-05-13T06:19:53.838050+00:00 app[web.1]: [2016-05-13 06:19:53 +0000] [9] [ERROR] Exception in worker process:
+2016-05-13T06:19:53.838051+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:19:53.838051+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:19:53.838052+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:19:53.838053+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:19:53.838053+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:19:53.838054+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:19:53.838054+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:19:53.838055+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:19:53.838056+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:19:53.838057+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:19:53.838057+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:19:53.838063+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:19:53.838063+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:19:53.838064+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:19:53.838065+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:19:53.838114+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T06:19:53.838115+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T06:19:53.838116+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T06:19:53.838116+00:00 app[web.1]:     django.setup()
+2016-05-13T06:19:53.838117+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
+2016-05-13T06:19:53.838117+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+2016-05-13T06:19:53.838118+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
+2016-05-13T06:19:53.838119+00:00 app[web.1]:     self._setup(name)
+2016-05-13T06:19:53.838119+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
+2016-05-13T06:19:53.838120+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
+2016-05-13T06:19:53.838120+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
+2016-05-13T06:19:53.838121+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
+2016-05-13T06:19:53.838122+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T06:19:53.838122+00:00 app[web.1]:     __import__(name)
+2016-05-13T06:19:53.838123+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 166, in <module>
+2016-05-13T06:19:53.838123+00:00 app[web.1]:     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+2016-05-13T06:19:53.838124+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/UserDict.py", line 40, in __getitem__
+2016-05-13T06:19:53.838124+00:00 app[web.1]:     raise KeyError(key)
+2016-05-13T06:19:53.838125+00:00 app[web.1]: KeyError: 'AWS_ACCESS_KEY_ID'
+2016-05-13T06:19:53.838125+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:19:53.838126+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:19:53.838126+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:19:53.838127+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:19:53.838127+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:19:53.838128+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:19:53.838128+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:19:53.838129+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:19:53.838130+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:19:53.838130+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:19:53.838131+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:19:53.838131+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:19:53.838132+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:19:53.838133+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:19:53.838133+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:19:53.838134+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T06:19:53.838134+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T06:19:53.838135+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T06:19:53.838135+00:00 app[web.1]:     django.setup()
+2016-05-13T06:19:53.838136+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
+2016-05-13T06:19:53.838136+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+2016-05-13T06:19:53.838137+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
+2016-05-13T06:19:53.838137+00:00 app[web.1]:     self._setup(name)
+2016-05-13T06:19:53.838138+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
+2016-05-13T06:19:53.838142+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
+2016-05-13T06:19:53.838143+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
+2016-05-13T06:19:53.838144+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
+2016-05-13T06:19:53.838144+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T06:19:53.838145+00:00 app[web.1]:     __import__(name)
+2016-05-13T06:19:53.838145+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 166, in <module>
+2016-05-13T06:19:53.838146+00:00 app[web.1]:     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+2016-05-13T06:19:53.838147+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/UserDict.py", line 40, in __getitem__
+2016-05-13T06:19:53.838147+00:00 app[web.1]:     raise KeyError(key)
+2016-05-13T06:19:53.838148+00:00 app[web.1]: KeyError: 'AWS_ACCESS_KEY_ID'
+2016-05-13T06:19:53.838148+00:00 app[web.1]: [2016-05-13 06:19:53 +0000] [9] [INFO] Worker exiting (pid: 9)
+2016-05-13T06:19:53.838341+00:00 app[web.1]: [2016-05-13 06:19:53 +0000] [10] [INFO] Worker exiting (pid: 10)
+2016-05-13T06:19:53.870842+00:00 app[web.1]: [2016-05-13 06:19:53 +0000] [3] [INFO] Shutting down: Master
+2016-05-13T06:19:53.871011+00:00 app[web.1]: [2016-05-13 06:19:53 +0000] [3] [INFO] Reason: Worker failed to boot.
+2016-05-13T06:19:54.667387+00:00 heroku[web.1]: Process exited with status 3
+2016-05-13T06:19:54.687317+00:00 heroku[web.1]: State changed from starting to crashed
+2016-05-13T06:19:54.887762+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=809b4b17-ea9a-418e-ad99-925785343a25 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
+2016-05-13T06:21:04.142946+00:00 heroku[api]: Release v40 created by potter1990@gmail.com
+2016-05-13T06:21:04.142882+00:00 heroku[api]: Deploy 10a5087 by potter1990@gmail.com
+2016-05-13T06:21:04.425801+00:00 heroku[slug-compiler]: Slug compilation started
+2016-05-13T06:21:04.425811+00:00 heroku[slug-compiler]: Slug compilation finished
+2016-05-13T06:21:04.592462+00:00 heroku[web.1]: State changed from crashed to starting
+2016-05-13T06:21:08.828151+00:00 heroku[web.1]: Starting process with command `gunicorn AIRPACT_Fire.wsgi`
+2016-05-13T06:21:11.075061+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [3] [INFO] Starting gunicorn 19.4.5
+2016-05-13T06:21:11.075449+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [3] [INFO] Listening at: http://0.0.0.0:26765 (3)
+2016-05-13T06:21:11.075520+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [3] [INFO] Using worker: sync
+2016-05-13T06:21:11.079398+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [9] [INFO] Booting worker with pid: 9
+2016-05-13T06:21:11.132199+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [10] [INFO] Booting worker with pid: 10
+2016-05-13T06:21:11.262680+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [9] [ERROR] Exception in worker process:
+2016-05-13T06:21:11.262718+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:21:11.262725+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:21:11.262730+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:21:11.262731+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:21:11.262731+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:21:11.262732+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:21:11.262732+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:21:11.262737+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:21:11.262738+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:21:11.262738+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:21:11.262739+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:21:11.262739+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:21:11.262740+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:21:11.262740+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:21:11.262741+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:21:11.262741+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T06:21:11.262742+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T06:21:11.262742+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T06:21:11.262743+00:00 app[web.1]:     django.setup()
+2016-05-13T06:21:11.262743+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
+2016-05-13T06:21:11.262743+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+2016-05-13T06:21:11.262744+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
+2016-05-13T06:21:11.262744+00:00 app[web.1]:     self._setup(name)
+2016-05-13T06:21:11.262745+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
+2016-05-13T06:21:11.262745+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
+2016-05-13T06:21:11.262745+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
+2016-05-13T06:21:11.262746+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
+2016-05-13T06:21:11.262746+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T06:21:11.262746+00:00 app[web.1]:     __import__(name)
+2016-05-13T06:21:11.262747+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 166, in <module>
+2016-05-13T06:21:11.262747+00:00 app[web.1]:     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+2016-05-13T06:21:11.262747+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/UserDict.py", line 40, in __getitem__
+2016-05-13T06:21:11.262748+00:00 app[web.1]:     raise KeyError(key)
+2016-05-13T06:21:11.262748+00:00 app[web.1]: KeyError: 'AWS_ACCESS_KEY_ID'
+2016-05-13T06:21:11.262748+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:21:11.262749+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:21:11.262749+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:21:11.262749+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:21:11.262750+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:21:11.262750+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:21:11.262750+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:21:11.262751+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:21:11.262751+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:21:11.262752+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:21:11.262752+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:21:11.262752+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:21:11.262753+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:21:11.262753+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:21:11.262753+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:21:11.262754+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T06:21:11.262754+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T06:21:11.262755+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T06:21:11.262755+00:00 app[web.1]:     django.setup()
+2016-05-13T06:21:11.262755+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
+2016-05-13T06:21:11.262756+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+2016-05-13T06:21:11.262756+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
+2016-05-13T06:21:11.262756+00:00 app[web.1]:     self._setup(name)
+2016-05-13T06:21:11.262757+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
+2016-05-13T06:21:11.262757+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
+2016-05-13T06:21:11.262757+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
+2016-05-13T06:21:11.262758+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
+2016-05-13T06:21:11.262758+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T06:21:11.262766+00:00 app[web.1]:     __import__(name)
+2016-05-13T06:21:11.262767+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 166, in <module>
+2016-05-13T06:21:11.262767+00:00 app[web.1]:     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+2016-05-13T06:21:11.262767+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/UserDict.py", line 40, in __getitem__
+2016-05-13T06:21:11.262768+00:00 app[web.1]:     raise KeyError(key)
+2016-05-13T06:21:11.262768+00:00 app[web.1]: KeyError: 'AWS_ACCESS_KEY_ID'
+2016-05-13T06:21:11.262832+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [9] [INFO] Worker exiting (pid: 9)
+2016-05-13T06:21:11.308845+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [10] [ERROR] Exception in worker process:
+2016-05-13T06:21:11.308855+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:21:11.308856+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:21:11.308857+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:21:11.308858+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:21:11.308858+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:21:11.308859+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:21:11.308860+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:21:11.308861+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:21:11.308861+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:21:11.308862+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:21:11.308863+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:21:11.308863+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:21:11.308864+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:21:11.308865+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:21:11.308866+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:21:11.308867+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T06:21:11.308867+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T06:21:11.308872+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T06:21:11.308873+00:00 app[web.1]:     django.setup()
+2016-05-13T06:21:11.308873+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
+2016-05-13T06:21:11.308874+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+2016-05-13T06:21:11.308875+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
+2016-05-13T06:21:11.308876+00:00 app[web.1]:     self._setup(name)
+2016-05-13T06:21:11.308876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
+2016-05-13T06:21:11.308877+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
+2016-05-13T06:21:11.335800+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:21:11.308877+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
+2016-05-13T06:21:11.335811+00:00 app[web.1]:   File "/app/.heroku/python/bin/gunicorn", line 11, in <module>
+2016-05-13T06:21:11.308878+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
+2016-05-13T06:21:11.335839+00:00 app[web.1]:     sys.exit(run())
+2016-05-13T06:21:11.308879+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T06:21:11.308879+00:00 app[web.1]:     __import__(name)
+2016-05-13T06:21:11.335860+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+2016-05-13T06:21:11.308880+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 166, in <module>
+2016-05-13T06:21:11.335932+00:00 app[web.1]:     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+2016-05-13T06:21:11.308880+00:00 app[web.1]:     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+2016-05-13T06:21:11.308881+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/UserDict.py", line 40, in __getitem__
+2016-05-13T06:21:11.335935+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+2016-05-13T06:21:11.308881+00:00 app[web.1]:     raise KeyError(key)
+2016-05-13T06:21:11.335999+00:00 app[web.1]:     super(Application, self).run()
+2016-05-13T06:21:11.308882+00:00 app[web.1]: KeyError: 'AWS_ACCESS_KEY_ID'
+2016-05-13T06:21:11.336019+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+2016-05-13T06:21:11.308883+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T06:21:11.336148+00:00 app[web.1]:     Arbiter(self).run()
+2016-05-13T06:21:11.308883+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T06:21:11.336162+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 206, in run
+2016-05-13T06:21:11.308884+00:00 app[web.1]:     worker.init_process()
+2016-05-13T06:21:11.336192+00:00 app[web.1]:     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2016-05-13T06:21:11.308884+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T06:21:11.336289+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 302, in halt
+2016-05-13T06:21:11.308885+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T06:21:11.336291+00:00 app[web.1]:     self.stop()
+2016-05-13T06:21:11.308886+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T06:21:11.308886+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T06:21:11.336292+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 347, in stop
+2016-05-13T06:21:11.308887+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T06:21:11.336393+00:00 app[web.1]:     time.sleep(0.1)
+2016-05-13T06:21:11.308887+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T06:21:11.308888+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T06:21:11.336395+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 219, in handle_chld
+2016-05-13T06:21:11.342183+00:00 app[web.1]:     self.reap_workers()
+2016-05-13T06:21:11.308889+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T06:21:11.342191+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 464, in reap_workers
+2016-05-13T06:21:11.308889+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T06:21:11.308890+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T06:21:11.342192+00:00 app[web.1]:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2016-05-13T06:21:11.308890+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T06:21:11.308891+00:00 app[web.1]:     __import__(module)
+2016-05-13T06:21:11.308892+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T06:21:11.308892+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T06:21:11.342193+00:00 app[web.1]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2016-05-13T06:21:11.308893+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T06:21:11.308894+00:00 app[web.1]:     django.setup()
+2016-05-13T06:21:11.308894+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 17, in setup
+2016-05-13T06:21:11.308895+00:00 app[web.1]:     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+2016-05-13T06:21:11.308895+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 55, in __getattr__
+2016-05-13T06:21:11.308896+00:00 app[web.1]:     self._setup(name)
+2016-05-13T06:21:11.308896+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 43, in _setup
+2016-05-13T06:21:11.308897+00:00 app[web.1]:     self._wrapped = Settings(settings_module)
+2016-05-13T06:21:11.308898+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/conf/__init__.py", line 99, in __init__
+2016-05-13T06:21:11.308898+00:00 app[web.1]:     mod = importlib.import_module(self.SETTINGS_MODULE)
+2016-05-13T06:21:11.308899+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T06:21:11.308905+00:00 app[web.1]:     __import__(name)
+2016-05-13T06:21:11.308906+00:00 app[web.1]:   File "/app/AIRPACT_Fire/settings.py", line 166, in <module>
+2016-05-13T06:21:11.308906+00:00 app[web.1]:     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+2016-05-13T06:21:11.308907+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/UserDict.py", line 40, in __getitem__
+2016-05-13T06:21:11.308907+00:00 app[web.1]:     raise KeyError(key)
+2016-05-13T06:21:11.308908+00:00 app[web.1]: KeyError: 'AWS_ACCESS_KEY_ID'
+2016-05-13T06:21:11.309129+00:00 app[web.1]: [2016-05-13 06:21:11 +0000] [10] [INFO] Worker exiting (pid: 10)
+2016-05-13T06:21:12.317106+00:00 heroku[web.1]: State changed from starting to crashed
+2016-05-13T06:21:12.286420+00:00 heroku[web.1]: Process exited with status 1
