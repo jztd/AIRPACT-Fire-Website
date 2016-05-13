@@ -1,0 +1,101 @@
+2016-05-13T02:06:42.201848+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T02:06:42.201851+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T02:06:42.201851+00:00 app[web.1]:     __import__(module)
+2016-05-13T02:06:42.201850+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T02:06:42.201848+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T02:06:42.201827+00:00 app[web.1]: [2016-05-12 19:06:42 +0000] [9] [ERROR] Exception in worker process:
+2016-05-13T02:06:42.201853+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T02:06:42.201850+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T02:06:42.201843+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T02:06:42.201856+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+2016-05-13T02:06:42.201846+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T02:06:42.201857+00:00 app[web.1]:     app_config.import_models(all_models)
+2016-05-13T02:06:42.201849+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T02:06:42.197610+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+2016-05-13T02:06:42.201855+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+2016-05-13T02:06:42.201861+00:00 app[web.1]:     from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+2016-05-13T02:06:42.201860+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/auth/models.py", line 4, in <module>
+2016-05-13T02:06:42.201862+00:00 app[web.1]:     class AbstractBaseUser(models.Model):
+2016-05-13T02:06:42.201858+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/apps/config.py", line 202, in import_models
+2016-05-13T02:06:42.201860+00:00 app[web.1]:     __import__(name)
+2016-05-13T02:06:42.201865+00:00 app[web.1]:     value.contribute_to_class(cls, name)
+2016-05-13T02:06:42.201863+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/models/base.py", line 108, in __new__
+2016-05-13T02:06:42.201866+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/models/options.py", line 263, in contribute_to_class
+2016-05-13T02:06:42.201854+00:00 app[web.1]:     django.setup()
+2016-05-13T02:06:42.201869+00:00 app[web.1]:     backend = load_backend(db['ENGINE'])
+2016-05-13T02:06:42.197613+00:00 app[web.1]:     self.models_module = import_module(models_module_name)
+2016-05-13T02:06:42.201858+00:00 app[web.1]:     self.models_module = import_module(models_module_name)
+2016-05-13T02:06:42.201859+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T02:06:42.201864+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/models/base.py", line 307, in add_to_class
+2016-05-13T02:06:42.201856+00:00 app[web.1]:     apps.populate(settings.INSTALLED_APPS)
+2016-05-13T02:06:42.201870+00:00 app[web.1]:     return import_module('%s.base' % backend_name)
+2016-05-13T02:06:42.201868+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/utils.py", line 212, in __getitem__
+2016-05-13T02:06:42.201871+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T02:06:42.197628+00:00 app[web.1]:     return getattr(connections[DEFAULT_DB_ALIAS], item)
+2016-05-13T02:06:42.201867+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+2016-05-13T02:06:42.201871+00:00 app[web.1]:     __import__(name)
+2016-05-13T02:06:42.197631+00:00 app[web.1]:     return import_module('%s.base' % backend_name)
+2016-05-13T02:06:42.201873+00:00 app[web.1]:     raise ImproperlyConfigured("Error loading psycopg2 module: %s" % e)
+2016-05-13T02:06:42.201874+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+2016-05-13T02:06:42.201869+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/utils.py", line 116, in load_backend
+2016-05-13T02:06:42.201876+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+2016-05-13T02:06:42.201877+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+2016-05-13T02:06:42.201874+00:00 app[web.1]: Traceback (most recent call last):
+2016-05-13T02:06:42.201862+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/auth/base_user.py", line 49, in <module>
+2016-05-13T02:06:42.201878+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2016-05-13T02:06:42.201852+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T02:06:42.201875+00:00 app[web.1]:     worker.init_process()
+2016-05-13T02:06:42.201872+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/backends/postgresql/base.py", line 24, in <module>
+2016-05-13T02:06:42.201854+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T02:06:42.201884+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2016-05-13T02:06:42.201879+00:00 app[web.1]:     self.callable = self.load()
+2016-05-13T02:06:42.201866+00:00 app[web.1]:     self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+2016-05-13T02:06:42.201884+00:00 app[web.1]:     return self.load_wsgiapp()
+2016-05-13T02:06:42.201885+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2016-05-13T02:06:42.201887+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+2016-05-13T02:06:42.201888+00:00 app[web.1]:   File "/app/AIRPACT_Fire/wsgi.py", line 18, in <module>
+2016-05-13T02:06:42.201886+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2016-05-13T02:06:42.201863+00:00 app[web.1]:     new_class.add_to_class('_meta', Options(meta, app_label))
+2016-05-13T02:06:42.201878+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2016-05-13T02:06:42.201889+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+2016-05-13T02:06:42.201890+00:00 app[web.1]:     django.setup()
+2016-05-13T02:06:42.201867+00:00 app[web.1]:     return getattr(connections[DEFAULT_DB_ALIAS], item)
+2016-05-13T02:06:42.201873+00:00 app[web.1]: ImproperlyConfigured: Error loading psycopg2 module: No module named psycopg2
+2016-05-13T02:06:42.201895+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+2016-05-13T02:06:42.201887+00:00 app[web.1]:     __import__(module)
+2016-05-13T02:06:42.201895+00:00 app[web.1]:     apps.populate(settings.INSTALLED_APPS)
+2016-05-13T02:06:42.201876+00:00 app[web.1]:     self.load_wsgi()
+2016-05-13T02:06:42.201897+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/apps/config.py", line 202, in import_models
+2016-05-13T02:06:42.201888+00:00 app[web.1]:     application = get_wsgi_application()
+2016-05-13T02:06:42.201898+00:00 app[web.1]:     self.models_module = import_module(models_module_name)
+2016-05-13T02:06:42.201898+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T02:06:42.201896+00:00 app[web.1]:     app_config.import_models(all_models)
+2016-05-13T02:06:42.201896+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+2016-05-13T02:06:42.201900+00:00 app[web.1]:     from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+2016-05-13T02:06:42.201901+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/auth/base_user.py", line 49, in <module>
+2016-05-13T02:06:42.201900+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/auth/models.py", line 4, in <module>
+2016-05-13T02:06:42.201902+00:00 app[web.1]:     class AbstractBaseUser(models.Model):
+2016-05-13T02:06:42.201899+00:00 app[web.1]:     __import__(name)
+2016-05-13T02:06:42.201902+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/models/base.py", line 108, in __new__
+2016-05-13T02:06:42.201903+00:00 app[web.1]:     new_class.add_to_class('_meta', Options(meta, app_label))
+2016-05-13T02:06:42.201905+00:00 app[web.1]:     self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+2016-05-13T02:06:42.201903+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/models/base.py", line 307, in add_to_class
+2016-05-13T02:06:42.201904+00:00 app[web.1]:     value.contribute_to_class(cls, name)
+2016-05-13T02:06:42.201905+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/models/options.py", line 263, in contribute_to_class
+2016-05-13T02:06:42.201906+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+2016-05-13T02:06:42.201909+00:00 app[web.1]:     return import_module('%s.base' % backend_name)
+2016-05-13T02:06:42.201912+00:00 app[web.1]: ImproperlyConfigured: Error loading psycopg2 module: No module named psycopg2
+2016-05-13T02:06:42.201910+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2016-05-13T02:06:42.201907+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/utils.py", line 212, in __getitem__
+2016-05-13T02:06:42.201908+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/utils.py", line 116, in load_backend
+2016-05-13T02:06:42.201908+00:00 app[web.1]:     backend = load_backend(db['ENGINE'])
+2016-05-13T02:06:42.201910+00:00 app[web.1]:     __import__(name)
+2016-05-13T02:06:42.236095+00:00 app[web.1]: [2016-05-13 02:06:42 +0000] [3] [INFO] Shutting down: Master
+2016-05-13T02:06:42.201907+00:00 app[web.1]:     return getattr(connections[DEFAULT_DB_ALIAS], item)
+2016-05-13T02:06:42.201912+00:00 app[web.1]:     raise ImproperlyConfigured("Error loading psycopg2 module: %s" % e)
+2016-05-13T02:06:42.201911+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/db/backends/postgresql/base.py", line 24, in <module>
+2016-05-13T02:06:42.201976+00:00 app[web.1]: [2016-05-12 19:06:42 +0000] [9] [INFO] Worker exiting (pid: 9)
+2016-05-13T02:06:42.236239+00:00 app[web.1]: [2016-05-13 02:06:42 +0000] [3] [INFO] Reason: Worker failed to boot.
+2016-05-13T02:06:43.260924+00:00 heroku[web.1]: Process exited with status 3
+2016-05-13T02:06:43.309147+00:00 heroku[web.1]: State changed from starting to crashed
+2016-05-13T02:07:39.214539+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dry-harbor-33710.herokuapp.com request_id=84e38509-4193-4480-823a-e0b32f7a5b41 fwd="76.178.152.115" dyno= connect= service= status=503 bytes=
