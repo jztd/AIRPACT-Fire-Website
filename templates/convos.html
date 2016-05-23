@@ -163,7 +163,7 @@ function fadeBack(){
 	$('#slideShowContainer').fadeOut( function(){ 
 		$("#overlay").slideUp(); 
 		currentIndex=starting_index;
-		$('#slideShowMainPicture').css('background-image', 'url(/static'+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
 	});
 	
 
@@ -191,7 +191,7 @@ function moveLeft()
 	}
 
 	$('#slideShowContainer').fadeOut(function(){
-		$('#slideShowMainPicture').css('background-image', 'url(/static'+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
 		updateTable();
 		$('#slideShowContainer').fadeIn(500);
 	});
@@ -208,7 +208,7 @@ function moveRight()
 	}
 
 	$('#slideShowContainer').fadeOut(function(){
-		$('#slideShowMainPicture').css('background-image', 'url(/static'+String(pictures[currentIndex].url)+')');
+		$('#slideShowMainPicture').css('background-image', 'url('+String(pictures[currentIndex].url)+')');
 		updateTable();
 		$('#slideShowContainer').fadeIn(500);
 	});
@@ -224,7 +224,7 @@ function updateTable()
 $(document).ready(function(){
 	findStartingIndex();
 	currentIndex=starting_index;
-	$("#slideShowMainPicture").css('background-image', "url(/static"+String(pictures[starting_index].url)+")");
+	$("#slideShowMainPicture").css('background-image', "url("+String(pictures[starting_index].url)+")");
 	hidden = false;
 	$('#mainPicture').click(function(){
 		if (hidden == false)
