@@ -161,7 +161,7 @@ LOGIN_REDIRECT_URL='/user/'
 LOGIN_URL='/user/'
 TIME_ZONE = "America/Los_Angeles"
 USE_TZ = True
-DATABASES['default'] = dj_database_url.config()
+
 
 
 if PRODUCTION is 1:
@@ -187,6 +187,7 @@ if PRODUCTION is 1:
     # STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
     MEDIA_URL = "https://%s/media/" % AWS_S3_CUSTOM_DOMAIN
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DATABASES['default'] = dj_database_url.config()
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     MEDIA_URL = '/media/'
