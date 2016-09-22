@@ -4,6 +4,7 @@ from django.db import models
 from PIL import Image
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
+import os
 # Create your models here.
 class picture(models.Model):
 	pic = models.ImageField(upload_to = 'static/pictures/')
@@ -24,12 +25,13 @@ class picture(models.Model):
 		imageType = self.pic.file.content_type
 
 		#see what kind of file we are dealing with 
+		print(imageType)
 		if imageType == "image/jpeg":
 			pilImageType = "jpeg"
 			fileExtension = "jpg"
 		elif imageType == "image/png":
 			pilImageType = "png"
-			fileExtenstion = "png"
+			fileExtension = "png"
 
 		#open big picture into PIL
 		OriginalImage = Image.open(StringIO(self.pic.read()))
@@ -37,8 +39,8 @@ class picture(models.Model):
 		tempHandle = StringIO()
 		OriginalImage.save(tempHandle, pilImageType)
 		tempHandle.seek(0)
-		suf = SimpleUploadedFile(os.path.split(seslf.pic.name)[-1],tempHandle.read(),content_type=imageType)
-		self.thumbnail.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtenstion), suf, save=False)
+		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type=imageType)
+		self.thumbnail.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 
 
 
