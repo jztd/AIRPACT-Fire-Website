@@ -67,7 +67,7 @@ def upload(request):
 			image_data = b64decode(s['image'])
 			userob = AirpactUser.objects.get(username=s['user'])
 
-			#create the giant blog of a picture
+			#create the giant blob of a picture
 			newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
 							description = s['description'], 
 							user=userob, 

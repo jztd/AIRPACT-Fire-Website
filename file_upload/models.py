@@ -1,10 +1,13 @@
 from __future__ import unicode_literals
 from user_profile.models import AirpactUser
 from django.db import models
-
+from PIL import Image
+from cStringIO import StringIO
+from django.core.files.uploadedfile import SimpleUploadedFile
 # Create your models here.
 class picture(models.Model):
 	pic = models.ImageField(upload_to = 'static/pictures/')
+	thumbnail = modesl.ImageField(upload_to = 'static/thumbnails/', null=True, blank=True)
 	uploaded = models.DateTimeField(auto_now_add = True)
 	description = models.TextField(default = "")
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
@@ -16,6 +19,36 @@ class picture(models.Model):
 	geoX = models.FloatField(default = 0)
 	geoY = models.FloatField(default = 0)
 
+	def generateThumbnail(self):
+		thumbnailSize = (200,200)
+		imageType = self.pic.file.content_type
+
+		#see what kind of file we are dealing with 
+		if imageType == "image/jpeg":
+			pilImageType = "jpeg"
+			fileExtension = "jpg"
+		elif imageType == "image/png":
+			pilImageType = "png"
+			fileExtenstion = "png"
+
+		#open big picture into PIL
+		OriginalImage = Image.open(StringIO(self.pic.read()))
+		OriginalImage.thumbnail(thumbnailSize, Image.ANTIALIAS)
+		tempHandle = StringIO()
+		OriginalImage.save(tempHandle, pilImageType)
+		tempHandle.seek(0)
+		suf = SimpleUploadedFile(os.path.split(seslf.pic.name)[-1],tempHandle.read(),content_type=imageType)
+		self.thumbnail.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtenstion), suf, save=False)
+
+
+
+
+
+
+	def save(self):
+
+		self.generateThumbnail()
+		super(picture,self).save()
 	def __str__(self):
 		return self.description
 
