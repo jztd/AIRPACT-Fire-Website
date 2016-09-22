@@ -17,8 +17,8 @@ class picture(models.Model):
 	highX = models.FloatField(null=False, default=0)
 	highY= models.FloatField(null=False, default=0)
 	lowColor = models.IntegerField(null=False, default=0)
-	geoX = models.FloatField(default = 0)
-	geoY = models.FloatField(default = 0)
+	geoX = models.FloatField(default = 46.7298)
+	geoY = models.FloatField(default =  -117.181738)
 
 	def generateThumbnail(self):
 		thumbnailSize = (200,200)

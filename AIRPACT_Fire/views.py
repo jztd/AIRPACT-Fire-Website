@@ -15,7 +15,8 @@ from user_profile.models import AirpactUser
 from file_upload.forms import GallerySortForm
 
 def index(request):
-	return render_to_response('index2.html', context_instance=RequestContext(request))
+	newestPictures = picture.objects.all().order_by("-uploaded")[:20]
+	return render_to_response('index2.html',{'newestPictures' : newestPictures}, context_instance=RequestContext(request))
 def main(request):
 	return render_to_response('welcome.html', context_instance=RequestContext(request))
 
