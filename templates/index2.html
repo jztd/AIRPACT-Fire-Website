@@ -42,7 +42,7 @@
           );
 
           markerList[i].addListener('click', function(){ 
-            this.info.content = "Lat:"+markerList[i].getPosition().lat()+" lng: "+markerList[i].getPosition().lng();
+            this.info.content = "Lat:"+this.getPosition().lat()+" lng: "+this.getPosition().lng();
             this.info.open(map);
 
           });
