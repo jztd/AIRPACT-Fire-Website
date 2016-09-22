@@ -46,7 +46,7 @@
           );
           google.maps.event.addListener(markerList[i], 'click', function(){
            infoWindow.setPosition(this.getPosition());
-           infoWindow.open();
+           infoWindow.open(map);
 
           });
         }
