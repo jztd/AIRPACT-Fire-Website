@@ -19,6 +19,8 @@ def index(request):
 	return render_to_response('index2.html',{'newestPictures' : newestPictures}, context_instance=RequestContext(request))
 def main(request):
 	return render_to_response('welcome.html', context_instance=RequestContext(request))
+def forum(request):
+	return render_to_response('forum.html', context_instance=RequestContext(request))
 
 @csrf_exempt
 @login_required
