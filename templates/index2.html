@@ -40,10 +40,10 @@
             position:{lat:pictures[i].lat, lng:pictures[i].long}
           })
           );
-
-          markerList[i].addListener('click', function(){ 
+          google.maps.event.addListener(markerList[i], 'click', function(){
+            var thismap = this.getMap();
             this.info.content = "Lat:"+this.getPosition().lat()+" lng: "+this.getPosition().lng();
-            this.info.open(map);
+            this.info.open(thismap);
 
           });
         }
