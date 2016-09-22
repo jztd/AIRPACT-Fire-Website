@@ -147,7 +147,7 @@ body{
   position: absolute;
   top:40%;
   cursor: pointer;
-  background-image: url("/media/slideShowArrows/left-arrow.png");
+  background-image: url("/static/media/slideShowArrows/left-arrow.png");
 }
 #slideShowRightNavArrow{
   width:64px;
@@ -158,7 +158,7 @@ body{
   top:40%;
   right:0;
   cursor:pointer;
-  background-image: url("/media/slideShowArrows/right-arrow.png");
+  background-image: url("/static/media/slideShowArrows/right-arrow.png");
 }
 
 #mainPicture:hover{
