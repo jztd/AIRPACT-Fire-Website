@@ -4,7 +4,7 @@
 
 
 
-<div id="map" class="col-md-6 col-md-offset-3" > </div>
+<div id="map" class="col-md-6 col-md-offset-3 well-lg" style="height:500px"> </div>
 
 
  <script>
@@ -42,7 +42,7 @@
           );
           google.maps.event.addListener(markerList[i], 'click', function(){
            infoWindow.setPosition(this.getPosition());
-           infoWindow.setContent('<p>Location: ' + this.getPosition() + '</p>');
+           infoWindow.setContent('<p>Location: ' + this.getPosition() '</p>');
            infoWindow.open(map);
 
           });
