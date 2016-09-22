@@ -10,7 +10,7 @@
  <script>
     var pictures = [];
     var markerList = [];
-    var infoPanel = new google.maps.InfoWindow({content: ''});
+
     {% for picture in newestPictures %}
      pictures.push(new picture ("{{picture.thumbnail.url}}", {{picture.geoX}},{{picture.geoY}}, ""));
     {% endfor %}
