@@ -10,7 +10,7 @@
  <script>
     var pictures = [];
     var markerList = [];
-
+    var infoWindow = new google.maps.InfoWindow({ content: "hello" });
     {% for picture in newestPictures %}
      pictures.push(new picture ("{{picture.thumbnail.url}}", {{picture.geoX}},{{picture.geoY}}, ""));
     {% endfor %}
@@ -45,9 +45,8 @@
           })
           );
           google.maps.event.addListener(markerList[i], 'click', function(){
-            var thismap = this.getMap();
-            //this.info.content = "Lat:"+this.getPosition().lat()+" lng: "+this.getPosition().lng();
-            this.info.open(thismap);
+           infoWindow.setPosition(this.getPosition().lat(), this.getPosition().lng());
+           infoWindow.open();
 
           });
         }
