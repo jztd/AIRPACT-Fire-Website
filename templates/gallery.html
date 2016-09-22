@@ -16,7 +16,7 @@
 </div>
 	{% for picture in pictures %}
 		<div class="col-lg-3 thumb">
-			<a href="{% url 'view_picture' picId=picture.id %}"> <img class="img-thumbnail" style="height:235px;"src="{{ picture.thumbnail.url }}" alt="{{ picture.thumbnail.url}}" /> </a>
+			<a href="{% url 'view_picture' picId=picture.id %}"> <img class="img-thumbnail" src="{{ picture.thumbnail.url }}" alt="{{ picture..url}}" /> </a>
 			<div class="col-lg-12" style="">
 				<article class="col-lg-12"> Date: {{ picture.uploaded }} </article>
 				<div class="col-lg-12"> VR: {{picture.vr }} </div>
