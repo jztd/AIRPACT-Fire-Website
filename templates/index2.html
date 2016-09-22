@@ -38,14 +38,11 @@
             draggable:false,
             animation: google.maps.Animation.DROP,
             position:{lat:pictures[i].lat, lng:pictures[i].long},
-            infoWindow:
-            {
-              content: "Lat:"+pictures[i].lat+" lng: "+pictures[i].long
-            }
           })
           );
           google.maps.event.addListener(markerList[i], 'click', function(){
            infoWindow.setPosition(this.getPosition());
+           infoWindow.setContent('<p>Location: ' + this.getPosition() + '</p>');
            infoWindow.open(map);
 
           });
