@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from user_profile.models import AirpactUser
 from django.db import models
-from PIL import Image
+from PIL import Image, ImageOps
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
 import os
@@ -37,7 +37,12 @@ class picture(models.Model):
 		OriginalImage = Image.open(StringIO(self.pic.read()))
 		OriginalImage.thumbnail(thumbnailSize, Image.ANTIALIAS)
 		tempHandle = StringIO()
-		OriginalImage.save(tempHandle, pilImageType)
+		background = Image.new('RGBA', thumbnailSize, (255,255,255,0))
+		background.paste(OriginalImage,((thumbnailSize[0] - OriginalImage.size[0]) / 2, (thumbnailSize[1] - OriginalImage.size[1]) / 2))
+		
+		background.save(tempHandle, pilImageType)
+
+
 		tempHandle.seek(0)
 		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type=imageType)
 		self.thumbnail.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
