@@ -42,7 +42,7 @@
           );
           google.maps.event.addListener(markerList[i], 'click', function(){
            infoWindow.setPosition(this.getPosition());
-           infoWindow.setContent('<p>Location: ' + this.getPosition() '</p>');
+           infoWindow.setContent('<p>Location: ' + this.getPosition() + '</p>');
            infoWindow.open(map);
 
           });
