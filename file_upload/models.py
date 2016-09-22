@@ -7,7 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 # Create your models here.
 class picture(models.Model):
 	pic = models.ImageField(upload_to = 'static/pictures/')
-	thumbnail = modesl.ImageField(upload_to = 'static/thumbnails/', null=True, blank=True)
+	thumbnail = models.ImageField(upload_to = 'static/thumbnails/', null=True, blank=True)
 	uploaded = models.DateTimeField(auto_now_add = True)
 	description = models.TextField(default = "")
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
