@@ -3,7 +3,7 @@ import urllib
 from datetime import datetime
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
