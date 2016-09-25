@@ -114,7 +114,7 @@ def downloads(request):
 def about(request):
 	newestPictures = picture.objects.all().order_by("-uploaded")[:4]
 	return render_to_response("about.html", {'newestPictures' : newestPictures}, context_instance=RequestContext(request))
-
+@csrf_exempt
 def getPythonScripts(request):
 	opener = urllib.URLopener()
 	scriptURL = "https://s3-us-west-2.amazonaws.com/airpactfire/static/media/scripts/alg1.py"
