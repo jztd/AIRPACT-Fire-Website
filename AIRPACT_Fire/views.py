@@ -8,6 +8,7 @@ from django.contrib import auth
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from file_upload.models import picture
+from file_upload.models import tag
 from convos.models import convoPage
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -64,38 +65,39 @@ def uncertified(request):
 def test(request):
 	return render_to_response('hello.html', RequestContext(request))
 
+
+
+#This is the gallery
 def gallery(request, page = 1):
 	allpictures = picture.objects.all().order_by("-uploaded")
+	alltags = tag.objects.all()
+
+	# DA gallery sort form! 
 	form = GallerySortForm();
 	if request.method == 'POST':
 		sortByList=[];
+
 		form = GallerySortForm(request.POST)
 		if form.is_valid():
-			if form.cleaned_data.get("uploaded") == "asc":
-				allpictures = allpictures.order_by("uploaded")
-			elif form.cleaned_data.get("uploaded") == "desc":
-				allpictures = allpictures.order_by("-uploaded")
-			elif form.cleaned_data.get("vr") == "asc":
-				allpictures = allpictures.order_by("vr")
-			elif form.cleaned_data.get("vr") == "desc":
-				allpictures = allpictures.order_by("-vr")
-			# if form.cleaned_data.get("location") != "":.
-			# 	allpictures.filter(text = form.cleaned_data.get("location"))
+			
+			#order by...
+			if form.cleaned_data.get("ascending") != "":
+				allpictures = order_pictures(form.cleaned_data.get("ascending"), allpictures)
+
+
+			#find by vr
+			if form.cleaned_data.get("visual_range")  != "":
+				allpictures = find_pictures_vr(form.cleaned_data.get("visual_range"), allpictures)
+
+			#find by date
 			if form.cleaned_data.get("date") != "":
 				d = datetime.strptime(form.cleaned_data.get("date"),"%m/%d/%Y")
-				print(form.cleaned_data.get("date"))
-				print(allpictures[0].uploaded)
 				allpictures = allpictures.filter(uploaded__month=d.month,uploaded__day=d.day,uploaded__year=d.year)
 
-
-	# if sort == "dateu":
-	# 	allpictures = allpictures.order_by('-uploaded')
-	# elif sort == "dated":
-	# 	allpictures = allpictures.order_by('uploaded')
-	# elif sort == "vru":
-	# 	allpictures = allpictures.order_by('-vr')
-	# elif sort == "vrd":
-	# 	allpictures = allpictures.order_by('vr')
+			#find by location (must be last since function returns a list)
+			if form.cleaned_data.get("location") != "":
+				allpictures = find_pictures_tag(form.cleaned_data.get("location"), allpictures, alltags)
+		
 
 	paginator = Paginator(allpictures, 12) #show 12 per page
 	try:
@@ -106,6 +108,51 @@ def gallery(request, page = 1):
 		pictures = paginator.page(paginator.num_pages)
 
 	return render_to_response('gallery.html', {'pictures': pictures, 'form': form}, context_instance=RequestContext(request))
+
+# function to order the pictures based off the form value
+def order_pictures(x, pictures):
+	return {
+	'0': pictures.order_by("uploaded"),
+	'1': pictures.order_by("-uploaded"),
+	'2': pictures.order_by("vr"),
+	'3': pictures.order_by("-vr"),
+	}[x]
+
+# A switch statement for finding the pictures based on visual range
+def find_pictures_vr(x, pictures):
+	return {
+		'0': pictures,
+		'1': pictures.filter(vr__lte=50.0),
+		'2': pictures.filter(vr__gte=50.0, vr__lte=100.0 ),
+		'3': pictures.filter(vr__gte=100.0, vr__lte=300.0 ),
+		'4': pictures.filter(vr__gte=300.0, vr__lte=1000.0 ),
+		'5': pictures.filter(vr__gte=1000.0, vr__lte=5000.0 ),
+		'6': pictures.filter(vr__gte=5000.0),
+	}[x]
+
+
+#Find pictures by tag, warning, returns a list of pictures
+#as opposed to a picture object
+def find_pictures_tag(location, pictures, alltags):
+	
+	foundpictures = []
+	checkpictures = []
+	alltags = alltags.filter(text__contains=location)
+
+	# Convert pictures into a list
+	for picture in pictures:
+		checkpictures.append(picture)
+
+	for tag in alltags:
+		# want to assure no duplicates
+		if tag.picture not in foundpictures:
+			if tag.picture in checkpictures:
+				foundpictures.append(tag.picture)
+
+
+	return foundpictures
+
+
 
 def downloads(request):
 	return render_to_response("downloads.html", context_instance=RequestContext(request))

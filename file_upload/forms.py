@@ -1,7 +1,7 @@
 from django import forms
 from file_upload.models import picture
 from file_upload.models import tag
-sort_box = (('-','none'),('asc','Ascending'),('desc', 'decending'))
+
 def getChoices():
 	T = tag.objects.values('text').distinct()
 
@@ -19,10 +19,15 @@ class picture_upload_form(forms.Form):
 	description = forms.CharField(label='Description', required=True)
 	#location = forms.DecimalField(label="location")
 
+# The search form for the gallery
 class GallerySortForm(forms.Form):
-	uploaded = forms.ChoiceField(choices=sort_box, widget= forms.Select(attrs={'id':'uploaded', 'name':'uploaded', 'class':'form-control'}))
-	vr = forms.ChoiceField(choices=sort_box, widget= forms.Select(attrs={'id':'vr','name':'vr','class':'form-control'}))
-	# location = forms.ChoiceField(choices = getChoices(), widget= forms.Select(attrs={'id':'tags','name':'tags','class':'form-control'}))
+	vr_choices=[(0, "None"), (1,'0-50'),(2,'50-300'), (3,'300-1000'), (4,'1000-5000'), (5,'5000+')]
+	ascending_choices = [(0,"Ascending time"), (1,"Descending time"), 
+	(2,"Ascending visual Range"),(3,"Descending visual Range")]
+
+	ascending = forms.ChoiceField(ascending_choices, label = "Order by:", widget = forms.Select())
+	visual_range = forms.ChoiceField(choices=vr_choices, label = "Visual Range(in meters):", widget= forms.Select(attrs={'id':'vr','name':'Visual Range(in meters)','class':'form-control'}))
+	location = forms.CharField(required = False, label = "Location Tag(s):", )
 	date = forms.CharField(required=False,widget=forms.TextInput(attrs={'id':'date','name':'date','class':'form-control'}))
 
 

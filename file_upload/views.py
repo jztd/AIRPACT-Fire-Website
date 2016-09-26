@@ -22,6 +22,7 @@ from django.contrib.auth.decorators import login_required
 from convos.models import convoPage
 
 
+
 @login_required
 def index(request):
 	if request.user.is_certified is False:
@@ -118,16 +119,18 @@ def test(request):
 	print(userob.id)
 	return HttpResponse(userob.id)
 
+# View a specific picture
 def view_picture(request, picId = -1):
 	pictures = None
 	if picId != -1:
 		
 		# good picture id
 		p = picture.objects.get(id = picId)
+
+		# Tell the tag db to get alist of tags from the picture
 		cur_tag = tag.objects.filter(picture= p)
 		conversation = convoPage.objects.get(picture = p)
 
-		#THIS NEEDS TO BE LOOKED AT CLOSER, WE ARE GETTIGN ONLY THE FIRST TAG WHICH MIGHT NOT BE THE LOCATION!!!! (but hacked so our demo worked)
 		# If the user wants to see more images:
 		location = cur_tag[0].text
 		picture_tags = tag.objects.filter(text=location).order_by("picture__uploaded")
@@ -137,11 +140,13 @@ def view_picture(request, picId = -1):
 
 		#setup range of image numbers for the 
 
+		# Picture is the main picture, pictures is the side bitches. 
 		return render_to_response( 'convos.html', {'picture': p,'pictures':pictures, 'convos':conversation, 
 			'convo_id':conversation.pk,'tag':cur_tag[0]}, context_instance=RequestContext(request))
 
 
 	else:
+	    #fuck you, return
 		return HttpResponseRedirect("/gallery")
 		#redirect back to gallery
 
