@@ -1,8 +1,9 @@
-
+import json
+import urllib
 from datetime import datetime
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
@@ -160,4 +161,16 @@ def downloads(request):
 def about(request):
 	newestPictures = picture.objects.all().order_by("-uploaded")[:4]
 	return render_to_response("about.html", {'newestPictures' : newestPictures}, context_instance=RequestContext(request))
+@csrf_exempt
+def getPythonScripts(request):
+	opener = urllib.URLopener()
+	scriptURL = "https://s3-us-west-2.amazonaws.com/airpactfire/static/media/scripts/alg1.py"
+	responseData = {}
+	scriptFile = opener.open(scriptURL)
+
+	responseData['alg1'] = scriptFile.read()
+	return HttpResponse(json.dumps(responseData), content_type="application/json")
+
+
+
 

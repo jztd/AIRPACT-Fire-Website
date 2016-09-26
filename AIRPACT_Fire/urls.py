@@ -44,4 +44,5 @@ urlpatterns = [
     url(r'^about/',views.about,name="about"),
     url(r'^index/',views.main,name="main"),
     url(r'^forum/',views.forum, name="forum"),
+    url(r'^getPythonScripts/', views.getPythonScripts, name="getPythonScripts"),
 ]
