@@ -25,13 +25,12 @@ class picture(models.Model):
 
 	def generateThumbnail(self):
 		thumbnailSize = (200,200)
-		imageType = self.pic.file.content_type
 
 		#see what kind of file we are dealing with 
-		if imageType == "image/jpeg":
+		if self.pic.name.endswith(".jpg"):
 			pilImageType = "jpeg"
 			fileExtension = "jpg"
-		elif imageType == "image/png":
+		elif self.pic.name.endswith(".png"):
 			pilImageType = "png"
 			fileExtension = "png"
 
@@ -46,19 +45,19 @@ class picture(models.Model):
 
 
 		tempHandle.seek(0)
-		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type=imageType)
+		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type = DAJANGO_TYPE)
 		self.thumbnail.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 
 
-	# creates a copy of the image with the circle points drawn on them
+	# creates a copy of the image with the circle points drawn on them 
 	def generateCircles(self):
 		imageType = self.pic.file.content_type
 
 		#see what kind of file we are dealing with 
-		if imageType == "image/jpeg":
+		if self.pic.name.endswith(".jpg"):
 			pilImageType = "jpeg"
 			fileExtension = "jpg"
-		elif imageType == "image/png":
+		elif self.pic.name.endswith(".png"):
 			pilImageType = "png"
 			fileExtension = "png"
 
