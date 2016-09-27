@@ -4,7 +4,7 @@ from django.db import models
 from PIL import Image, ImageOps, ImageDraw
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.files.sotrage import default_storage as storage
+from django.core.files.storage import default_storage as storage
 import os
 # Create your models here.
 class picture(models.Model):
