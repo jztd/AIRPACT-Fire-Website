@@ -52,6 +52,8 @@ class picture(models.Model):
 		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type = djangoType)
 		self.thumbnail.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 
+		OriginalImage.close()
+		background.close()
 
 	# creates a copy of the image with the circle points drawn on them 
 	def generateCircles(self):
