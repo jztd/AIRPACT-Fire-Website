@@ -80,8 +80,8 @@ class picture(models.Model):
 		editor = ImageDraw.Draw(OriginalImage)
 
 		#draw the cricles
-		editor.draw.eclipse(highCords, outline=0)
-		editor.draw.eclipse(lowCords, outline=0)
+		editor.ellipse(highCords, outline=0)
+		editor.ellipse(lowCords, outline=0)
 
 		#get rid of the drawer
 		del editor
