@@ -103,10 +103,10 @@ class picture(models.Model):
 		fileHandle.close()
 	def save(self):
 
-		super(picture,self).save()
+
 		self.generateCircles()
 		self.generateThumbnail()
-
+		super(picture,self).save()
 
 	
 	def __str__(self):
