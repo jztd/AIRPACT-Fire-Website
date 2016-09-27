@@ -36,7 +36,7 @@ class picture(models.Model):
 		elif self.pic.name.endswith(".png"):
 			pilImageType = "png"
 			fileExtension = "png"
-			djanogType = 'image/png'
+			djangoType = 'image/png'
 
 		#open big picture into PIL
 		OriginalImage = Image.open(StringIO(self.pic.read()))
@@ -61,9 +61,11 @@ class picture(models.Model):
 		if self.pic.name.endswith(".jpg"):
 			pilImageType = "jpeg"
 			fileExtension = "jpg"
+			djangoType = 'image/jpeg'
 		elif self.pic.name.endswith(".png"):
 			pilImageType = "png"
 			fileExtension = "png"
+			djangoType = 'image/png'
 
 		#get the bounding boxes for each of the circles
 		highCords = [(self.highY-100, self.highX-100),(self.highY+100, self.highX+100)]
@@ -90,7 +92,7 @@ class picture(models.Model):
 		tempHandle.seek(0)
 
 		#save the image
-		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type=imageType)
+		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type=djangoType)
 		self.pictureWithCircles.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 
 
