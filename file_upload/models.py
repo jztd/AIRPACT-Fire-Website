@@ -55,7 +55,7 @@ class picture(models.Model):
 
 	# creates a copy of the image with the circle points drawn on them 
 	def generateCircles(self):
-		imageType = self.pic.file.content_type
+
 
 		#see what kind of file we are dealing with 
 		if self.pic.name.endswith(".jpg"):
