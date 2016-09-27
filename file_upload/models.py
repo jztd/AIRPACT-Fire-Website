@@ -4,6 +4,7 @@ from django.db import models
 from PIL import Image, ImageOps, ImageDraw
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
+from mimetypes import MimeTypes
 import os
 # Create your models here.
 class picture(models.Model):
@@ -26,13 +27,16 @@ class picture(models.Model):
 	def generateThumbnail(self):
 		thumbnailSize = (200,200)
 
+
 		#see what kind of file we are dealing with 
 		if self.pic.name.endswith(".jpg"):
 			pilImageType = "jpeg"
 			fileExtension = "jpg"
+			djangoType = 'image/jpeg'
 		elif self.pic.name.endswith(".png"):
 			pilImageType = "png"
 			fileExtension = "png"
+			djanogType = 'image/png'
 
 		#open big picture into PIL
 		OriginalImage = Image.open(StringIO(self.pic.read()))
@@ -45,7 +49,7 @@ class picture(models.Model):
 
 
 		tempHandle.seek(0)
-		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type = DAJANGO_TYPE)
+		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type = djangoType)
 		self.thumbnail.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 
 
