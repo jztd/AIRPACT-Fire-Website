@@ -99,9 +99,9 @@ class picture(models.Model):
 
 
 	def save(self):
-
-		self.generateThumbnail()
 		self.generateCircles()
+		self.generateThumbnail()
+
 		super(picture,self).save()
 	
 	def __str__(self):
