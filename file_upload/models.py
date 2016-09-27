@@ -4,7 +4,7 @@ from django.db import models
 from PIL import Image, ImageOps, ImageDraw
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
-from mimetypes import MimeTypes
+from django.core.files.sotrage import default_storage as storage
 import os
 # Create your models here.
 class picture(models.Model):
@@ -39,7 +39,8 @@ class picture(models.Model):
 			djangoType = 'image/png'
 
 		#open big picture into PIL
-		OriginalImage = Image.open(StringIO(self.pic.read()))
+		fileHandle = storage.open(self.pic.name, 'r')
+		OriginalImage = Image.open(fileHandle)
 		OriginalImage.thumbnail(thumbnailSize, Image.ANTIALIAS)
 		tempHandle = StringIO()
 		background = Image.new('RGBA', thumbnailSize, (255,255,255,0))
@@ -55,6 +56,7 @@ class picture(models.Model):
 		OriginalImage.close()
 		background.close()
 
+		fileHandle.close()
 	# creates a copy of the image with the circle points drawn on them 
 	def generateCircles(self):
 
@@ -74,7 +76,8 @@ class picture(models.Model):
 		lowCords = [(self.lowY-100, self.lowX-100),(self.lowY+100, self.lowX+100)]
 
 		#open original image
-		OriginalImage = Image.open(StringIO(self.pic.read()))
+		fileHandle = storage.open(self.pic.name, 'r')
+		OriginalImage = Image.open(fileHandle)
 
 		#open a new drawing object with our image
 		editor = ImageDraw.Draw(OriginalImage)
@@ -97,7 +100,7 @@ class picture(models.Model):
 		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type=djangoType)
 		self.pictureWithCircles.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 
-
+		fileHandle.close()
 	def save(self):
 
 		super(picture,self).save()
