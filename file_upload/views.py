@@ -77,6 +77,8 @@ def upload(request):
 							highX=float(s['highX']), 
 							highY=float(s['highY']),
 							lowColor=int(s['lowColor']),
+							lowX=float(s['lowX']),
+							lowY=float(s['lowY']),
 							geoX = float(s['geoX']),
 							geoY = float(s['geoY'])
 							 );
