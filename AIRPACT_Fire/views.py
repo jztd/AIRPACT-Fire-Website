@@ -170,7 +170,7 @@ def getPythonScripts(request):
 	script1File = opener.open(script1URL)
 	script2File = opener.open(script2URL)
 	responseData['alg1'] = script1File.read()
-	responesData['alg2'] = script2File.read()
+	responseData['alg2'] = script2File.read()
 	return HttpResponse(json.dumps(responseData), content_type="application/json")
 
 
