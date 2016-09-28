@@ -96,6 +96,7 @@ class picture(models.Model):
 		#save the image
 		suf = SimpleUploadedFile(os.path.split(self.pic.name)[-1],tempHandle.read(),content_type=djangoType)
 		self.pictureWithCircles.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
+		print("CIRCLES URL IS:")
 		print(self.pictureWithCircles.url)
 
 	def save(self):
