@@ -164,11 +164,13 @@ def about(request):
 @csrf_exempt
 def getPythonScripts(request):
 	opener = urllib.URLopener()
-	scriptURL = "https://s3-us-west-2.amazonaws.com/airpactfire/static/media/scripts/alg1.py"
+	script1URL = "https://s3-us-west-2.amazonaws.com/airpactfire/static/media/scripts/alg1.py"
+	script2URL = "https://s3-us-west-2.amazonaws.com/airpactfire/static/media/scripts/alg2.py"
 	responseData = {}
-	scriptFile = opener.open(scriptURL)
-
-	responseData['alg1'] = scriptFile.read()
+	script1File = opener.open(script1URL)
+	script1File = opener.open(script2URL)
+	responseData['alg1'] = script1File.read()
+	responesData['alg2'] = script2File.read()
 	return HttpResponse(json.dumps(responseData), content_type="application/json")
 
 

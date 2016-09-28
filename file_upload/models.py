@@ -39,8 +39,8 @@ class picture(models.Model):
 			djangoType = 'image/png'
 
 		#open big picture into PIL
+		self.pic.seek(0)
 		OriginalImage = Image.open(StringIO(self.pic.read()))
-
 		OriginalImage.thumbnail(thumbnailSize, Image.ANTIALIAS)
 		tempHandle = StringIO()
 		background = Image.new('RGBA', thumbnailSize, (255,255,255,0))
@@ -73,6 +73,7 @@ class picture(models.Model):
 		lowCords = [(self.lowY-100, self.lowX-100),(self.lowY+100, self.lowX+100)]
 
 		#open original image
+		self.pic.seek(0)
 		OriginalImage = Image.open(StringIO(self.pic.read()))
 
 		#open a new drawing object with our image
@@ -99,7 +100,7 @@ class picture(models.Model):
 	def save(self):
 
 
-		#self.generateCircles()
+		self.generateCircles()
 		self.generateThumbnail()
 		super(picture,self).save()
 
