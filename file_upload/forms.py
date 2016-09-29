@@ -17,6 +17,11 @@ class picture_upload_form(forms.Form):
 	vr = forms.DecimalField(label="visual range")
 	location = forms.CharField(label='Location', required=True)
 	description = forms.CharField(label='Description', required=True)
+	lowColorX = forms.DecimalField(label="Near Object X Coordinate", widget=forms.HiddenInput())
+	lowColorY = forms.DecimalField(label="Near Object Y Coordinate", widget=forms.HiddenInput())
+	highColorX = forms.DecimalField(label="far Object X Coordinate", widget=forms.HiddenInput())
+	highColorY = forms.DecimalField(label="far Object Y Coordinate", widget=forms.HiddenInput())
+
 	#location = forms.DecimalField(label="location")
 
 # The search form for the gallery

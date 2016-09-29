@@ -69,8 +69,8 @@ class picture(models.Model):
 			djangoType = 'image/png'
 
 		#get the bounding boxes for each of the circles
-		highCords = [(self.highY-100, self.highX-100),(self.highY+100, self.highX+100)]
-		lowCords = [(self.lowY-100, self.lowX-100),(self.lowY+100, self.lowX+100)]
+		highCords = [(self.highX-100, self.highY-100),(self.highX+100, self.highY+100)]
+		lowCords = [(self.lowX-100, self.lowY-100),(self.lowX+100, self.lowY+100)]
 
 		#open original image
 		self.pic.seek(0)
@@ -80,8 +80,8 @@ class picture(models.Model):
 		editor = ImageDraw.Draw(OriginalImage)
 
 		#draw the cricles
-		editor.ellipse(highCords, outline=0)
-		editor.ellipse(lowCords, outline=0)
+		editor.rectangle(highCords, outline=0)
+		editor.rectangle(lowCords, outline=0)
 
 		#get rid of the drawer
 		del editor

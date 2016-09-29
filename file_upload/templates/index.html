@@ -1,5 +1,14 @@
 {% extends "base/newbase.html" %}
 {% block content %}
+
+
+<div class="col-md-2" style="">
+<form action="{% url "index" %}" method="post" style="min-width: 100%;" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="Upload" /></p>
+</form>
+<!-- 
 {% if not form.is_valid and form.is_bound %}
         <div class= "panel panel-danger">
         <div class= "panel-heading"> There was a Problem with your File Upload </div>
@@ -13,7 +22,7 @@
         </div>
         </div>
 {% endif %}
-<form action="{% url "index" %}" method="post" enctype="multipart/form-data">
+<form action="{% url "index" %}" method="post" style="min-width: 100%;" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{ form.non_field_errors }}</p>
         <p>
@@ -37,6 +46,117 @@
                 {{ form.location }}
         </p>
 
-        <p><input type="submit" value="Upload" /></p>
-</form>
+</form> -->
+
+
+</div> 
+<div class="col-md-10" style="">
+    <div> Select Target to Place: Near Object <input type="radio" name="target" value="nearObject" > Far Object <input type="radio" name="target" value="farObject" checked> </div> 
+    <canvas id="canvas" style=" max-width: 100%;"></canvas>
+</div>
+<div id = "cords"></div>
+
+<script>
+
+var nearCordX = 0;
+var nearCordY = 0;
+var farCordX = 0;
+var farCordY = 0;
+var imgurl = "";
+var nearRect = {x:-100,y:-100};
+var farRect = {x:-100,y:-100};
+var picture = new Image();
+
+var nearCordX = $('input[name="lowColorX"]');
+var nearCordY = $('input[name="lowColorY"]');
+var farCordX = $('input[name="highColorX"]');
+var farCordY = $('input[name="highColorY"]');
+
+nearCordY.val(0);
+nearCordX.val(0);
+farCordY.val(0);
+farCordX.val(0);
+
+$('#id_pic').change(function(e){
+    var file = e.target.files[0], imageType=/image.*/;
+    imgurl = URL.createObjectURL(e.target.files[0]);
+    if(!file.type.match(imageType))
+    {
+        return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = fileOnLoad;
+    reader.readAsDataURL(file);
+    picture.src = imgurl;
+    picture.onload = imgLoad();
+});
+
+function imgLoad()
+{
+    var canvas = $('#canvas')[0];
+    var context = canvas.getContext('2d');
+
+    context.drawImage(picture,0,0);
+}
+
+function fileOnLoad(e)
+{
+    var img = $('<img>', {src: e.target.result});
+    img.load(function(){
+        var canvas = $('#canvas')[0];
+        var context = canvas.getContext('2d');
+
+        canvas.width = this.naturalWidth;
+        canvas.height = this.naturalHeight;
+        context.drawImage(this,0,0);
+    });
+}
+
+
+function getMousePosition(canvas, evt){
+
+    var rect = canvas.getBoundingClientRect(),
+        scaleX = canvas.width/rect.width,
+        scaleY = canvas.height/rect.height;
+
+    return { x: (evt.clientX - rect.left) * scaleX, y: (evt.clientY - rect.top) * scaleY}
+}
+
+$('#canvas').mousedown(function(e){
+    var canvas = $('#canvas')[0];
+    var context = canvas.getContext('2d');
+    var mouseCords = getMousePosition(canvas, e);
+    var selectedTarget = $('input[name=target]:checked').val();
+
+    if (selectedTarget === "nearObject")
+    {
+        nearRect['x'] = mouseCords['x'];
+        nearRect['y'] = mouseCords['y'];
+
+        nearCordX.val(mouseCords['x']);
+        nearCordY.val(mouseCords['y']);
+        
+    }
+    else
+    {
+        farRect['x'] = mouseCords['x'];
+        farRect['y'] = mouseCords['y'];
+
+        farCordX.val(mouseCords['x']);
+        farCordY.val(mouseCords['y']);
+        
+    }
+
+    $('#cords').text("HighX: "+farRect['x'] +"  HighY: "+farRect['y']);
+    context.clearRect(0,0,canvas.width,canvas.height);
+    context.beginPath();
+    context.drawImage(picture,0,0);
+    context.rect(nearRect['x'] - 100, nearRect['y'] - 100, 200,200);
+    context.rect(farRect['x'] - 100, farRect['y'] - 100, 200,200);
+    context.stroke();
+
+});
+
+</script>
 {% endblock %}
