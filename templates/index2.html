@@ -45,7 +45,7 @@
           );
           var br = "<br />";
           var anchor1 = '<a href="'+pictures[i].link+'">';
-          var content = br + anchor1 +' <img  class="img-responsive" src="' + pictures[i].thumbnailUrl + '" alt="{{ picture.pic.url}}" align = "middle" id ="mainPicture" /> </a>' +br +
+          var content = anchor1 +' <img  class="img-responsive" src="' + pictures[i].thumbnailUrl + '" alt="{{ picture.pic.url}}" align = "middle" id ="mainPicture" /> </a>'+
           'User: <a href="user/profile/'+pictures[i].user+'/">'+pictures[i].user;
           google.maps.event.addListener(markerList[i], 'click', (function(content){
             return function(){
