@@ -3,51 +3,11 @@
 
 
 <div class="col-md-2" style="">
-<form action="{% url "index" %}" method="post" style="min-width: 100%;" enctype="multipart/form-data">
+<form action="{% url "index" %}" method="post" style="min-width: 100%;" id="form" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <p><input type="submit" value="Upload" /></p>
+    <p><input type="submit" id="submitButton" value="Upload" /></p>
 </form>
-<!-- 
-{% if not form.is_valid and form.is_bound %}
-        <div class= "panel panel-danger">
-        <div class= "panel-heading"> There was a Problem with your File Upload </div>
-        <div class="panel-body">
-        {% for field, errors in form.errors.items %}
-                {% for error in errors %}
-                <p> {{field}}: {{ error}}      </p>
-
-                {% endfor %}
-        {% endfor %}
-        </div>
-        </div>
-{% endif %}
-<form action="{% url "index" %}" method="post" style="min-width: 100%;" enctype="multipart/form-data">
-        {% csrf_token %}
-        <p>{{ form.non_field_errors }}</p>
-        <p>
-                {{ form.pic.label_tag }}
-                {{ form.pic.errors }}
-                {{ form.pic }}
-        </p>
-          <p> {{ form.description.label_tag }} </p>
-        <p> 
-                {{ form.description.errors}} 
-                {{ form.description }}
-        </p>
-        <p> {{ form.vr.label_tag}} </p>
-        <p> 
-        	{{ form.vr.errors}} 
-        	{{ form.vr }}
-        </p>
-        <p> {{ form.location.label_tag }} </p>
-        <p> 
-                {{ form.location.errors}} 
-                {{ form.location }}
-        </p>
-
-</form> -->
-
 
 </div> 
 <div class="col-md-10" style="">
@@ -158,5 +118,11 @@ $('#canvas').mousedown(function(e){
 
 });
 
+
+$(document).ready(function(){
+    $('#form').submit(function(){
+        $('#submitButton').attr("disabled", "disabled");
+    });
+});
 </script>
 {% endblock %}
