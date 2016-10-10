@@ -17,21 +17,20 @@
 
 		</div>
 	<div class="row">
-			<div class="col-md-12">
+			<div class ="col-md-12">
 				<h3> {{ profile_user.username }}'s Photos </h3>
 				{% if thisuser == True %}
 					<a href="/user/profile/manage_pictures/"> Manage Pictures </a>
 				{% endif %}
 			</div>
-
 			{% for pic in pictures %}
-				<a href="{% url 'view_picture' picId=pic.id %}"> <div class="col-md-3 thumb"> <img class="img-thumbnail" src="{{ pic.pic.url }}" /> </a>
+				<div >
+				<a href="{% url 'view_picture' picId=pic.id %}"> <div class="col-md-3 thumb"> <img class="img-thumbnail" src="{{ pic.thumbnail.url }}" /> </a>
 	    		</div>
 	    		
 			{% endfor %}
 
 
-			</div>
 	</div>
 
 	<div class="row">

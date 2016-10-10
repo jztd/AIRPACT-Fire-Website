@@ -2,7 +2,7 @@
 {% block content %}
 {% load static from staticfiles %}
 <h2 class="col-md-12 col-lg-12"> Android APK</h2>
-	<p class="col-lg-12"> Latest version: <a href="/static/apk/airpact-v.6.apk"> V0.6 </a> </p>
+	<p class="col-lg-12"> Latest version: <a href="{% static '/static/apk/airpact-v.7.apk' %}"> V0.6 </a> </p>
 	<div class="col-lg-4">
 		<table class="table">
 			<thead>
@@ -10,8 +10,13 @@
 				<th> Download </th>
 			</thead>
 			<tr>
+				<td> V0.7</td>
+				<td> <a href="{% static '/static/apk/airpact-v.7.apk' %}"> Link </a> </td> 
+			</tr>
+			<tr>
 				<td> V0.6</td>
 				<td> <a href="{% static '/static/apk/airpact-v.6.apk' %}"> Link </a> </td> 
+			</tr>
 			<tr>
 			 	<td> V0.5 </td>
 			 	<td> <a href="{% static '/static/apk/airpact-v.5.apk' %}"> Link </a> </td>

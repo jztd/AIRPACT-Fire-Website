@@ -12,15 +12,18 @@
     var markerList = [];
     var infoWindow;
     {% for picture in newestPictures %}
-     pictures.push(new picture ("{{picture.thumbnail.url}}", {{picture.geoX}},{{picture.geoY}}, ""));
+     pictures.push(new picture ("{{picture.thumbnail.url}}", {{picture.geoX}},{{picture.geoY}}, "","{{picture.user}}","{{picture.description}}","/picture/view/" + {{picture.id}}+"/"));
     {% endfor %}
 
-    function picture(thumbnailUrl, lat, long, location)
+    function picture(thumbnailUrl, lat, long, location, user, description, link)
     {
       this.thumbnailUrl = thumbnailUrl;
       this.lat = lat;
       this.long = long;
       this.location = location;
+      this.user = user;
+      this.description = description;
+      this.link = link;
     }
 
       function initMap() {
@@ -40,12 +43,18 @@
             position:{lat:pictures[i].lat, lng:pictures[i].long},
           })
           );
-          google.maps.event.addListener(markerList[i], 'click', function(){
+          var br = "<br />";
+          var anchor1 = '<a href="'+pictures[i].link+'">';
+          var content = anchor1 +' <img  class="img-responsive" src="' + pictures[i].thumbnailUrl + '" alt="{{ picture.pic.url}}" align = "middle" id ="mainPicture" /> </a>'+
+          'User: <a href="user/profile/'+pictures[i].user+'/">'+pictures[i].user;
+          google.maps.event.addListener(markerList[i], 'click', (function(content){
+            return function(){
            infoWindow.setPosition(this.getPosition());
-           infoWindow.setContent('<p>Location: ' + this.getPosition() + '</p>');
+           infoWindow.setContent("<p> Location: "+this.getPosition()+content );
            infoWindow.open(map);
+         };
 
-          });
+          })(content));
         }
       }
 

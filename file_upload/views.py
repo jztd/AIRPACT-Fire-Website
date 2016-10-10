@@ -32,7 +32,9 @@ def index(request):
 	if request.method == 'POST':
 		form = picture_upload_form(request.POST, request.FILES)
 		if form.is_valid():
-			newPic = picture(pic = request.FILES['pic'], user=request.user, vr=form.cleaned_data.get('vr'), description=form.cleaned_data.get('description'))
+			print("highX %d, highY %d, lowX %d, lowY %d," % (form.cleaned_data.get('highColorX'), form.cleaned_data.get('highColorY'), form.cleaned_data.get('lowColorX'), form.cleaned_data.get('lowColorY'))) 
+			newPic = picture(pic = request.FILES['pic'], user=request.user, vr=form.cleaned_data.get('vr'), description=form.cleaned_data.get('description'),
+				highX=form.cleaned_data.get('highColorX'), highY=form.cleaned_data.get('highColorY'), lowX=form.cleaned_data.get('lowColorX'), lowY=form.cleaned_data.get('lowColorY'))
 			newPic.save()
 
 			#Creating some conversation stuffs
@@ -77,6 +79,8 @@ def upload(request):
 							highX=float(s['highX']), 
 							highY=float(s['highY']),
 							lowColor=int(s['lowColor']),
+							lowX=float(s['lowX']),
+							lowY=float(s['lowY']),
 							geoX = float(s['geoX']),
 							geoY = float(s['geoY'])
 							 );
