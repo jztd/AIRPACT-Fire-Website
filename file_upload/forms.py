@@ -1,6 +1,9 @@
 from django import forms
 from file_upload.models import picture
 from file_upload.models import tag
+from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.db import models
+from django.contrib.gis import forms
 
 def getChoices():
 	T = tag.objects.values('text').distinct()
@@ -26,8 +29,16 @@ class GallerySortForm(forms.Form):
 	(2,"Ascending visual Range"),(3,"Descending visual Range")]
 
 	ascending = forms.ChoiceField(ascending_choices, label = "Order by:", widget = forms.Select())
-	visual_range = forms.ChoiceField(choices=vr_choices, label = "Visual Range(in meters):", widget= forms.Select(attrs={'id':'vr','name':'Visual Range(in meters)','class':'form-control'}))
+
+	visual_range = forms.ChoiceField(choices=vr_choices, label = "Visual Range(in meters):",
+		widget= forms.Select(attrs={'id':'vr','name':'Visual Range(in meters)','class':'form-control'}))
+
+	point = forms.PointField(widget=
+		forms.OSMWidget(attrs={'map_width': 800, 'map_height': 500}))
+
 	location = forms.CharField(required = False, label = "Location Tag(s):", )
-	date = forms.CharField(required=False,widget=forms.TextInput(attrs={'id':'date','name':'date','class':'form-control'}))
+
+	date = forms.CharField(required=False,widget=forms.TextInput(attrs={'id':'date','name':'date',
+		'class':'form-control'}))
 
 
