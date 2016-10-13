@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import dj_database_url
-
+from spirit.settings import *
 # IF YOU WANT TO RUN THIS LOCALLY YOU MUST SET PRODUCTION TO 0
 PRODUCTION = 1
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -33,13 +33,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+INSTALLED_APPS.extend( [
+    #'django.contrib.admin',
+    #'django.contrib.auth',
+    #'django.contrib.contenttypes',
+    #'django.contrib.sessions',
+    #'django.contrib.messages',
+    #'django.contrib.staticfiles',
     
     # custom apps
     'file_upload',
@@ -54,12 +54,12 @@ INSTALLED_APPS = [
     'storages'
     #'fluent_comments',
     #'crispy_forms',
-]
+])
 
 AUTH_USER_MODEL = 'user_profile.AirpactUser'
 SITE_ID = 1
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE_CLASSES.extend( [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,7 +68,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+])
 
 ROOT_URLCONF = 'AIRPACT_Fire.urls'
 

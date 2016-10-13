@@ -30,6 +30,7 @@ class AirpactUserManager(BaseUserManager):
 	def create_superuser(self, email, password):
 		user = self.create_user(email=email, username = name, password = password)
 		user.is_admin = True;
+		user.is_superuser = True;
 		user.save(using=self._db)
 
 		return user
@@ -45,11 +46,12 @@ class AirpactUser(AbstractBaseUser):
 	email = models.EmailField(blank=True)
 	is_custom_admin = models.BooleanField(default = False)
 	is_certified = models.BooleanField(default = False)
-	bob = models.BooleanField
+	is_superuser = models.BooleanField(default = False)
+	bob = models.BooleanField(default= False)
 	objects = AirpactUserManager()
 
 	#required to implement
-	is_Active = True
+	is_active = models.BooleanField(default=True)
 
 	#required to implement
 	USERNAME_FIELD = 'username'
