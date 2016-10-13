@@ -14,7 +14,7 @@ import os
 import dj_database_url
 
 # IF YOU WANT TO RUN THIS LOCALLY YOU MUST SET PRODUCTION TO 0
-PRODUCTION = 1
+PRODUCTION = 0
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,13 +34,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'django.contrib.gis',
     # custom apps
     'file_upload',
     'user_profile',

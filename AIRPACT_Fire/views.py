@@ -15,6 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from user_profile.models import AirpactUser
 from file_upload.forms import GallerySortForm
+from dal import autocomplete
 
 def index(request):
 	newestPictures = picture.objects.all().order_by("-uploaded")[:20]
@@ -66,6 +67,19 @@ def uncertified(request):
 def test(request):
 	return render_to_response('hello.html', RequestContext(request))
 
+#The autocomplete function for tabs
+class LocationAutocomplete(autocomplete.Select2ListView):
+    
+    def get_list(self):
+        qs = tag.objects.all()
+        tag_names = []
+        if self.q:
+            qs = qs.filter(text__istartswith=self.q)
+
+        for tagy in qs:
+        	tag_names.append(tagy.text)
+
+        return tag_names
 
 
 #This is the gallery
@@ -85,15 +99,20 @@ def gallery(request, page = 1):
 			if form.cleaned_data.get("ascending") != "":
 				allpictures = order_pictures(form.cleaned_data.get("ascending"), allpictures)
 
-
 			#find by vr
 			if form.cleaned_data.get("visual_range")  != "":
 				allpictures = find_pictures_vr(form.cleaned_data.get("visual_range"), allpictures)
 
-			#find by date
-			if form.cleaned_data.get("date") != "":
-				d = datetime.strptime(form.cleaned_data.get("date"),"%m/%d/%Y")
-				allpictures = allpictures.filter(uploaded__month=d.month,uploaded__day=d.day,uploaded__year=d.year)
+			#find by date (beginning)
+			if form.cleaned_data.get("date1") != "":
+				d = datetime.strptime(form.cleaned_data.get("date1"),"%m/%d/%Y")
+				allpictures = allpictures.filter(uploaded__month__gte=d.month,uploaded__day__gte=d.day,uploaded__year__gte=d.year)
+
+			#find by date (end)
+			if form.cleaned_data.get("date2") != "":
+				d = datetime.strptime(form.cleaned_data.get("date2"),"%m/%d/%Y")
+				allpictures = allpictures.filter(uploaded__month__lte=d.month,uploaded__day__lte=d.day,uploaded__year__lte=d.year)
+
 
 			#find by location (must be last since function returns a list)
 			if form.cleaned_data.get("location") != "":
@@ -123,12 +142,11 @@ def order_pictures(x, pictures):
 def find_pictures_vr(x, pictures):
 	return {
 		'0': pictures,
-		'1': pictures.filter(vr__lte=50.0),
-		'2': pictures.filter(vr__gte=50.0, vr__lte=100.0 ),
-		'3': pictures.filter(vr__gte=100.0, vr__lte=300.0 ),
-		'4': pictures.filter(vr__gte=300.0, vr__lte=1000.0 ),
-		'5': pictures.filter(vr__gte=1000.0, vr__lte=5000.0 ),
-		'6': pictures.filter(vr__gte=5000.0),
+		'1': pictures.filter(vr__lte=10.0),
+		'2': pictures.filter(vr__gte=10.0, vr__lte=30.0 ),
+		'3': pictures.filter(vr__gte=30.0, vr__lte=100.0 ),
+		'4': pictures.filter(vr__gte=100.0, vr__lte=500.0 ),
+		'5': pictures.filter(vr__gte=5000.0),
 	}[x]
 
 

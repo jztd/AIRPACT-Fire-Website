@@ -22,10 +22,12 @@ from convos import views as convos_view
 from file_upload import views as file_upload_views
 from django_comments.models import Comment
 from . import views
+from .views import LocationAutocomplete
 
 
 urlpatterns = [
 	url(r'^$', views.index, name="home"),
+    url(r'^tag-autocomplete/$', LocationAutocomplete.as_view(), name='location-autocomplete'),
     url(r'^admin_page$', views.admin_page, name="adminPage"),
     url(r'^uncertified$', views.uncertified, name="uncertified"),
     url(r'^user/', include('user_profile.urls')),

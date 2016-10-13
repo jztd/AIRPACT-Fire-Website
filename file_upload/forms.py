@@ -3,7 +3,10 @@ from file_upload.models import picture
 from file_upload.models import tag
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.db import models
-from django.contrib.gis import forms
+from django.contrib.gis import forms 
+
+#from simple_autocomplete.widgets import AutoCompleteWidget
+from dal import autocomplete
 
 def getChoices():
 	T = tag.objects.values('text').distinct()
@@ -29,21 +32,32 @@ class picture_upload_form(forms.Form):
 
 # The search form for the gallery
 class GallerySortForm(forms.Form):
-	vr_choices=[(0, "None"), (1,'0-50'),(2,'50-300'), (3,'300-1000'), (4,'1000-5000'), (5,'5000+')]
+	vr_choices=[(0, "None"), (1,'0-10'),(2,'10-30'), (3,'30-100'), (4,'100-500'), (5,'500+')]
 	ascending_choices = [(0,"Ascending time"), (1,"Descending time"), 
 	(2,"Ascending visual Range"),(3,"Descending visual Range")]
 
 	ascending = forms.ChoiceField(ascending_choices, label = "Order by:", widget = forms.Select())
-
-	visual_range = forms.ChoiceField(choices=vr_choices, label = "Visual Range(in meters):",
+   
+	visual_range = forms.ChoiceField(choices=vr_choices, label = "Visual Range(in Kilometers):",
 		widget= forms.Select(attrs={'id':'vr','name':'Visual Range(in meters)','class':'form-control'}))
 
-	point = forms.PointField(widget=
-		forms.OSMWidget(attrs={'map_width': 800, 'map_height': 500}))
+	#my_map = forms.PointField(label="Choose location", widget=
+		#forms.OSMWidget(attrs={'map_width': 400, 'map_height': 400}))
 
-	location = forms.CharField(required = False, label = "Location Tag(s):", )
+	qs = tag.objects.all()
+	tag_names = []
 
-	date = forms.CharField(required=False,widget=forms.TextInput(attrs={'id':'date','name':'date',
+   	for tagy in qs:
+   		tag_names.append(tagy.text)
+
+   	#auto complete on location
+	location = autocomplete.Select2ListChoiceField(required = False, label = "Location:", choice_list = tag_names ,
+		widget=autocomplete.ListSelect2(url='location-autocomplete') )
+
+	date1 = forms.CharField(required=False,label = "Begginning date",widget=forms.TextInput( attrs={'id':'date1','name':'date-begin',
+		'class':'form-control'}))
+
+	date2 = forms.CharField(required=False,label = "End date",widget=forms.TextInput( attrs={'id':'date2','name':'date-end',
 		'class':'form-control'}))
 
 

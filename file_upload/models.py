@@ -111,6 +111,8 @@ class picture(models.Model):
 		return self.description
 
 # We called them tags, they are really the string representation of where a picture was taken uploaded by the user
+# That sounds like an intro to a movie
+# I need sleep
 class tag(models.Model):
 	picture = models.ForeignKey(picture, on_delete=models.CASCADE)
 	text = models.TextField(null=False)
