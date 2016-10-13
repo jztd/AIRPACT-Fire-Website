@@ -28,7 +28,7 @@ class AirpactUserManager(BaseUserManager):
 
 	# I believe a super user is a user with admin priviledges
 	def create_superuser(self,username, email, password):
-		user = self.create_user(email=email, username = name, password = password)
+		user = self.create_user(email=email, username = username, password = password)
 		user.is_admin = True;
 		user.is_superuser = True;
 		user.save(using=self._db)
