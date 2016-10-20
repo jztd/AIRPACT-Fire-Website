@@ -14,7 +14,7 @@ import os
 import dj_database_url
 from spirit.settings import *
 # IF YOU WANT TO RUN THIS LOCALLY YOU MUST SET PRODUCTION TO 0
-PRODUCTION = 1
+PRODUCTION = 0
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -162,6 +162,14 @@ LOGIN_URL='/user/'
 TIME_ZONE = "America/Los_Angeles"
 USE_TZ = True
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 
 if PRODUCTION is 1:
