@@ -1,9 +1,9 @@
 from django import forms
 from file_upload.models import picture
 from file_upload.models import tag
-from django.contrib.gis.geos import GEOSGeometry
-from django.contrib.gis.db import models
-from django.contrib.gis import forms 
+#from django.contrib.gis.geos import GEOSGeometry
+#from django.contrib.gis.db import models
+#from django.contrib.gis import forms 
 
 #from simple_autocomplete.widgets import AutoCompleteWidget
 from dal import autocomplete
