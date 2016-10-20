@@ -183,7 +183,7 @@ if PRODUCTION is 1:
 	print(STATIC_ROOT)
 	STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'))
 	print(STATICFILES_DIRS)
-	STATIC_URL = STATIC_ROOT + '/'
+	STATIC_URL = '/static/'
 	STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
