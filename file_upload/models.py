@@ -8,9 +8,9 @@ from django.core.files.storage import default_storage as storage
 import os
 # Create your models here.
 class picture(models.Model):
-	pic = models.ImageField(upload_to = 'media/pictures/')
-	thumbnail = models.ImageField(upload_to = 'media/thumbnails/', null=True, blank=True)
-	pictureWithCircles = models.ImageField(upload_to = 'media/circles/', null=True, blank=True)
+	pic = models.ImageField(upload_to = 'pictures/')
+	thumbnail = models.ImageField(upload_to = 'thumbnails/', null=True, blank=True)
+	pictureWithCircles = models.ImageField(upload_to = 'circles/', null=True, blank=True)
 	uploaded = models.DateTimeField(auto_now_add = True)
 	description = models.TextField(default = "")
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)

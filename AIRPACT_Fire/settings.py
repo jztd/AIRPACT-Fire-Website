@@ -180,7 +180,10 @@ if PRODUCTION is 1:
 	DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 	
 	STATIC_ROOT = os.path.join(PROJECT_ROOT,'static')
+	print(STATIC_ROOT)
 	STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'))
+	print(STATICFILES_DIRS)
+	STATIC_URL = STATIC_ROOT + '/'
 	STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
@@ -204,7 +207,7 @@ if PRODUCTION is 1:
 
 
 else:
-	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+	MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 	MEDIA_URL = '/media/'
 	STATIC_URL = '/static/'
-	STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static/'), ]
+	STATICFILES_DIRS = [ os.path.join(PROJECT_ROOT, 'static'), ]

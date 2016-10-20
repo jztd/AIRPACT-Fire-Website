@@ -23,7 +23,7 @@ from file_upload import views as file_upload_views
 from django_comments.models import Comment
 from . import views
 from .views import LocationAutocomplete
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
 	url(r'^$', views.index, name="home"),
@@ -48,3 +48,5 @@ urlpatterns = [
     url(r'^forum/',include('spirit.urls'), name="forum"),
     url(r'^getPythonScripts/', views.getPythonScripts, name="getPythonScripts"),
 ]
+urlpatterns+=staticfiles_urlpatterns()
+urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
