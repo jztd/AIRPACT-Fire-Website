@@ -114,11 +114,15 @@ $('#canvas').mousedown(function(e){
     context.drawImage(picture,0,0);
     context.lineWidth = 10;
     context.beginPath();
-    context.arc(nearRect['x'], nearRect['y'] , 100,0,2*Math.PI);
+    // sqrt of distance from center to rectangle corner squared
+    context.arc(nearRect['x'], nearRect['y'] , Math.sqrt(20000),0,2*Math.PI);
     context.stroke();
     context.closePath();
     context.beginPath();
-    context.arc(farRect['x'], farRect['y'], 100,0,2*Math.PI);
+    context.arc(farRect['x'], farRect['y'], Math.sqrt(20000),0,2*Math.PI);
+    
+    // context.rect(nearRect['x'] - 100, nearRect['y'] - 100, 200,200);
+    // context.rect(farRect['x'] - 100, farRect['y'] - 100, 200,200);
     context.stroke();
     context.closePath();
 

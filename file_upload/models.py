@@ -5,6 +5,7 @@ from PIL import Image, ImageOps, ImageDraw
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.files.storage import default_storage as storage
+import math
 import os
 # Create your models here.
 class picture(models.Model):
@@ -70,8 +71,8 @@ class picture(models.Model):
 			djangoType = 'image/png'
 
 		#get the bounding boxes for each of the circles
-		highCords = [(self.highX-100, self.highY-100),(self.highX+100, self.highY+100)]
-		lowCords = [(self.lowX-100, self.lowY-100),(self.lowX+100, self.lowY+100)]
+		highCords = [(self.highX-int(math.ceil(math.sqrt(20000))), self.highY-int(math.ceil(math.sqrt(20000)))),(self.highX+int(math.ceil(math.sqrt(20000))), self.highY+int(math.ceil(math.sqrt(20000))))]
+		lowCords = [(self.lowX-int(math.ceil(math.sqrt(20000))), self.lowY-int(math.ceil(math.sqrt(20000)))),(self.lowX+int(math.ceil(math.sqrt(20000))), self.lowY+int(math.ceil(math.sqrt(20000))))]
 
 		#open original image
 		self.pic.seek(0)
