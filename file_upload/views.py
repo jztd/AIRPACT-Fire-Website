@@ -100,6 +100,7 @@ def upload(request):
 			#lets make pop some tags yall
 
 			response_data['status'] = 'success'
+			response_data['TwoTargetContrastOutput'] = newPic.twoTargetContrastVr
 			return HttpResponse(json.dumps(response_data), content_type="application/json")
 		else:
 			response_data['status'] = 'keyFailed'

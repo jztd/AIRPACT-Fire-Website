@@ -15,6 +15,7 @@ class picture(models.Model):
 	description = models.TextField(default = "")
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
 	vr = models.FloatField(null=False, default=0)
+	twoTargetContrastVr = models.FloatField(null=True,default=0)
 	highColor = models.IntegerField(null=False , default=0)
 	highX = models.FloatField(null=False, default=0)
 	highY= models.FloatField(null=False, default=0)
@@ -80,8 +81,12 @@ class picture(models.Model):
 		editor = ImageDraw.Draw(OriginalImage)
 
 		#draw the cricles
-		editor.rectangle(highCords, outline=0)
-		editor.rectangle(lowCords, outline=0)
+		for i in range(0,10):
+			outline_value = (0,0,0)
+			if i > 5:
+				outline_value = (255,255,255)
+			editor.ellipse([highCords[0][0]-i,highCords[0][1]-i,highCords[1][0]+i,highCords[1][1]+i], outline=outline_value)
+			editor.ellipse([lowCords[0][0]-i,lowCords[0][1]-i,lowCords[1][0]+i,lowCords[1][1]+i], outline=outline_value)
 
 		#get rid of the drawer
 		del editor
@@ -98,6 +103,8 @@ class picture(models.Model):
 		self.pictureWithCircles.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 		print("CIRCLES URL IS:")
 		print(self.pictureWithCircles.url)
+	def findTwoTargetContrastVr(self):
+		self.pic.seek(0)
 
 	def save(self):
 

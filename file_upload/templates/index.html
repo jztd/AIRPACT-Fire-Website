@@ -110,11 +110,17 @@ $('#canvas').mousedown(function(e){
 
     $('#cords').text("HighX: "+farRect['x'] +"  HighY: "+farRect['y']);
     context.clearRect(0,0,canvas.width,canvas.height);
-    context.beginPath();
+
     context.drawImage(picture,0,0);
-    context.rect(nearRect['x'] - 100, nearRect['y'] - 100, 200,200);
-    context.rect(farRect['x'] - 100, farRect['y'] - 100, 200,200);
+    context.lineWidth = 10;
+    context.beginPath();
+    context.arc(nearRect['x'], nearRect['y'] , 100,0,2*Math.PI);
     context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.arc(farRect['x'], farRect['y'], 100,0,2*Math.PI);
+    context.stroke();
+    context.closePath();
 
 });
 
