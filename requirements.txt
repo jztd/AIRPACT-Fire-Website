@@ -1,6 +1,9 @@
+autocomplete==0.0.104
 boto==2.40.0
+bottle==0.12.10
 dj-database-url==0.4.1
 Django==1.8.15
+django-autocomplete-light==3.2.1
 django-contrib-comments==1.7.1
 django-djconfig==0.4.0
 django-haystack==2.4.1
