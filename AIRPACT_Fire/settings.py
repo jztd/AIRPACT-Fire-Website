@@ -181,10 +181,10 @@ if PRODUCTION is 1:
 	
 	STATIC_ROOT = os.path.join(PROJECT_ROOT,'static')
 	print(STATIC_ROOT)
-	STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'))
+	STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, 'static')]
 	print(STATICFILES_DIRS)
 	STATIC_URL = '/static/'
-	#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+	STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
