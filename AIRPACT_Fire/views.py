@@ -77,7 +77,9 @@ class LocationAutocomplete(autocomplete.Select2ListView):
             qs = qs.filter(text__istartswith=self.q)
 
         for tagy in qs:
-        	tag_names.append(tagy.text)
+        	tagy.text = tagy.text.strip()
+        	if (tagy.text) not in tag_names:
+        		tag_names.append(tagy.text)
 
         return tag_names
 
@@ -106,12 +108,12 @@ def gallery(request, page = 1):
 			#find by date (beginning)
 			if form.cleaned_data.get("date1") != "":
 				d = datetime.strptime(form.cleaned_data.get("date1"),"%m/%d/%Y")
-				allpictures = allpictures.filter(uploaded__month__gte=d.month,uploaded__day__gte=d.day,uploaded__year__gte=d.year)
+				allpictures = allpictures.filter(uploaded__gte=d)
 
 			#find by date (end)
 			if form.cleaned_data.get("date2") != "":
 				d = datetime.strptime(form.cleaned_data.get("date2"),"%m/%d/%Y")
-				allpictures = allpictures.filter(uploaded__month__lte=d.month,uploaded__day__lte=d.day,uploaded__year__lte=d.year)
+				allpictures = allpictures.filter(uploaded__lte=d)
 
 
 			#find by location (must be last since function returns a list)
@@ -156,18 +158,13 @@ def find_pictures_tag(location, pictures, alltags):
 	
 	foundpictures = []
 	checkpictures = []
-	alltags = alltags.filter(text__contains=location)
+	alltags = alltags.filter(text__startswith=location)
 
 	# Convert pictures into a list
 	for picture in pictures:
-		checkpictures.append(picture)
-
-	for tag in alltags:
-		# want to assure no duplicates
-		if tag.picture not in foundpictures:
-			if tag.picture in checkpictures:
-				foundpictures.append(tag.picture)
-
+		for tag in alltags:
+			if(tag.picture == picture):
+				foundpictures.append(picture)
 
 	return foundpictures
 

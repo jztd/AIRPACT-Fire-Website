@@ -41,23 +41,24 @@ class GallerySortForm(forms.Form):
 	visual_range = forms.ChoiceField(choices=vr_choices, label = "Visual Range(in Kilometers):",
 		widget= forms.Select(attrs={'id':'vr','name':'Visual Range(in meters)','class':'form-control'}))
 
-	#my_map = forms.PointField(label="Choose location", widget=
-		#forms.OSMWidget(attrs={'map_width': 400, 'map_height': 400}))
-
 	qs = tag.objects.all()
+	tag_name_dict = {}
 	tag_names = []
 
    	for tagy in qs:
-   		tag_names.append(tagy.text)
+   		tagy.text = tagy.text.strip()
+   		if(tagy.text not in tag_names):
+   			tag_names.append(tagy.text)
+
 
    	#auto complete on location
 	location = autocomplete.Select2ListChoiceField(required = False, label = "Location:", choice_list = tag_names ,
 		widget=autocomplete.ListSelect2(url='location-autocomplete') )
 
-	date1 = forms.CharField(required=False,label = "Begginning date",widget=forms.TextInput( attrs={'id':'date1','name':'date-begin',
+	date1 = forms.CharField(required=False,label = "Beginning date", widget=forms.TextInput( attrs={'id':'date1','name':'date-begin',
 		'class':'form-control'}))
 
-	date2 = forms.CharField(required=False,label = "End date",widget=forms.TextInput( attrs={'id':'date2','name':'date-end',
+	date2 = forms.CharField(required=False,label = "End date", widget=forms.TextInput( attrs={'id':'date2','name':'date-end',
 		'class':'form-control'}))
 
 
