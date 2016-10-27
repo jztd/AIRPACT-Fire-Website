@@ -1,6 +1,9 @@
 from math import log
-
+from decimal import *
 def TwoTargetContrast(farValues, nearValues, farDistance, nearDistance):
+	farDistance = Decimal(farDistance)
+	nearDistance = Decimal(nearDistance)
+
 	numberOfPoints = len(farValues)
 	deltaR = farDistance - nearDistance
 	farRange = Range(farValues)
@@ -26,10 +29,10 @@ def TwoTargetContrast(farValues, nearValues, farDistance, nearDistance):
 	farCbarNearCbar = float(farCbar/nearCbar)
 	nearCbarFarCbar = float(nearCbar/farCbar)
 
-	farBext = -1 * (log(farCbarNearCbar) / deltaR)
-	nearBext = -1 *(log(nearCbarFarCbar) / deltaR)
+	farBext = -1 * (Decimal(log(farCbarNearCbar)) / deltaR)
+	nearBext = -1 *(Decimal(log(nearCbarFarCbar)) / deltaR)
 
-	return ((3.912/ farBext), (3.912/nearBext))
+	return ((Decimal(3.912)/ farBext), (Decimal(3.912)/nearBext))
 
 
 def Max(L):
@@ -64,12 +67,12 @@ def NBarMinusNI(L, avg):
 	return NewL
 
 
-far = []
-near = []
+# far = []
+# near = []
 
-for x in range(100,296):
-	far.append(float(x))
+# for x in range(100,296):
+# 	far.append(float(x))
 
-for x in range(2,394,2):
-	near.append(float(x))
-print(TwoTargetContrast(far,near,10,6))
+# for x in range(2,394,2):
+# 	near.append(float(x))
+# print(TwoTargetContrast(far,near,10,6))

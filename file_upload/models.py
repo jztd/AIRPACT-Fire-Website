@@ -5,6 +5,7 @@ from PIL import Image, ImageOps, ImageDraw
 from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.files.storage import default_storage as storage
+from TwoTargetContrast import TwoTargetContrast
 import math
 import os
 # Create your models here.
@@ -16,10 +17,13 @@ class picture(models.Model):
 	description = models.TextField(default = "")
 	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
 	vr = models.FloatField(null=False, default=0)
+	vrUnits = models.CharField(null = True, default = 'K', max_length = 1)
 	twoTargetContrastVr = models.FloatField(null=True,default=0)
 	highColor = models.IntegerField(null=False , default=0)
 	highX = models.FloatField(null=False, default=0)
 	highY= models.FloatField(null=False, default=0)
+	farTargetDistance = models.FloatField(null = True, default = 0)
+	nearTargetDistance = models.FloatField(null = True, default = 0)
 	lowColor = models.IntegerField(null=False, default=0)
 	lowX = models.FloatField(null=False, default=0)
 	lowY = models.FloatField(null=False,default=0)
@@ -104,13 +108,55 @@ class picture(models.Model):
 		print(self.pictureWithCircles.url)
 	def findTwoTargetContrastVr(self):
 		self.pic.seek(0)
+		#open image
 		image = Image.open(StringIO(self.pic.read()))
 
+		#convert to RGB values for each pixel
+		pixelData = image.convert('RGB')
+
+		#set up containers for red green and blue for each target
+		hRed = []
+		hGreen = []
+		hBlue = []
+		lRed = []
+		lGreen = []
+		lBlue = []
+
+		#find the top left of the bounding box (this is based on the 200x200 px that we have all agreed upon it's probalbly going to have to change)
+		newHX = int(self.highX - 100)
+		newHY = int(self.highY - 100)
+		newLX = int(self.lowX - 100)
+		newLY = int(self.lowY - 100)
+
+		#process high or "Far" target first
+		for y in range(newHY, newHY+200):
+			for x in range(newHX, newHX+200):
+				R,G,B = pixelData.getpixel((x,y))
+				hRed.append(R)
+				hGreen.append(G)
+				hBlue.append(B)
+
+		#do the same for the low or "close" target
+		for y in range(newLY, newLY+200):
+			for x in range(newLX, newLX+200):
+				R,G,B = pixelData.getpixel((x,y))
+				lRed.append(R)
+				lGreen.append(G)
+				lBlue.append(B)
+
+		#now we need to run the function 3 times one for each color band then average them together
+		vrR = TwoTargetContrast(hRed,lRed,self.farTargetDistance,self.nearTargetDistance)
+		vrG = TwoTargetContrast(hGreen,lGreen,self.farTargetDistance,self.nearTargetDistance)
+		vrB = TwoTargetContrast(hBlue,lBlue,self.farTargetDistance,self.nearTargetDistance)
+
+		#finally average the numbers togther
+		self.twoTargetContrastVr = (abs((vrR[0] + vrG[0] + vrB[0]) / 3))
 	def save(self):
 
 
 		self.generateCircles()
 		self.generateThumbnail()
+		self.findTwoTargetContrastVr()
 		super(picture,self).save()
 
 	

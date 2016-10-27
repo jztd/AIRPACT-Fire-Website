@@ -34,7 +34,8 @@ def index(request):
 		if form.is_valid():
 			print("highX %d, highY %d, lowX %d, lowY %d," % (form.cleaned_data.get('highColorX'), form.cleaned_data.get('highColorY'), form.cleaned_data.get('lowColorX'), form.cleaned_data.get('lowColorY'))) 
 			newPic = picture(pic = request.FILES['pic'], user=request.user, vr=form.cleaned_data.get('vr'), description=form.cleaned_data.get('description'),
-				highX=form.cleaned_data.get('highColorX'), highY=form.cleaned_data.get('highColorY'), lowX=form.cleaned_data.get('lowColorX'), lowY=form.cleaned_data.get('lowColorY'))
+				highX=form.cleaned_data.get('highColorX'), highY=form.cleaned_data.get('highColorY'), lowX=form.cleaned_data.get('lowColorX'), lowY=form.cleaned_data.get('lowColorY'), nearTargetDistance = form.cleaned_data.get('nearDistance'),
+				farTargetDistance = form.cleaned_data.get('farDistance'))
 			newPic.save()
 
 			#Creating some conversation stuffs
@@ -46,6 +47,7 @@ def index(request):
 			#20 dollars in my pocket
 			newTag = tag(picture = newPic, text = t.lower())
 			newTag.save()
+			print(newPic.twoTargetContrastVr)
 			return HttpResponseRedirect(reverse('file_upload.views.index'))
 		return render_to_response('index.html', {'form':form}, context_instance=RequestContext(request))
 	else:
@@ -70,6 +72,11 @@ def upload(request):
 			image_data = b64decode(s['image'])
 			userob = AirpactUser.objects.get(username=s['user'])
 
+			vrUnits = 'K'
+
+			if 'distanceUnits' in s:
+				if s['distanceUnits'] == 'miles':
+					vrUnits = 'M'
 			#create the giant blob of a picture
 			newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
 							description = s['description'], 
@@ -82,7 +89,8 @@ def upload(request):
 							lowX=float(s['lowX']),
 							lowY=float(s['lowY']),
 							geoX = float(s['geoX']),
-							geoY = float(s['geoY'])
+							geoY = float(s['geoY']),
+							vrUnits = vrUnits
 							 );
 
 			newPic.save()
