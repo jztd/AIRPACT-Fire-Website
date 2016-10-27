@@ -58,8 +58,6 @@ class picture(models.Model):
 
 	# creates a copy of the image with the circle points drawn on them 
 	def generateCircles(self):
-
-
 		#see what kind of file we are dealing with 
 		if self.pic.name.endswith(".jpg"):
 			pilImageType = "jpeg"
@@ -106,6 +104,7 @@ class picture(models.Model):
 		print(self.pictureWithCircles.url)
 	def findTwoTargetContrastVr(self):
 		self.pic.seek(0)
+		image = Image.open(StringIO(self.pic.read()))
 
 	def save(self):
 

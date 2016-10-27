@@ -101,6 +101,7 @@ def upload(request):
 
 			response_data['status'] = 'success'
 			response_data['TwoTargetContrastOutput'] = newPic.twoTargetContrastVr
+			response_data['imageID'] = newPic.id
 			return HttpResponse(json.dumps(response_data), content_type="application/json")
 		else:
 			response_data['status'] = 'keyFailed'
