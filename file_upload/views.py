@@ -74,6 +74,9 @@ def upload(request):
 
 			vrUnits = 'K'
 
+			for key, value in s.iteritems():
+				print(key)
+
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
 					vrUnits = 'M'

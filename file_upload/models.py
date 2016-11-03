@@ -155,10 +155,13 @@ class picture(models.Model):
 	
 	def save(self):
 
-
+		print("saving circles")
 		self.generateCircles()
+		print("saving thumbnail")
 		self.generateThumbnail()
+		print("finding vr")
 		self.findTwoTargetContrastVr()
+		print("trying to save")
 		super(picture,self).save()
 
 	
