@@ -160,7 +160,7 @@ class picture(models.Model):
 		print("saving thumbnail")
 		self.generateThumbnail()
 		print("finding vr")
-		self.findTwoTargetContrastVr()
+		#self.findTwoTargetContrastVr()
 		print("trying to save")
 		super(picture,self).save()
 
