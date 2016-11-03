@@ -106,6 +106,7 @@ class picture(models.Model):
 		self.pictureWithCircles.save('%s.%s'%(os.path.splitext(suf.name)[0],fileExtension), suf, save=False)
 		print("CIRCLES URL IS:")
 		print(self.pictureWithCircles.url)
+	
 	def findTwoTargetContrastVr(self):
 		self.pic.seek(0)
 		#open image
@@ -151,6 +152,7 @@ class picture(models.Model):
 
 		#finally average the numbers togther
 		self.twoTargetContrastVr = (abs((vrR[0] + vrG[0] + vrB[0]) / 3))
+	
 	def save(self):
 
 

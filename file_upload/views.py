@@ -94,7 +94,7 @@ def upload(request):
 							 );
 
 			newPic.save()
-
+			print("SAVED THE IMAGE")
 			conversations = convoPage(picture = newPic)
 			conversations.save()
 
