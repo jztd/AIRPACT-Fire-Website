@@ -16,36 +16,41 @@
 
 <body>
 <div id="overlay" style="background-color: #000"> </div>
-<nav class="navbar" style="background-color:#981e32;" >
-	<div class="container-fluid">
+<nav class="navbar" style="background-color:#FFF; border-bottom:black 1px; max-height: 100px;min-height: 100px; height: 100px;" role="navigation">
+	
 		<div class="navbar-header" style="background-color: #FFF;">
-			<div class="navbar-brand" style="height: 100%; min-height: 100%; max-height: 100%; padding: 0px;"> 
-				<img src="{% static '/static/media/decoration/logo.png' %}"/> 
-			</div>
+		<a href="#" class="navbar-left" style="background-color: gray;"> <img class="img-responsive" style="height:100px;" src="{% static '/static/media/decoration/apflogo.png' %}" > </a>
 		</div>
-		<div class= "navbar-right" style="font-size: 19px; position:absolute;bottom:0;right:0; margin-right: 25px; color:#FFF" >
+		<p class="navbar-text" style="margin-left:25%;"><h1><strong> AIRPACT</strong>Fire</h1> </p>
+		<p class="navbar-text" style="margin-left:27%;"><h4> A Project Under <a href="">LAR </a> </h4></p>
+
+		<div class= "navbar-right" style=" position:absolute;bottom:0;right:0; margin-right: 25px; color:#000" >
 			{% if user.is_authenticated %}
-				Welcome <a href="{% url 'view_profile' user %}"> {{ user }}! </a><a href="{% url 'logout' %}"> Logout </a>
+				 <a href="{% url 'view_profile' user %}"> {{ user }} </a><a href="{% url 'logout' %}"> Logout </a>
 			{% else %}
-				Welcome Guest! <a href="{% url 'login' %}"> Login </a> or <a href="{% url 'register' %}"> Register </a>
+				<a href="{% url 'login' %}"> Login </a> or <a href="{% url 'register' %}"> Register </a>
 			{% endif %}
 		</div>
-	</div>
+
 </nav>
 <div class="container-fluid">
-	<div class="col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1 left-nav">
-		<div class="text-right" style="margin-top:150px; font-size:19px;">
-			<a class="col-md-12 col-lg-12" href="{% url 'home' %}"> Home </a>
-			<a class="col-md-12 col-lg-12" href="{% url 'gallery' %}"> Gallery </a>
-			<a class="col-md-12 col-lg-12" href="{% url 'index' %}"> Upload Image </a>
-			<a class="col-md-12 col-lg-12" href="{% url 'downloads' %}"> Downloads </a>
-			<a class="col-md-12 col-lg-12" href="/forum/"> Forum </a>
-			<a class="col-md-12 col-lg-12" href="{% url 'about' %}"> About </a>
-			{% if user.is_custom_admin and user.is_authenticated %}
-			<a class="col-md-12 col-lg-12" href="{% url 'adminPage' %}"> Admin Page </a>
-			{% endif %}
+	<nav class="col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-2 nav ">
+		<div class="text-right" style="">
+			<img class="img-responsive" src="{% static '/static/media/decoration/logo.png' %}"/>
+			<span class="icon-bar"></span>
+			<ul class="nav">
+				<li><a  href="{% url 'home' %}"> Home </a> </li>
+				<li><a  href="{% url 'gallery' %}"> Gallery </a></li>
+				<li><a  href="{% url 'index' %}"> Upload</a></li>
+				<li><a  href="{% url 'downloads' %}"> Downloads </a></li>
+				<li><a  href="/forum/"> Forum </a></li>
+				<li><a  href="{% url 'about' %}"> About </a></li>
+				{% if user.is_custom_admin and user.is_authenticated %}
+				<li><a  href="{% url 'adminPage' %}"> Admin Page </a></li>
+				{% endif %}
+			</ul>
 		</div>
-	</div>
+	</nav>
 	<div class="col-md-9 col-lg-9 content" style="background-color: #FFF; padding-top:25px; padding-bottom:25px;">
 		{% block content %}
 		{% endblock %}
