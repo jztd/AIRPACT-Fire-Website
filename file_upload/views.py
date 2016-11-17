@@ -70,14 +70,14 @@ def upload(request):
 			image_data = b64decode(s['image'])
 			userob = AirpactUser.objects.get(username=s['user'])
 
-			# for key, value in s.iteritems():
-			# 	if key != 'image':
-			# 		print(key +":" + value)
+			for key, value in s.iteritems():
+				if key != 'image':
+					print(key +":" + value)
 
 
-			# _vrUnits = 'K'
-			# timeTaken = ""
-			# algType = ""
+			_vrUnits = 'K'
+			timeTaken = ""
+			algType = ""
 			if "highColor" in s:
 				print("FOUND HIGH COLOR it's:" + s["highColor"])
 
