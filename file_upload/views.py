@@ -78,14 +78,14 @@ def upload(request):
 			# _vrUnits = 'K'
 			# timeTaken = ""
 			# algType = ""
-			print(s["tags"])
+			print(s["highColor"])
 			print("starting checks")
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
 					_vrUnits = 'M'
 			
-			# if 'time' in s:
-			# 	timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
+			if 'time' in s:
+				timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
 
 			if 'algorithmType' in s:
 				algType = s['algorithmType']
