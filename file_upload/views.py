@@ -73,13 +73,14 @@ def upload(request):
 			userob = AirpactUser.objects.get(username=s['user'])
 
 			for key, value in s.iteritems():
-				print(key +":" + value)
+				if key != 'image':
+					print(key +":" + value)
 
 
 			vrUnits = 'K'
 			timeTaken = ""
 			algType = ""
-
+			print("starting checks")
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
 					vrUnits = 'M'
@@ -91,6 +92,7 @@ def upload(request):
 				algType = s['algorithmType']
 			
 			#create a picture
+			print("creating picture object")
 			newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
 							description = s['description'], 
 							user=userob, 
@@ -110,6 +112,7 @@ def upload(request):
 							nearTargetDistance = float(s['visualRangeOne'])
 							 );
 
+			print("starting save")
 			newPic.save()
 			print("SAVED THE IMAGE")
 			conversations = convoPage(picture = newPic)
