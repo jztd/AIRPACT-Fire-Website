@@ -58,7 +58,7 @@ def index(request):
         {'form': form},
         context_instance=RequestContext(request))
 
-# used specifically for the android app to send data to this webserver
+# used specifically for the apps to send data
 @csrf_exempt
 def upload(request):
 	if request.method == 'POST':
@@ -73,14 +73,21 @@ def upload(request):
 			userob = AirpactUser.objects.get(username=s['user'])
 
 			vrUnits = 'K'
-
+			timeTaken = datetime.now()
+			algType = ""
 			for key, value in s.iteritems():
 				print(key)
 
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
 					vrUnits = 'M'
-			#create the giant blob of a picture
+			
+			if 'time' in s:
+				timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
+
+			if 'algorithmType' in s:
+				algType = s['algorithmType']
+			#create a picture
 			newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
 							description = s['description'], 
 							user=userob, 
@@ -93,7 +100,11 @@ def upload(request):
 							lowY=float(s['lowY']),
 							geoX = float(s['geoX']),
 							geoY = float(s['geoY']),
-							vrUnits = vrUnits
+							vrUnits = vrUnits,
+							uploaded = timeTaken,
+							algorithmType = algType,
+							farTargetDistance = float(s['visualRangeTwo']),
+							nearTargetDistance = float(s['visualRangeOne'])
 							 );
 
 			newPic.save()

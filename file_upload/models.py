@@ -6,28 +6,33 @@ from cStringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.files.storage import default_storage as storage
 from TwoTargetContrast import TwoTargetContrast
+from datetime import datetime
 import math
 import os
 # Create your models here.
+
+#TODO:
 class picture(models.Model):
-	pic = models.ImageField(upload_to = 'pictures/')
-	thumbnail = models.ImageField(upload_to = 'thumbnails/', null=True, blank=True)
-	pictureWithCircles = models.ImageField(upload_to = 'circles/', null=True, blank=True)
-	uploaded = models.DateTimeField(auto_now_add = True)
-	description = models.TextField(default = "")
-	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE)
-	vr = models.FloatField(null=False, default=0)
-	vrUnits = models.CharField(null = True, default = 'K', max_length = 1)
-	twoTargetContrastVr = models.FloatField(null=True,default=0)
-	highColor = models.IntegerField(null=False , default=0)
-	highX = models.FloatField(null=False, default=0)
-	highY= models.FloatField(null=False, default=0)
-	farTargetDistance = models.FloatField(null = True, default = 0)
-	nearTargetDistance = models.FloatField(null = True, default = 0)
-	lowColor = models.IntegerField(null=False, default=0)
-	lowX = models.FloatField(null=False, default=0)
-	lowY = models.FloatField(null=False,default=0)
-	geoX = models.FloatField(default = 46.7298)
+	pic = models.ImageField(upload_to = 'pictures/') # the actual picture object
+	thumbnail = models.ImageField(upload_to = 'thumbnails/', null=True, blank=True) # the small 200x200 picture object
+	pictureWithCircles = models.ImageField(upload_to = 'circles/', null=True, blank=True) # copy of pic but with target cirlces drawn on
+	uploaded = models.DateTimeField(default = datetime.now) # time in which the picture was taken
+	description = models.TextField(default = " ", null=True) 
+	user = models.ForeignKey(AirpactUser, on_delete=models.CASCADE) #user object representing who uploaded this image
+	algorithmType = models.TextField(default = "uknown", null= True) # should only be "near_far" or "object_sky" and tells which algorithm to use to compute VR
+	vr = models.FloatField(null=False, default=0) # user supplied estimation of what they think VR is
+	vrUnits = models.CharField(null = True, default = 'K', max_length = 1) # should only ever be "K" or "M" defining kilometers and miles and is used for display purposes only, everything is converted to KM on upload
+	objectSkyVr = models.FloatField(null = True, default = 0) # storage for object sky vr
+	twoTargetContrastVr = models.FloatField(null=True,default=0)# storage for near far vr
+	highColor = models.IntegerField(null=False , default=0) #"far object or sky" color selected from app, we don't need this anymore probably
+	highX = models.FloatField(null=False, default=0) #center of square to be sampled for the far target or the sky
+	highY= models.FloatField(null=False, default=0) # ""
+	farTargetDistance = models.FloatField(null = True, default = 0) #distance to far target or sky
+	nearTargetDistance = models.FloatField(null = True, default = 0) # distance to the near target
+	lowColor = models.IntegerField(null=False, default=0) # color of the near target
+	lowX = models.FloatField(null=False, default=0) #center of selection square for the near target
+	lowY = models.FloatField(null=False,default=0) #""
+	geoX = models.FloatField(default = 46.7298) #GPS locations of where picture was taken, defaults to pullman
 	geoY = models.FloatField(default =  -117.181738)
 
 	def generateThumbnail(self):
@@ -171,14 +176,30 @@ class picture(models.Model):
 		#finally average the numbers togther
 		self.twoTargetContrastVr = (abs((vrR[0] + vrG[0] + vrB[0]) / 3))
 	
-	def save(self):
+	#escapes special characters that can affect javascript
+	def cleanDescription(self):
+		self.description = self.description.replace("\'", "\\\'").replace('\"',"\\\"").replace("\\","\\\\").replace("\n","")
+	
+	def convertToKM(self):
+		if self.vrUnits == 'M':
+			self.farTargetDistance *= 1.60934
+			self.nearTargetDistance *= 1.60934
+			self.skyDistance *= 1.60934
 
+	def save(self):
+		self.convertToKM()
+		self.cleanDescription()
 		print("saving circles")
 		self.generateCircles()
 		print("saving thumbnail")
 		self.generateThumbnail()
 		print("finding vr")
-		self.findTwoTargetContrastVr()
+
+		if self.algorithmType == "near_far":
+			self.findTwoTargetContrastVr()
+		#else:
+			#self.findObjectSkyVr() // need to create this function
+
 		print("trying to save")
 		super(picture,self).save()
 
