@@ -68,17 +68,17 @@ def upload(request):
 		if toke.count() > 0:
 			AuthToken.objects.get(token=s['secretKey']).delete()
 			image_data = b64decode(s['image'])
-			userob = AirpactUser.objects.get(username=s['user'])
+			userob = AirpactUser.objects.get(username=s['user']
 
+			_vrUnits = 'K'
+			timeTaken = datetime.now()
+			algType = ""
+			desc = " "
 			try:
 				for key, value in s.iteritems():
-					if key != 'image':
+					if key != 'image' or key == 'description' and s['descrption'] is not None:
 						print(key +":" + value)
 
-
-				_vrUnits = 'K'
-				timeTaken = ""
-				algType = ""
 			except Exception as e:
 				print(e.message)
 			if "highColor" in s:
@@ -100,11 +100,15 @@ def upload(request):
 			if 'algorithmType' in s:
 				algType = s['algorithmType']
 			
+			if 'description' in s:
+				if s['description'] is not None:
+					desc = s['description']
+
 			#create a picture
 			print("creating picture object")
 			try:
 				newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
-								description = s['description'], 
+								description = desc, 
 								user=userob, 
 								#vr=s['visualRange'], 
 								highColor=int(s['highColor']),
