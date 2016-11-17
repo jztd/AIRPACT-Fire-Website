@@ -90,7 +90,7 @@ def upload(request):
 				print("CREATING TIME")
 				try:
 					timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
-				except ValueError as e:
+				except Exception as e:
 					print(e.message)
 				print("CREATED TIME")
 
