@@ -72,11 +72,13 @@ def upload(request):
 			image_data = b64decode(s['image'])
 			userob = AirpactUser.objects.get(username=s['user'])
 
+			for key, value in s.iteritems():
+				print(key)
+
+			
 			vrUnits = 'K'
 			timeTaken = datetime.now()
 			algType = ""
-			for key, value in s.iteritems():
-				print(key)
 
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
@@ -87,6 +89,7 @@ def upload(request):
 
 			if 'algorithmType' in s:
 				algType = s['algorithmType']
+			
 			#create a picture
 			newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
 							description = s['description'], 
