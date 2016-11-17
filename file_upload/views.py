@@ -68,12 +68,13 @@ def upload(request):
 		if toke.count() > 0:
 			AuthToken.objects.get(token=s['secretKey']).delete()
 			image_data = b64decode(s['image'])
-			userob = AirpactUser.objects.get(username=s['user']
-
+			userob = AirpactUser.objects.get(username=s['user'])
+			
 			_vrUnits = 'K'
 			timeTaken = datetime.now()
 			algType = ""
 			desc = " "
+			
 			try:
 				for key, value in s.iteritems():
 					if key != 'image' or key == 'description' and s['descrption'] is not None:
