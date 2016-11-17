@@ -75,15 +75,15 @@ def upload(request):
 			for key, value in s.iteritems():
 				if key != 'image':
 					print(key +":" + value)
+			
 
-
-			vrUnits = 'K'
+			_vrUnits = 'K'
 			timeTaken = ""
 			algType = ""
 			print("starting checks")
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
-					vrUnits = 'M'
+					_vrUnits = 'M'
 			
 			if 'time' in s:
 				timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
@@ -105,7 +105,7 @@ def upload(request):
 							lowY=float(s['lowY']),
 							geoX = float(s['geoX']),
 							geoY = float(s['geoY']),
-							vrUnits = vrUnits,
+							vrUnits = _vrUnits,
 							uploaded = timeTaken,
 							algorithmType = algType,
 							farTargetDistance = float(s['visualRangeTwo']),
