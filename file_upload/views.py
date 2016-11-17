@@ -88,7 +88,10 @@ def upload(request):
 			
 			if 'time' in s:
 				print("CREATING TIME")
-				timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
+				try:
+					timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
+				except ValueError as e:
+					print(e.message)
 				print("CREATED TIME")
 
 			if 'algorithmType' in s:
