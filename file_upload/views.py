@@ -7,7 +7,7 @@ import json
 from time import time
 from base64 import b64decode
 from django.core.files.base import ContentFile
-
+from datetime import datetime
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -73,11 +73,11 @@ def upload(request):
 			userob = AirpactUser.objects.get(username=s['user'])
 
 			for key, value in s.iteritems():
-				print(key)
+				print(key +":" + value)
 
-			
+
 			vrUnits = 'K'
-			timeTaken = datetime.now()
+			timeTaken = ""
 			algType = ""
 
 			if 'distanceUnits' in s:
