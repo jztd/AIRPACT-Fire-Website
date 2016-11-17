@@ -87,7 +87,9 @@ def upload(request):
 					_vrUnits = 'M'
 			
 			if 'time' in s:
+				print("CREATING TIME")
 				timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
+				print("CREATED TIME")
 
 			if 'algorithmType' in s:
 				algType = s['algorithmType']
