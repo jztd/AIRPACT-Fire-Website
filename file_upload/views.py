@@ -99,24 +99,27 @@ def upload(request):
 			
 			#create a picture
 			print("creating picture object")
-			newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
-							description = s['description'], 
-							user=userob, 
-							vr=s['visualRange'], 
-							highColor=int(s['highColor']),
-							highX=float(s['highX']), 
-							highY=float(s['highY']),
-							lowColor=int(s['lowColor']),
-							lowX=float(s['lowX']),
-							lowY=float(s['lowY']),
-							geoX = float(s['geoX']),
-							geoY = float(s['geoY']),
-							vrUnits = _vrUnits,
-							uploaded = timeTaken,
-							algorithmType = algType,
-							farTargetDistance = float(s['visualRangeTwo']),
-							nearTargetDistance = float(s['visualRangeOne'])
-							 );
+			try:
+				newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
+								description = s['description'], 
+								user=userob, 
+								vr=s['visualRange'], 
+								highColor=int(s['highColor']),
+								highX=float(s['highX']), 
+								highY=float(s['highY']),
+								lowColor=int(s['lowColor']),
+								lowX=float(s['lowX']),
+								lowY=float(s['lowY']),
+								geoX = float(s['geoX']),
+								geoY = float(s['geoY']),
+								vrUnits = _vrUnits,
+								uploaded = timeTaken,
+								algorithmType = algType,
+								farTargetDistance = float(s['visualRangeTwo']),
+								nearTargetDistance = float(s['visualRangeOne'])
+								 );
+			except Exception as e:
+				print(e.message)
 
 			print("starting save")
 			newPic.save()
