@@ -78,7 +78,7 @@ def upload(request):
 			# _vrUnits = 'K'
 			# timeTaken = ""
 			# algType = ""
-			print(s["time"])
+			print(s["tags"])
 			print("starting checks")
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
