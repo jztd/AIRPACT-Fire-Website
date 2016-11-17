@@ -66,8 +66,6 @@ def upload(request):
 		s = json.loads(request.body);
 		toke = AuthToken.objects.filter(token=s['secretKey'])
 		if toke.count() > 0:
-			print("USERNAME IS:")
-			print(s['user'])
 			AuthToken.objects.get(token=s['secretKey']).delete()
 			image_data = b64decode(s['image'])
 			userob = AirpactUser.objects.get(username=s['user'])
@@ -75,18 +73,19 @@ def upload(request):
 			# for key, value in s.iteritems():
 			# 	if key != 'image':
 			# 		print(key +":" + value)
-			
+
 
 			# _vrUnits = 'K'
 			# timeTaken = ""
 			# algType = ""
+			print(s["time"])
 			print("starting checks")
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
 					_vrUnits = 'M'
 			
-			if 'time' in s:
-				timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
+			# if 'time' in s:
+			# 	timeTaken = datetime.strptime(s['time'],"%Y.%m.%d.%m.%S")
 
 			if 'algorithmType' in s:
 				algType = s['algorithmType']
