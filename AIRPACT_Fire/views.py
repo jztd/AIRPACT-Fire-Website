@@ -77,7 +77,6 @@ class LocationAutocomplete(autocomplete.Select2ListView):
             qs = qs.filter(text__istartswith=self.q)
 
         for tagy in qs:
-        	tagy.text = tagy.text.strip()
         	if (tagy.text) not in tag_names:
         		tag_names.append(tagy.text)
 

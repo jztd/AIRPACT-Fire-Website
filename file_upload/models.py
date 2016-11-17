@@ -112,8 +112,11 @@ class picture(models.Model):
 		#open image
 		image = Image.open(StringIO(self.pic.read()))
 
+		print("I have an image")
 		#convert to RGB values for each pixel
 		pixelData = image.convert('RGB')
+
+		print("I have pixel data")
 
 		#set up containers for red green and blue for each target
 		hRed = []
@@ -129,27 +132,42 @@ class picture(models.Model):
 		newLX = int(self.lowX - 100)
 		newLY = int(self.lowY - 100)
 
+		print("line 135")
+		print(pixelData)
 		#process high or "Far" target first
-		for y in range(newHY, newHY+200):
-			for x in range(newHX, newHX+200):
-				R,G,B = pixelData.getpixel((x,y))
-				hRed.append(R)
-				hGreen.append(G)
-				hBlue.append(B)
+		for x in range(image.size[0]):
+			for y in range(image.size[1]):
+				try:
+					R,G,B = pixelData.getpixel((x,y))
+					hRed.append(R)
+					hGreen.append(G)
+					hBlue.append(B)
+				except Exception:
+					print("Out of bounds when getting pixel data")
+
+		print("line 144")
 
 		#do the same for the low or "close" target
-		for y in range(newLY, newLY+200):
-			for x in range(newLX, newLX+200):
-				R,G,B = pixelData.getpixel((x,y))
-				lRed.append(R)
-				lGreen.append(G)
-				lBlue.append(B)
+		for x in range(image.size[0]):
+			for x in range(image.size[1]):
+				try:
+					R,G,B = pixelData.getpixel((x,y))
+					lRed.append(R)
+					lGreen.append(G)
+					lBlue.append(B)
+				except Exception:
+					print("Out of bounds when getting pixel data")
 
+		print("line 154")
 		#now we need to run the function 3 times one for each color band then average them together
 		vrR = TwoTargetContrast(hRed,lRed,self.farTargetDistance,self.nearTargetDistance)
 		vrG = TwoTargetContrast(hGreen,lGreen,self.farTargetDistance,self.nearTargetDistance)
 		vrB = TwoTargetContrast(hBlue,lBlue,self.farTargetDistance,self.nearTargetDistance)
 
+		print("line 160")
+
+		print("answer: ")
+		print((abs((vrR[0] + vrG[0] + vrB[0]) / 3)))
 		#finally average the numbers togther
 		self.twoTargetContrastVr = (abs((vrR[0] + vrG[0] + vrB[0]) / 3))
 	
@@ -160,7 +178,7 @@ class picture(models.Model):
 		print("saving thumbnail")
 		self.generateThumbnail()
 		print("finding vr")
-		#self.findTwoTargetContrastVr()
+		self.findTwoTargetContrastVr()
 		print("trying to save")
 		super(picture,self).save()
 
