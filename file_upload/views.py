@@ -78,7 +78,9 @@ def upload(request):
 			# _vrUnits = 'K'
 			# timeTaken = ""
 			# algType = ""
-			print(s["highColor"])
+			if "highColor" in s:
+				print("FOUND HIGH COLOR")
+				
 			print("starting checks")
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
