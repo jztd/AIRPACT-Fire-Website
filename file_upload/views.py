@@ -79,8 +79,8 @@ def upload(request):
 			# timeTaken = ""
 			# algType = ""
 			if "highColor" in s:
-				print("FOUND HIGH COLOR")
-				
+				print("FOUND HIGH COLOR it's:" + s["highColor"])
+
 			print("starting checks")
 			if 'distanceUnits' in s:
 				if s['distanceUnits'] == 'miles':
