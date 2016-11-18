@@ -201,7 +201,7 @@ class picture(models.Model):
 			if self.algorithmType == "near_far":
 				self.findTwoTargetContrastVr()
 		except Exception as e:
-			print(e.message)
+			print("ERROR CALCULATING VR: " + e.message)
 		#else:
 			#self.findObjectSkyVr() // need to create this function
 
