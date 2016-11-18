@@ -111,7 +111,7 @@ def upload(request):
 				newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
 								description = desc, 
 								user=userob, 
-								#vr=s['visualRange'], 
+								vr=s['visualRangeOne'], 
 								highColor=int(s['highColor']),
 								highX=float(s['highX']), 
 								highY=float(s['highY']),

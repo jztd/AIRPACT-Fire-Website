@@ -197,8 +197,11 @@ class picture(models.Model):
 		self.generateThumbnail()
 		print("finding vr")
 
-		# if self.algorithmType == "near_far":
-		# 	self.findTwoTargetContrastVr()
+		try:
+			if self.algorithmType == "near_far":
+				self.findTwoTargetContrastVr()
+		except Exception as e:
+			print(e.message)
 		#else:
 			#self.findObjectSkyVr() // need to create this function
 
