@@ -93,7 +93,7 @@ def user_app_auth(request):
 		print(userdata['password'])
 		user = auth.authenticate(username=userdata['username'], password=userdata['password'] )
 		response_data = {}
-		if user is not None:
+		if user is not None and user.is_certified:
 			#generate secret key
 			secret = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(22))
 			secretKey = AuthToken(token = secret)
