@@ -1,6 +1,9 @@
 from math import log
 from decimal import *
 def TwoTargetContrast(farValues, nearValues, farDistance, nearDistance):
+	for x in range(len(farValues)):
+		print(farValues[x])
+		
 	farDistance = Decimal(farDistance)
 	nearDistance = Decimal(nearDistance)
 
