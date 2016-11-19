@@ -157,22 +157,20 @@ class picture(models.Model):
 					hGreen.append(G)
 					hBlue.append(B)
 				except Exception:
-					pass
-					#print("Out of bounds when getting pixel data")
+					print("Out of bounds when getting pixel data")
 
 		print("line 144")
 
 		#do the same for the low or "close" target
 		for x in range(newLX, 201):
-			for x in range(newLY, 201):
+			for y in range(newLY, 201):
 				try:
 					R,G,B = pixelData.getpixel((x,y))
 					lRed.append(R)
 					lGreen.append(G)
 					lBlue.append(B)
 				except Exception:
-					pass
-					#print("Out of bounds when getting pixel data")
+					print("Out of bounds at x:" + str(x) + "y:"+str(y))
 
 		print("line 154")
 		#now we need to run the function 3 times one for each color band then average them together
