@@ -15,17 +15,17 @@ def TwoTargetContrast(farValues, nearValues, farDistance, nearDistance):
 	farAvg = Avg(farValues)
 	nearAvg = Avg(nearValues)
 
-	#print("farAvg{0}, nearAvg{1}").format(farAvg,nearAvg)
+	print("farAvg{0}, nearAvg{1}").format(farAvg,nearAvg)
 	farnbarminusNI = NBarMinusNI(farValues, farAvg)
 	nearnbarminusNI = NBarMinusNI(nearValues,nearAvg)
 	farSumDividedByNCount = sum(farnbarminusNI)/numberOfPoints
 	nearSumDividedByNCount = sum(nearnbarminusNI)/numberOfPoints
 
-	#print(farnbarminusNI)
+	print(farnbarminusNI)
 	farCbar = farSumDividedByNCount / farAvg
 	nearCbar = nearSumDividedByNCount / nearAvg
 
-	#print("farCbar:{0}, nearCbar{1}").format(farCbar, nearCbar )
+	print("farCbar:{0}, nearCbar{1}").format(farCbar, nearCbar )
 	farCbarNearCbar = float(farCbar/nearCbar)
 	nearCbarFarCbar = float(nearCbar/farCbar)
 
