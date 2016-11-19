@@ -61,10 +61,12 @@ def Range(L):
 	return float(maxNum - minNum)
 
 def Avg(L):
-	total = 0
-	for x in L:
-		total += x
-	return float(total/len(L))
+	if len(L) > 0:
+		total = 0
+		for x in L:
+			total += x
+		return float(total/len(L))
+	return 0
 
 def NBarMinusNI(L, avg):
 	NewL = []
