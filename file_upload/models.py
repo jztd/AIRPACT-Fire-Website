@@ -198,7 +198,9 @@ class picture(models.Model):
 			self.skyDistance *= 1.60934
 
 	def save(self):
+		print("strating km conversion")
 		self.convertToKM()
+		print("starting cleaning of description")
 		self.cleanDescription()
 		print("saving circles")
 		self.generateCircles()
