@@ -137,11 +137,20 @@ class picture(models.Model):
 		newLX = int(self.lowX - 100)
 		newLY = int(self.lowY - 100)
 
+		if newHX < 0:
+			newHX  = 0;
+		if newHY < 0:
+			newHY = 0;
+		if newLX < 0:
+			newLX = 0;
+		if newLY < 0:
+			newLY = 0;
+
 		print("line 135")
 		print(pixelData)
 		#process high or "Far" target first
-		for x in range(image.size[0]):
-			for y in range(image.size[1]):
+		for x in range(newHX,201):
+			for y in range(newHY,201):
 				try:
 					R,G,B = pixelData.getpixel((x,y))
 					hRed.append(R)
