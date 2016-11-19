@@ -36,18 +36,24 @@ def TwoTargetContrast(farValues, nearValues, farDistance, nearDistance):
 
 
 def Max(L):
-	maxNum = L[0]
-	for x in L:
-		if x > maxNum:
-			maxNum = x
-	return float(maxNum)
+	if len(L) > 0:
+		maxNum = L[0]
+		for x in L:
+			if x > maxNum:
+				maxNum = x
+		return float(maxNum)
+	else:
+		return 0
 
 def Min(L):
-	minNum = L[0]
-	for x in L:
-		if x < minNum:
-			minNum = x
-	return float(minNum)
+	if len(L) > 0:
+		minNum = L[0]
+		for x in L:
+			if x < minNum:
+				minNum = x
+		return float(minNum)
+	else:
+		return 0
 
 def Range(L):
 	minNum = Min(L)

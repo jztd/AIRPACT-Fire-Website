@@ -163,8 +163,8 @@ class picture(models.Model):
 		print("line 144")
 
 		#do the same for the low or "close" target
-		for x in range(image.size[0]):
-			for x in range(image.size[1]):
+		for x in range(newLX, 201):
+			for x in range(newLY, 201):
 				try:
 					R,G,B = pixelData.getpixel((x,y))
 					lRed.append(R)

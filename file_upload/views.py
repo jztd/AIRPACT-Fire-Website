@@ -78,7 +78,7 @@ def upload(request):
 			try:
 				for key, value in s.iteritems():
 					if key != 'image' or key == 'description' and s['descrption'] is not None:
-						print(key +":" + string(value))
+						print(key +":" + str(value))
 
 			except Exception as e:
 				print("ERROR ITERATING KESY: "+e.message +"NOT FOUND")
