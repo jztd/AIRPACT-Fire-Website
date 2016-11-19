@@ -81,7 +81,7 @@ def upload(request):
 						print(key +":" + value)
 
 			except Exception as e:
-				print(e.message)
+				print("ERROR ITERATING KESY: "+e.message +"NOT FOUND")
 			if "highColor" in s:
 				print("FOUND HIGH COLOR it's:" + s["highColor"])
 
