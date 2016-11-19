@@ -3,7 +3,7 @@ from decimal import *
 def TwoTargetContrast(farValues, nearValues, farDistance, nearDistance):
 	print("FAR VALUES ARE:")
 	for x in range(len(farValues)):
-		print(str(farValues[x])
+		print(str(farValues[x]))
 
 	farDistance = Decimal(farDistance)
 	nearDistance = Decimal(nearDistance)
