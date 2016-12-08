@@ -137,33 +137,40 @@ class picture(models.Model):
 		newLX = int(self.lowX - 100)
 		newLY = int(self.lowY - 100)
 
+		if newHX < 0:
+			newHX  = 0;
+		if newHY < 0:
+			newHY = 0;
+		if newLX < 0:
+			newLX = 0;
+		if newLY < 0:
+			newLY = 0;
+
 		print("line 135")
 		print(pixelData)
 		#process high or "Far" target first
-		for x in range(image.size[0]):
-			for y in range(image.size[1]):
+		for x in range(newHX,201):
+			for y in range(newHY,201):
 				try:
 					R,G,B = pixelData.getpixel((x,y))
 					hRed.append(R)
 					hGreen.append(G)
 					hBlue.append(B)
 				except Exception:
-					pass
-					#print("Out of bounds when getting pixel data")
+					print("Out of bounds when getting pixel data")
 
 		print("line 144")
 
 		#do the same for the low or "close" target
-		for x in range(image.size[0]):
-			for x in range(image.size[1]):
+		for x in range(newLX, 201):
+			for y in range(newLY, 201):
 				try:
 					R,G,B = pixelData.getpixel((x,y))
 					lRed.append(R)
 					lGreen.append(G)
 					lBlue.append(B)
 				except Exception:
-					pass
-					#print("Out of bounds when getting pixel data")
+					print("Out of bounds at x:" + str(x) + "y:"+str(y))
 
 		print("line 154")
 		#now we need to run the function 3 times one for each color band then average them together
@@ -189,7 +196,9 @@ class picture(models.Model):
 			self.skyDistance *= 1.60934
 
 	def save(self):
+		print("strating km conversion")
 		self.convertToKM()
+		print("starting cleaning of description")
 		self.cleanDescription()
 		print("saving circles")
 		self.generateCircles()
@@ -197,8 +206,11 @@ class picture(models.Model):
 		self.generateThumbnail()
 		print("finding vr")
 
-		# if self.algorithmType == "near_far":
-		# 	self.findTwoTargetContrastVr()
+		try:
+			if self.algorithmType == "near_far":
+				self.findTwoTargetContrastVr()
+		except Exception as e:
+			print("ERROR CALCULATING VR: " + e.message)
 		#else:
 			#self.findObjectSkyVr() // need to create this function
 

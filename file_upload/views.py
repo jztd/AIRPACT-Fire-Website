@@ -78,10 +78,10 @@ def upload(request):
 			try:
 				for key, value in s.iteritems():
 					if key != 'image' or key == 'description' and s['descrption'] is not None:
-						print(key +":" + value)
+						print(key +":" + str(value))
 
 			except Exception as e:
-				print(e.message)
+				print("ERROR ITERATING KESY: "+e.message +"NOT FOUND")
 			if "highColor" in s:
 				print("FOUND HIGH COLOR it's:" + s["highColor"])
 
@@ -111,7 +111,7 @@ def upload(request):
 				newPic = picture(pic = ContentFile(image_data,str(str(time())+".jpg")), 
 								description = desc, 
 								user=userob, 
-								#vr=s['visualRange'], 
+								vr=s['visualRangeOne'], 
 								highColor=int(s['highColor']),
 								highX=float(s['highX']), 
 								highY=float(s['highY']),
