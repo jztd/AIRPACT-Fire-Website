@@ -14,7 +14,7 @@ import os
 import dj_database_url
 from spirit.settings import *
 # IF YOU WANT TO RUN THIS LOCALLY YOU MUST SET PRODUCTION TO 0
-PRODUCTION = 1
+PRODUCTION = 0
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -167,47 +167,9 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['airpacfire.eecs.wsu.edu']
 
-
-if PRODUCTION is 1:
-
-	AWS_STORAGE_BUCKET_NAME = 'airpactfire'
-	AWS_ACCESS_KEY_ID = 'AKIAJS7IVSXCUDE4GWVQ'
-	AWS_SECRET_ACCESS_KEY = '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'
-	AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-	MEDIA_URL = "https://%s/media/" % AWS_S3_CUSTOM_DOMAIN
-	DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-	
-	STATIC_ROOT = os.path.join(PROJECT_ROOT,'static')
-	print(STATIC_ROOT)
-	STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, 'staticfiles')]
-	print(STATICFILES_DIRS)
-	STATIC_URL = '/static/'
-	STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-
-    # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
-    # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
-    # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
-    # We also use it in the next setting.
-
-    # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
-    # refers directly to STATIC_URL. So it's safest to always set it.
-    #STATIC_URL = "https://%s/static/" % AWS_S3_CUSTOM_DOMAIN
-
-    # Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
-    # you run `collectstatic`).
-    #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-
-    # STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
-    
-
-
-
-else:
-	MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-	MEDIA_URL = '/media/'
-	STATIC_URL = '/static/'
-	STATICFILES_DIRS = [ os.path.join(PROJECT_ROOT, 'static'), ]
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [ os.path.join(PROJECT_ROOT, 'static'), ]
