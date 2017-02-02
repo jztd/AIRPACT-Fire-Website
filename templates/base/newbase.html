@@ -15,16 +15,21 @@
 </head>
 
 <body>
-<div id="overlay" style="background-color: #000"> </div>
-<nav class="navbar" style="background-color:#fcfcfc; border-bottom: 1px solid black; max-height: 100px;min-height: 100px; height: 100px;" role="navigation">
+<div id="overlay" style="background-color: #9c0009"> </div>
+<nav class="navbar" style="background-color:#9c0009; border-bottom: 1px solid black; max-height: 100px;min-height: 100px; height: 100px;" role="navigation">
 	
-		<div class="navbar-header" style="background-color: #5E6A71; padding-right:25px; padding-left:25px;height:98px;">
-		<a href="#" class="navbar-left" style="background-color: #5E6A71;"> <img class="img-responsive" style="height:90px; padding-top:5px;" src="{% static '/static/media/decoration/apflogo.png' %}" > </a>
-		</div>
-		<p class="navbar-text" style=""><h1><strong> AIRPACT</strong>Fire</h1> </p>
-		<p class="navbar-text" style=""><h4> A Project Under <a href="">LAR </a> </h4></p>
+		<div class="navbar-header" style="background-color: #9c0009; padding-right:25px; padding-left:25px;height:48px;">
+			<a href="#" class="navbar-left" style="background-color: #9c0009;"> <img class="img-responsive" style="height:90px; padding-top:5px;" src="{% static '/static/media/decoration/apflogo.png' %}" > </a>
 
-		<div class= "navbar-right" style=" position:absolute;bottom:0;right:0; margin-right: 25px; color:#000" >
+		</div>
+
+		<div class= "navbar-left" style=" position:absolute;bottom:0;left:10; margin-left: 110px; color:#FFF" >
+			<p class="navbar-text" style=""><h1><strong> AIRPACT</strong>Fire</h1> <h4> A Project Under <a href="http://lar.wsu.edu/">LAR </a> </h4> </p>
+		</div>
+		
+
+
+		<div class= "navbar-right" style=" position:absolute;bottom:0;right:0; margin-right: 25px; color:#FFF" >
 			{% if user.is_authenticated %}
 				 <a href="{% url 'view_profile' user %}"> {{ user }} </a><a href="{% url 'logout' %}"> Logout </a>
 			{% else %}
@@ -33,31 +38,50 @@
 		</div>
 
 </nav>
-<div class="container-fluid">
-	<nav class="col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-2 nav ">
-		<div class="text-right" style="">
+
+
+
+	<div class="container-fluid" >
+		<nav class="col-md-1 nav" >
+			<div class="text-right" >
+				<div id="myAffix">
 <!-- 			<img class="img-responsive" src="{% static '/static/media/decoration/logo.png' %}"/>
-			<span class="icon-bar"></span> -->
-			<ul class="nav">
-				<li><a  href="{% url 'home' %}"> Home </a> </li>
-				<li><a  href="{% url 'gallery' %}"> Gallery </a></li>
-				<li><a  href="{% url 'index' %}"> Upload</a></li>
-				<li><a  href="{% url 'downloads' %}"> Downloads </a></li>
-				<li><a  href="/forum/"> Forum </a></li>
-				<li><a  href="{% url 'about' %}"> About </a></li>
-				{% if user.is_custom_admin and user.is_authenticated %}
-				<li><a  href="{% url 'adminPage' %}"> Admin Page </a></li>
-				{% endif %}
-			</ul>
-		</div>
-	</nav>
-	<div class="col-md-9 col-lg-9 content" style="background-color: #FFF; padding-top:25px; padding-bottom:25px;">
+				<span class="icon-bar"></span> -->
+				<ul class="nav navbar-default navbar-fixed-side">
+					<li><a  class = "nav-link" href="{% url 'home' %}"> Home </a> </li>
+					<li><a  href="{% url 'gallery' %}"> Gallery </a></li>
+					<li><a  href="{% url 'index' %}"> Upload</a></li>
+					<li><a  href="{% url 'downloads' %}"> Downloads </a></li>
+					<li><a  href="/forum/"> Forum </a></li>
+					<li><a  href="{% url 'about' %}"> About </a></li>
+					{% if user.is_custom_admin and user.is_authenticated %}
+					<li><a  href="{% url 'adminPage' %}"> Admin Page </a></li>
+					{% endif %}
+				</ul>
+				</div>
+			</div>
+		</nav>
+	<div class = "cover"> 
+	<div class="col-md-9 col-lg-9 content" style="padding-top:25px; padding-bottom:25px;">
 		{% block airpact-content %}
 		{% endblock %}
 	</div>
+	</div>
 </div>
+
 
 </body>
 
+<script>
+$('#myAffix').affix({
+  offset: {
+    bottom: function () {
+      return (this.bottom = $('.footer').outerHeight(true))
+    }
+  }
+})
+</script>
 
 </HTML>
+
+
